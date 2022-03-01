@@ -1,6 +1,17 @@
 package it.units.sdm.brique;
 
 public class Stone {
-  boolean isPlaced;
-  Color color;
+  private Color color;
+
+  public Stone(Color color) {
+    this.color = color;
+  }
+
+  public void setColor(Color color) {
+    this.color = color;
+  }
+
+  public Color getColor() {
+    return color;
+  }
 }
