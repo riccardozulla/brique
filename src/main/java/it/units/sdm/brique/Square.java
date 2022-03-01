@@ -24,6 +24,10 @@ public class Square {
     return stone;
   }
 
+  public Boolean getIsOccupied() {
+    return isOccupied;
+  }
+
   public void toggleSquareOccupied() {
     this.isOccupied = true;
   }
