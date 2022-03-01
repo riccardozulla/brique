@@ -2,7 +2,6 @@ package it.units.sdm.brique;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-
 public class TestCoordinates {
 
     Coordinate c = new Coordinate(3,4);
@@ -13,4 +12,6 @@ public class TestCoordinates {
     void testY() {
         assertEquals(4, c.getY());
     }
+
+
 }
