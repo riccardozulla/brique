@@ -6,10 +6,9 @@ public class Square {
   private Stone stone;
   private Boolean isOccupied = false;
 
-  public Square(Coordinate coordinate, Color color, Stone stone) {
+  public Square(Coordinate coordinate, Color color) {
     this.coordinate = coordinate;
     this.color = color;
-    this.stone = stone;
   }
 
   public Coordinate getCoordinate() {
@@ -26,6 +25,10 @@ public class Square {
 
   public Boolean getIsOccupied() {
     return isOccupied;
+  }
+
+  public void setStone(Stone stone) {
+    this.stone = stone;
   }
 
   public void toggleSquareOccupied() {
