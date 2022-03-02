@@ -29,7 +29,21 @@ public class Game {
   }
 
   public void addStone(int x, int y, Color color) {
-    gameBoard.getSquare(x, y).setStone(new Stone(color));
+    var tmp = gameBoard.getSquare(x, y);
+    if(tmp.getIsOccupied()){
+      //todo: add exception
+      return;
+    }
+    tmp.setStone(new Stone(color));
+    tmp.toggleSquareOccupied();
+  }
+  private void updateStone(int x, int y, Color color){
+    var tmp = gameBoard.getSquare(x,y);
+    if(tmp.getIsOccupied()) {
+      tmp.getStone().setColor(color);
+    }else {
+      addStone(x, y, color);
+    }
   }
 
   public void addStoneAndUpdateBoard(int x, int y, Color color) {
@@ -37,11 +51,12 @@ public class Game {
     if (getGameBoard().getSquare(x + 1, y - 1).getIsOccupied()) {
       if (getGameBoard().getSquare(x + 1, y - 1).getStone().getColor() == color) {
         if (getGameBoard().getSquare(x, y).getColor() == Color.BLACK) {
-          addStone(x + 1, y, color);
+          updateStone(x + 1, y, color);
         } else {
-          addStone(x, y - 1, color);
+          updateStone(x, y - 1, color);
         }
       }
     }
+
   }
 }
