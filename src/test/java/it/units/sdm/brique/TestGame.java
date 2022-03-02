@@ -19,4 +19,12 @@ public class TestGame {
     game.addStone(0,0, Color.BLACK);
     assertEquals(Color.BLACK, game.getGameBoard().getSquare(0, 0).getStone().getColor());
   }
+
+  @Test
+  void testChangeStoneColor() {
+    game.addStone(14,14, Color.BLACK);
+    assertEquals(Color.BLACK, game.getGameBoard().getSquare(14, 14).getStone().getColor());
+    game.getGameBoard().getSquare(14,14).getStone().setColor(Color.WHITE);
+    assertEquals(Color.WHITE, game.getGameBoard().getSquare(14, 14).getStone().getColor());
+  }
 }
