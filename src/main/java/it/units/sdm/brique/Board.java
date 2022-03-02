@@ -26,4 +26,17 @@ public class Board {
   public Square getSquare(int x, int y) {
     return squares[x][y];
   }
+
+  public void printDebug(){
+    for (int i = 0; i < boardSize; i++) {
+      for (int j = 0; j < boardSize; j++) {
+        if(squares[i][j].getIsOccupied()){
+          System.out.print(" X ");
+        } else {
+          System.out.print(" _ ");
+        }
+      }
+      System.out.println();
+    }
+  }
 }
