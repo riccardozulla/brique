@@ -27,4 +27,11 @@ public class TestGame {
     game.getGameBoard().getSquare(14,14).getStone().setColor(Color.WHITE);
     assertEquals(Color.WHITE, game.getGameBoard().getSquare(14, 14).getStone().getColor());
   }
+
+  @Test
+  void testStonePlacementWhenFriendlyStoneIsAlreadyPresent() {;
+    game.addStone(1,0, Color.BLACK);
+    game.addStoneAndUpdateBoard(0,1, Color.BLACK);
+    assertEquals(true, game.getGameBoard().getSquare(1,1).getIsOccupied());
+  }
 }
