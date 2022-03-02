@@ -7,8 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestSquare {
-    private final Coordinate coordinate = new Coordinate(0,0);
-    private final Square square = new Square(coordinate, Color.BLACK);
+    private final Square square = new Square(Color.BLACK);
 
     @Test
     void toggleTestToFalse() {

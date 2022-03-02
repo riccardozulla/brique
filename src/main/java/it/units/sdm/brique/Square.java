@@ -1,18 +1,12 @@
 package it.units.sdm.brique;
 
 public class Square {
-  private Coordinate coordinate;
-  private Color color;
+  private final Color color;
   private Stone stone;
   private Boolean isOccupied = false;
 
-  public Square(Coordinate coordinate, Color color) {
-    this.coordinate = coordinate;
+  public Square(Color color) {
     this.color = color;
-  }
-
-  public Coordinate getCoordinate() {
-    return coordinate;
   }
 
   public Color getColor() {
