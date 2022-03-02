@@ -10,7 +10,7 @@ public class Board {
     this.squares = new Square[boardSize][boardSize];
     for (int i = 0; i < boardSize; i++) {
       for (int j = 0; j < boardSize; j++) {
-        squares[i][j] = new Square(new Coordinate(i, j), ((i + j) % 2 == 0 ? Color.WHITE : Color.BLACK));
+        squares[i][j] = new Square(((i + j) % 2 == 0 ? Color.WHITE : Color.BLACK));
       }
     }
   }
@@ -23,7 +23,7 @@ public class Board {
     return squares;
   }
 
-  public Square getSquare(Coordinate coordinate) {
-    return squares[coordinate.getX()][coordinate.getY()];
+  public Square getSquare(int x, int y) {
+    return squares[x][y];
   }
 }
