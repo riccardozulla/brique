@@ -57,7 +57,7 @@ public class TestGame {
     assertEquals(Color.WHITE, game.getGameBoard().getSquare(1, 1).getColor());
   }
 
-  //Generic tests (NOT WORKING FOR NOW)
+
   @ParameterizedTest
   @CsvSource({"8, 12"})
   void testStonePlacementWhenFriendlyStoneIsAlreadyPresentAndSquareIsFree(int x, int y) {
@@ -65,6 +65,6 @@ public class TestGame {
     game.addStone(x+1, y-1, Color.BLACK);
     game.addStoneAndUpdateBoard(x,y, Color.BLACK);
     System.out.println(game.getGameBoard().getSquare(x, y).getStone().getColor());
-    assertEquals(true, game.getGameBoard().getSquare(x+1,y).getIsOccupied());
+    assertEquals(true, game.getGameBoard().getSquare(x,y-1).getIsOccupied());
   }
 }
