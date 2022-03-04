@@ -1,10 +1,15 @@
 package it.units.sdm.brique;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
 public class Game {
   private static final int BOARD_SIZE = 15;
   private Status status = Status.RUNNING;
   private final Player[] players;
   private final Board gameBoard;
+  private List<Stone> placedStone = new ArrayList<>();
   private Player nextMove;
 
   public Game(Player player1, Player player2) {
@@ -28,23 +33,24 @@ public class Game {
     return gameBoard;
   }
 
+  public List<Stone> getPlacedStone() {
+    return placedStone;
+  }
+
   public void addStone(int x, int y, Color color) {
-    Square tmp = gameBoard.getSquare(x, y);
-    if (tmp.getIsOccupied()) {
-      //todo: add exception
+    Stone tmp = new Stone(x,y, color);
+    if(placedStone.stream().anyMatch(s->s.equalsCoordinates(tmp))){
+      //todo:: raise exception
       return;
     }
-    tmp.setStone(new Stone(color));
-    tmp.toggleSquareOccupied();
+    placedStone.add(tmp);
   }
 
   private void updateStoneColor(int x, int y, Color color) {
-    Square tmp = gameBoard.getSquare(x, y);
-    if (!tmp.getIsOccupied()) {
-      addStone(x, y, color);
-    } else if (tmp.getStone().getColor() != color) {
-      tmp.getStone().setColor(color);
-    }
+    Stone tmp = new Stone(x,y,color);
+    if(placedStone.contains(tmp)) return;
+    placedStone.remove(tmp);
+    placedStone.add(tmp);
   }
 
   public void addStoneAndUpdateBoard(int x, int y, Color color) {
@@ -76,9 +82,7 @@ public class Game {
 
   private boolean checkDiagonalStone(int i, int j, Color color) {
     if (isCoordinatesOutOfBounds(i, j)) return false;
-    Square square = getGameBoard().getSquare(i, j);
-    if (!square.getIsOccupied()) return false;
-    return square.getStone().getColor() == color;
+    return placedStone.stream().anyMatch(Predicate.isEqual(new Stone(i, j, color)));
   }
 
   private boolean isCoordinatesOutOfBounds(int x, int y) {
