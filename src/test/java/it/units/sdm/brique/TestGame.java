@@ -25,45 +25,79 @@ public class TestGame {
     assert(game.getPlacedStones().contains(new Stone(0,0,Color.BLACK)));
   }
 
-//  @Test
-//  void testChangeStoneColor() {
-//    game.addStone(14,14, Color.BLACK);
-//    assertEquals(Color.BLACK, game.getGameBoard().getSquare(14, 14).getStone().getColor());
-//    game.getGameBoard().getSquare(14,14).getStone().setColor(Color.WHITE);
-//    assertEquals(Color.WHITE, game.getGameBoard().getSquare(14, 14).getStone().getColor());
-//  }
-
-  @Test
-  void testStonePlacementWhenFriendlyStoneIsAlreadyPresentAndSquareIsFree() {
-    //Precondition: The square near the occupied escort is free
-    game.addStone(1,0, Color.BLACK);
-    game.addStoneAndUpdateBoard(0,1, Color.BLACK);
-    assert(game.getPlacedStones().contains(new Stone(1,1,Color.BLACK)));
-  }
-
-  @Test
-  void testStonePlacementWhenEnemyStoneIsAlreadyPresentAndSquareIsFree() {
-    //Precondition: The square near the occupied escort is free
-    game.addStone(1,0, Color.BLACK);
-    game.addStoneAndUpdateBoard(0,1, Color.WHITE);
-    assertFalse(game.getPlacedStones().contains(new Stone(1,1,Color.BLACK)));
-  }
-
-//  @Test
-//  void testStonePlacementWhenEnemyStoneIsAlreadyPresentAndSquareIsOccupied() {
-//    game.addStone(1, 0, Color.BLACK);
-//    game.addStone(1, 1, Color.WHITE);
-//    game.addStoneAndUpdateBoard(0,1, Color.BLACK);
-//    assertEquals(Color.WHITE, game.getGameBoard().getSquare(1, 1).getColor());
-//  }
-
-
   @ParameterizedTest
-  @CsvSource({"8, 12"})
-  void testStonePlacementWhenFriendlyStoneIsAlreadyPresentAndSquareIsFree(int x, int y) {
-    //Precondition: The square near the occupied escort is free
+  @CsvSource({"8, 12", "1, 1", "5, 7"})
+  void testStonePlacementWhenFriendlyStoneIsAlreadyPresentAndBlackSquareIsFree(int x, int y) {
+    //Precondition: The square near the occupied escort is free. The specified coordinates are on a white square.
     game.addStone(x+1, y-1, Color.BLACK);
     game.addStoneAndUpdateBoard(x,y, Color.BLACK);
     assert(game.getPlacedStones().contains(new Stone(x,y-1,Color.BLACK)));
+  }
+
+  @ParameterizedTest
+  @CsvSource({"5, 6", "6, 9", "10, 11"})
+  void testStonePlacementWhenFriendlyStoneIsAlreadyPresentAndWhiteSquareIsFree(int x, int y) {
+    //Precondition: The square near the occupied escort is free. The specified coordinates are on a black square.
+    game.addStone(x+1, y-1, Color.BLACK);
+    game.addStoneAndUpdateBoard(x,y, Color.BLACK);
+    assert(game.getPlacedStones().contains(new Stone(x+1,y,Color.BLACK)));
+  }
+
+  @ParameterizedTest
+  @CsvSource({"8, 12", "1, 1", "5, 7"})
+  void testStonePlacementWhenEnemyStoneIsAlreadyPresentAndBlackSquareIsFree(int x, int y) {
+    //Precondition: The square near the occupied escort is free. The specified coordinates are on a white square.
+    game.addStone(x+1, y-1, Color.WHITE);
+    game.addStoneAndUpdateBoard(x,y, Color.BLACK);
+    assertFalse(game.getPlacedStones().contains(new Stone(x,y-1,Color.BLACK)));
+  }
+
+  @ParameterizedTest
+  @CsvSource({"5, 6", "6, 9", "10, 11"})
+  void testStonePlacementWhenEnemyStoneIsAlreadyPresentAndWhiteSquareIsFree(int x, int y) {
+    //Precondition: The square near the occupied escort is free. The specified coordinates are on a black square.
+    game.addStone(x+1, y-1, Color.WHITE);
+    game.addStoneAndUpdateBoard(x,y, Color.BLACK);
+    assertFalse(game.getPlacedStones().contains(new Stone(x+1,y,Color.BLACK)));
+  }
+
+  @ParameterizedTest
+  @CsvSource({"8, 12", "1, 1", "5, 7"})
+  void testStonePlacementWhenFriendlyStoneIsAlreadyPresentAndBlackSquareIsOccupiedByEnemyStone(int x, int y) {
+    //Precondition: The square near the occupied escort is occupied by an enemy stone. The specified coordinates are on a white square.
+    game.addStone(x+1, y-1, Color.BLACK);;
+    game.addStone(x, y-1, Color.WHITE);
+    game.addStoneAndUpdateBoard(x,y, Color.BLACK);
+    assert(game.getPlacedStones().contains(new Stone(x,y-1,Color.BLACK)));
+  }
+
+  @ParameterizedTest
+  @CsvSource({"5, 6", "6, 9", "10, 11"})
+  void testStonePlacementWhenFriendlyStoneIsAlreadyPresentAndWhiteSquareIsOccupiedByEnemyStone(int x, int y) {
+    //Precondition: The square near the occupied escort is occupied by an enemy stone. The specified coordinates are on a black square.
+    game.addStone(x+1, y-1, Color.WHITE);
+    game.addStone(x+1, y, Color.WHITE);
+    game.addStoneAndUpdateBoard(x,y, Color.BLACK);
+    assertFalse(game.getPlacedStones().contains(new Stone(x+1,y,Color.BLACK)));
+  }
+
+  @ParameterizedTest
+  @CsvSource({"8, 12", "1, 1", "5, 7"})
+  void testStonePlacementWhenEnemyStoneIsAlreadyPresentAndBlackSquareIsOccupiedByEnemyStone(int x, int y) {
+    //Precondition: The square near the occupied escort is occupied by an enemy stone. The specified coordinates are on a white square.
+    game.addStone(x+1, y-1, Color.WHITE);
+    game.addStone(x, y-1, Color.WHITE);
+    game.addStoneAndUpdateBoard(x,y, Color.BLACK);
+    assertFalse(game.getPlacedStones().contains(new Stone(x,y-1,Color.BLACK)));
+  }
+
+  @ParameterizedTest
+  @CsvSource({"5, 6", "6, 9", "10, 11"})
+  void testStonePlacementWhenEnemyStoneIsAlreadyPresentAndWhiteSquareIsOccupiedByEnemyStone(int x, int y) {
+    //Precondition: The square near the occupied escort is occupied by an enemy stone. The specified coordinates are on a black square.
+    game.addStone(x+1, y-1, Color.WHITE);
+    game.addStone(x+1,y, Color.WHITE);
+    game.addStoneAndUpdateBoard(x,y, Color.BLACK);
+    assertFalse(game.getPlacedStones().contains(new Stone(x+1,y,Color.BLACK)));
   }
 }
