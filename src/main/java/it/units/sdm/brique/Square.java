@@ -17,7 +17,7 @@ public class Square {
     return stone;
   }
 
-  public Boolean getIsOccupied() {
+  public Boolean isOccupied() {
     return isOccupied;
   }
 

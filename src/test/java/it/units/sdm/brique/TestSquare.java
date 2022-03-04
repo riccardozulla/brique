@@ -1,8 +1,6 @@
 package it.units.sdm.brique;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,11 +10,11 @@ public class TestSquare {
     @Test
     void toggleTestToFalse() {
         square.toggleSquareOccupied();
-        assertEquals(true, square.getIsOccupied());
+        assertEquals(true, square.isOccupied());
     }
 
     @Test
     void checkTestFalse() {
-        assertEquals(false, square.getIsOccupied());
+        assertEquals(false, square.isOccupied());
     }
 }

@@ -30,7 +30,7 @@ public class Board {
   public void printDebug(){
     for (int i = 0; i < boardSize; i++) {
       for (int j = 0; j < boardSize; j++) {
-        if(squares[i][j].getIsOccupied()){
+        if(squares[i][j].isOccupied()){
           System.out.print(" X ");
         } else {
           System.out.print(" _ ");
