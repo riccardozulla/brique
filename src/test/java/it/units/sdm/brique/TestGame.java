@@ -3,7 +3,6 @@ package it.units.sdm.brique;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -23,7 +22,7 @@ public class TestGame {
   @Test
   void testAddStone() {
     game.addStone(0,0, Color.BLACK);
-    assert(game.getPlacedStone().contains(new Stone(0,0,Color.BLACK)));
+    assert(game.getPlacedStones().contains(new Stone(0,0,Color.BLACK)));
   }
 
 //  @Test
@@ -39,7 +38,7 @@ public class TestGame {
     //Precondition: The square near the occupied escort is free
     game.addStone(1,0, Color.BLACK);
     game.addStoneAndUpdateBoard(0,1, Color.BLACK);
-    assert(game.getPlacedStone().contains(new Stone(1,1,Color.BLACK)));
+    assert(game.getPlacedStones().contains(new Stone(1,1,Color.BLACK)));
   }
 
   @Test
@@ -47,7 +46,7 @@ public class TestGame {
     //Precondition: The square near the occupied escort is free
     game.addStone(1,0, Color.BLACK);
     game.addStoneAndUpdateBoard(0,1, Color.WHITE);
-    assertFalse(game.getPlacedStone().contains(new Stone(1,1,Color.BLACK)));
+    assertFalse(game.getPlacedStones().contains(new Stone(1,1,Color.BLACK)));
   }
 
 //  @Test
@@ -65,6 +64,6 @@ public class TestGame {
     //Precondition: The square near the occupied escort is free
     game.addStone(x+1, y-1, Color.BLACK);
     game.addStoneAndUpdateBoard(x,y, Color.BLACK);
-    assert(game.getPlacedStone().contains(new Stone(x,y-1,Color.BLACK)));
+    assert(game.getPlacedStones().contains(new Stone(x,y-1,Color.BLACK)));
   }
 }

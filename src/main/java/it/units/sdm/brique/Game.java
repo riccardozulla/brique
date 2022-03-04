@@ -9,7 +9,7 @@ public class Game {
   private Status status = Status.RUNNING;
   private final Player[] players;
   private final Board gameBoard;
-  private List<Stone> placedStone = new ArrayList<>();
+  private List<Stone> placedStones = new ArrayList<>();
   private Player nextMove;
 
   public Game(Player player1, Player player2) {
@@ -33,24 +33,24 @@ public class Game {
     return gameBoard;
   }
 
-  public List<Stone> getPlacedStone() {
-    return placedStone;
+  public List<Stone> getPlacedStones() {
+    return placedStones;
   }
 
   public void addStone(int x, int y, Color color) {
     Stone tmp = new Stone(x,y, color);
-    if(placedStone.stream().anyMatch(s->s.equalsCoordinates(tmp))){
+    if(placedStones.stream().anyMatch(s->s.equalsCoordinates(tmp))){
       //todo:: raise exception
       return;
     }
-    placedStone.add(tmp);
+    placedStones.add(tmp);
   }
 
   private void updateStoneColor(int x, int y, Color color) {
     Stone tmp = new Stone(x,y,color);
-    if(placedStone.contains(tmp)) return;
-    placedStone.remove(tmp);
-    placedStone.add(tmp);
+    if(placedStones.contains(tmp)) return;
+    placedStones.remove(tmp);
+    placedStones.add(tmp);
   }
 
   public void addStoneAndUpdateBoard(int x, int y, Color color) {
@@ -82,7 +82,7 @@ public class Game {
 
   private boolean checkDiagonalStone(int i, int j, Color color) {
     if (isCoordinatesOutOfBounds(i, j)) return false;
-    return placedStone.stream().anyMatch(Predicate.isEqual(new Stone(i, j, color)));
+    return placedStones.stream().anyMatch(Predicate.isEqual(new Stone(i, j, color)));
   }
 
   private boolean isCoordinatesOutOfBounds(int x, int y) {
