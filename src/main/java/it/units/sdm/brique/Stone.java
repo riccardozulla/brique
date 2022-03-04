@@ -24,4 +24,8 @@ public class Stone {
   public int getY() {
     return y;
   }
+
+  public int distance (Stone otherStone) {
+    return Math.abs (this.x - otherStone.x) + Math.abs (this.y - otherStone.y);
+  }
 }
