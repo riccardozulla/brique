@@ -14,4 +14,9 @@ public class Stone {
   public Color getColor() {
     return color;
   }
+
+  public void switchColor(){
+    color = color == Color.BLACK ? Color.WHITE : Color.BLACK;
+    //todo add tests
+  }
 }
