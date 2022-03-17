@@ -3,12 +3,14 @@ package it.units.sdm.brique;
 public class Game {
   private static final int BOARD_SIZE = 15;
   private Status status = Status.RUNNING;
-  private final Player[] players;
+  private final Player player1;
+  private final Player player2;
   private final Board gameBoard;
   private Player activePlayer;
 
   public Game(Player player1, Player player2) {
-    this.players = new Player[]{player1, player2};
+    this.player1 = player1;
+    this.player2 = player2;
     this.gameBoard = new Board(BOARD_SIZE);
   }
 
