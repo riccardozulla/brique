@@ -62,7 +62,7 @@ public class Game {
   }
 
   public void addStoneAndUpdateBoard(int x, int y, Color color) {
-    if (isCoordinatesOutOfBounds(x, y)) {
+    if (Board.isCoordinatesOutOfBounds(new Coordinate(x,y))) {
       System.out.println("CoordinatesOutOfBounds: " + x + "," + y);
       return;
       //todo: raise exception
@@ -89,13 +89,10 @@ public class Game {
   }
 
   private boolean checkDiagonalStone(int i, int j, Color color) {
-    if (isCoordinatesOutOfBounds(i, j)) return false;
+    if (Board.isCoordinatesOutOfBounds(new Coordinate(i,j))) return false;
     Square square = getGameBoard().getSquare(i, j);
     if (!square.getIsOccupied()) return false;
     return square.getStone().getColor() == color;
   }
 
-  private boolean isCoordinatesOutOfBounds(int x, int y) {
-    return x < 0 || y < 0;
-  }
 }
