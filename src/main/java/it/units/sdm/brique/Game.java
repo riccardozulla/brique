@@ -39,6 +39,9 @@ public class Game {
     return gameBoard;
   }
 
+  public void switchActivePlayer() {
+  }
+
   public void addStone(int x, int y, Color color) {
     Square tmp = gameBoard.getSquare(x, y);
     if (tmp.getIsOccupied()) {
