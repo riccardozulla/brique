@@ -26,6 +26,43 @@ public class Board {
     return squares[x][y];
   }
 
+  public Square getUp(Square square) {
+    int xPos = square.getCoordinate().getX();
+    int yPos = square.getCoordinate().getY();
+    return squares[xPos-1][yPos];
+  }
+  //TODO: The following methods should check if a stone is on the edge
+
+  public Square getDown(Square square) {
+    int xPos = square.getCoordinate().getX();
+    int yPos = square.getCoordinate().getY();
+    return squares[xPos+1][yPos];
+  }
+
+  public Square getLeft(Square square) {
+    int xPos = square.getCoordinate().getX();
+    int yPos = square.getCoordinate().getY();
+    return squares[xPos][yPos-1];
+  }
+
+  public Square getRight(Square square) {
+    int xPos = square.getCoordinate().getX();
+    int yPos = square.getCoordinate().getY();
+    return squares[xPos][yPos+1];
+  }
+
+  public Square getUpRight(Square square) {
+    int xPos = square.getCoordinate().getX();
+    int yPos = square.getCoordinate().getY();
+    return squares[xPos-1][yPos+1];
+  }
+
+  public Square getDownLeft(Square square) {
+    int xPos = square.getCoordinate().getX();
+    int yPos = square.getCoordinate().getY();
+    return squares[xPos+1][yPos-1];
+  }
+
   public void printDebug(){
     for (int i = 0; i < BOARD_SIZE; i++) {
       for (int j = 0; j < BOARD_SIZE; j++) {
