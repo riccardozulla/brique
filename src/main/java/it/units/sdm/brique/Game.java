@@ -5,7 +5,7 @@ public class Game {
   private Status status = Status.RUNNING;
   private final Player[] players;
   private final Board gameBoard;
-  private Player nextMove;
+  private Player activePlayer;
 
   public Game(Player player1, Player player2) {
     this.players = new Player[]{player1, player2};
@@ -16,8 +16,8 @@ public class Game {
     return status;
   }
 
-  public Player getNextMove() {
-    return nextMove;
+  public Player getActivePlayer() {
+    return activePlayer;
   }
 
   public Player[] getPlayers() {
