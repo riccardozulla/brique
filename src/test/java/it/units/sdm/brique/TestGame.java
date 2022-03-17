@@ -20,6 +20,11 @@ public class TestGame {
   }
 
   @Test
+  void initializeActivePLayer() {
+    assertEquals(player1, game.getActivePlayer());
+  }
+
+  @Test
   void testAddStone() {
     game.addStone(0,0, Color.BLACK);
     assertEquals(Color.BLACK, game.getGameBoard().getSquare(0, 0).getStone().getColor());
