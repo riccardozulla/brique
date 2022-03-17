@@ -1,7 +1,6 @@
 package it.units.sdm.brique;
 
 public class Game {
-  private static final int BOARD_SIZE = 15;
   private Status status = Status.RUNNING;
   private final Player player1;
   private final Player player2;
@@ -11,7 +10,7 @@ public class Game {
   public Game(Player player1, Player player2) {
     this.player1 = player1;
     this.player2 = player2;
-    this.gameBoard = new Board(BOARD_SIZE);
+    this.gameBoard = new Board();
     if (player1.getStoneColor() == Color.BLACK) {
       activePlayer = player1;
     } else {
