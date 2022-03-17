@@ -12,6 +12,11 @@ public class Game {
     this.player1 = player1;
     this.player2 = player2;
     this.gameBoard = new Board(BOARD_SIZE);
+    if (player1.getStoneColor() == Color.BLACK) {
+      activePlayer = player1;
+    } else {
+      activePlayer = player2;
+    }
   }
 
   public Status getStatus() {
