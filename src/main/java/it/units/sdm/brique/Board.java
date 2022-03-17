@@ -63,6 +63,12 @@ public class Board {
     return squares[xPos+1][yPos-1];
   }
 
+  public static boolean isCoordinatesOutOfBounds(Coordinate coordinate) {
+    int x = coordinate.getX();
+    int y = coordinate.getY();
+    return x < 0 || y < 0 || x >= BOARD_SIZE || y >= BOARD_SIZE;
+  }
+
   public void printDebug(){
     for (int i = 0; i < BOARD_SIZE; i++) {
       for (int j = 0; j < BOARD_SIZE; j++) {
