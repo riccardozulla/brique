@@ -27,8 +27,12 @@ public class Game {
     return activePlayer;
   }
 
-  public Player[] getPlayers() {
-    return players;
+  public Player getPlayer1() {
+    return player1;
+  }
+
+  public Player getPlayer2() {
+    return player2;
   }
 
   public Board getGameBoard() {
