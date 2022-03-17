@@ -40,6 +40,7 @@ public class Game {
   }
 
   public void switchActivePlayer() {
+    activePlayer = activePlayer.equals(player1) ? player2 : player1;
   }
 
   public void addStone(int x, int y, Color color) {
