@@ -2,21 +2,20 @@ package it.units.sdm.brique;
 
 public class Board {
 
-  private final int boardSize;
+  private static final int BOARD_SIZE = 15;
   private final Square[][] squares;
 
-  public Board(int boardSize) {
-    this.boardSize = boardSize;
-    this.squares = new Square[boardSize][boardSize];
-    for (int i = 0; i < boardSize; i++) {
-      for (int j = 0; j < boardSize; j++) {
+  public Board() {
+    this.squares = new Square[BOARD_SIZE][BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+      for (int j = 0; j < BOARD_SIZE; j++) {
         squares[i][j] = new Square(((i + j) % 2 == 0 ? Color.WHITE : Color.BLACK));
       }
     }
   }
 
   public int getBoardSize() {
-    return boardSize;
+    return BOARD_SIZE;
   }
 
   public Square[][] getSquares() {
@@ -28,8 +27,8 @@ public class Board {
   }
 
   public void printDebug(){
-    for (int i = 0; i < boardSize; i++) {
-      for (int j = 0; j < boardSize; j++) {
+    for (int i = 0; i < BOARD_SIZE; i++) {
+      for (int j = 0; j < BOARD_SIZE; j++) {
         if(squares[i][j].getIsOccupied()){
           System.out.print(" X ");
         } else {
