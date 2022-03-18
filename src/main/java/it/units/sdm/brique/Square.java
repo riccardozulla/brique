@@ -3,7 +3,6 @@ package it.units.sdm.brique;
 public class Square {
   private final Color color;
   private Stone stone;
-  private Boolean isOccupied = false;
   private final Coordinate coordinate;
 
   public Square(Coordinate coordinate, Color color) {
@@ -23,16 +22,8 @@ public class Square {
     return coordinate;
   }
 
-  public Boolean getIsOccupied() {
-    return isOccupied;
-  }
-
   public void setStone(Stone stone) {
     this.stone = stone;
-  }
-
-  public void toggleSquareOccupied() {
-    this.isOccupied = true;
   }
 
 }
