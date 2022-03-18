@@ -69,16 +69,4 @@ public class Board {
     return x < 0 || y < 0 || x >= BOARD_SIZE || y >= BOARD_SIZE;
   }
 
-  public void printDebug(){
-    for (int i = 0; i < BOARD_SIZE; i++) {
-      for (int j = 0; j < BOARD_SIZE; j++) {
-        if(squares[i][j].getIsOccupied()){
-          System.out.print(" X ");
-        } else {
-          System.out.print(" _ ");
-        }
-      }
-      System.out.println();
-    }
-  }
 }
