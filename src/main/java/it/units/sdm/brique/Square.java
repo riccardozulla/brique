@@ -9,6 +9,7 @@ public class Square {
   public Square(Coordinate coordinate, Color color) {
     this.coordinate = coordinate;
     this.color = color;
+    this.stone = Optional.empty();
   }
 
   public Color getColor() {
