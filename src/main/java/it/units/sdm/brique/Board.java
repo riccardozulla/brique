@@ -1,5 +1,7 @@
 package it.units.sdm.brique;
 
+import java.util.Optional;
+
 public class Board {
 
   protected static final int BOARD_SIZE = 15;
@@ -26,41 +28,48 @@ public class Board {
     return squares[x][y];
   }
 
-  public Square getUp(Square square) {
-    int xPos = square.getCoordinate().getX();
-    int yPos = square.getCoordinate().getY();
-    return squares[xPos-1][yPos];
-  }
-  //TODO: The following methods should check if a stone is on the edge
-
-  public Square getDown(Square square) {
-    int xPos = square.getCoordinate().getX();
-    int yPos = square.getCoordinate().getY();
-    return squares[xPos+1][yPos];
+  private Optional<Square> getOptionalSquare(int x, int y) {
+    try {
+      return Optional.of(getSquare(x, y));
+    } catch (ArrayIndexOutOfBoundsException exception) {
+      return Optional.empty();
+    }
   }
 
-  public Square getLeft(Square square) {
-    int xPos = square.getCoordinate().getX();
-    int yPos = square.getCoordinate().getY();
-    return squares[xPos][yPos-1];
+  public Optional<Square> getUp(Square square) {
+    Coordinate squareCoordinate = square.getCoordinate();
+    return getOptionalSquare(squareCoordinate.getX() - 1, squareCoordinate.getY());
+
   }
 
-  public Square getRight(Square square) {
-    int xPos = square.getCoordinate().getX();
-    int yPos = square.getCoordinate().getY();
-    return squares[xPos][yPos+1];
+  public Optional<Square> getDown(Square square) {
+    Coordinate squareCoordinate = square.getCoordinate();
+    return getOptionalSquare(squareCoordinate.getX() + 1, squareCoordinate.getY());
+
   }
 
-  public Square getUpRight(Square square) {
-    int xPos = square.getCoordinate().getX();
-    int yPos = square.getCoordinate().getY();
-    return squares[xPos-1][yPos+1];
+  public Optional<Square> getLeft(Square square) {
+    Coordinate squareCoordinate = square.getCoordinate();
+    return getOptionalSquare(squareCoordinate.getX(), squareCoordinate.getY() - 1);
+
   }
 
-  public Square getDownLeft(Square square) {
-    int xPos = square.getCoordinate().getX();
-    int yPos = square.getCoordinate().getY();
-    return squares[xPos+1][yPos-1];
+  public Optional<Square> getRight(Square square) {
+    Coordinate squareCoordinate = square.getCoordinate();
+    return getOptionalSquare(squareCoordinate.getX(), squareCoordinate.getY() + 1);
+
+  }
+
+  public Optional<Square> getUpRight(Square square) {
+    Coordinate squareCoordinate = square.getCoordinate();
+    return getOptionalSquare(squareCoordinate.getX() - 1, squareCoordinate.getY() + 1);
+
+  }
+
+  public Optional<Square> getDownLeft(Square square) {
+    Coordinate squareCoordinate = square.getCoordinate();
+    return getOptionalSquare(squareCoordinate.getX() + 1, squareCoordinate.getY() - 1);
+
   }
 
   public static boolean isCoordinatesOutOfBounds(Coordinate coordinate) {
