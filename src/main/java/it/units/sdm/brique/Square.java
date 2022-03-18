@@ -1,8 +1,9 @@
 package it.units.sdm.brique;
+import java.util.Optional;
 
 public class Square {
   private final Color color;
-  private Stone stone;
+  private Optional<Stone> stone;
   private final Coordinate coordinate;
 
   public Square(Coordinate coordinate, Color color) {
@@ -14,7 +15,7 @@ public class Square {
     return color;
   }
 
-  public Stone getStone() {
+  public Optional <Stone> getStone() {
     return stone;
   }
 
@@ -23,7 +24,7 @@ public class Square {
   }
 
   public void setStone(Stone stone) {
-    this.stone = stone;
+    this.stone = Optional.of(stone);
   }
 
 }
