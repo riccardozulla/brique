@@ -1,5 +1,7 @@
 package it.units.sdm.brique;
 
+import it.units.sdm.brique.exceptions.StoneAlreadyPresentException;
+
 public class Game {
   private Status status = Status.RUNNING;
   private final Player player1;
@@ -42,57 +44,45 @@ public class Game {
     activePlayer = activePlayer.equals(player1) ? player2 : player1;
   }
 
-  public void addStone(int x, int y, Color color) {
-    Square tmp = gameBoard.getSquare(x, y);
-    if (tmp.getIsOccupied()) {
-      //todo: add exception
-      return;
-    }
-    tmp.setStone(new Stone(color));
-    tmp.toggleSquareOccupied();
+  public void addStone(Square square) {
+    square.getStone().ifPresentOrElse(s -> {
+      throw new StoneAlreadyPresentException("Stone already present in the given square!");
+    }, () -> square.setStone(new Stone(activePlayer.getStoneColor())));
   }
 
-  private void updateStoneColor(int x, int y, Color color) {
-    Square tmp = gameBoard.getSquare(x, y);
-    if (!tmp.getIsOccupied()) {
-      addStone(x, y, color);
-    } else if (tmp.getStone().getColor() != color) {
-      tmp.getStone().setColor(color);
-    }
+  private void addOrReplaceStone(Square square) {
+    square.getStone().ifPresentOrElse(
+            stone -> stone.setColor(activePlayer.getStoneColor()),
+            () -> addStone(square));
   }
 
-  public void addStoneAndUpdateBoard(int x, int y, Color color) {
-    if (Board.isCoordinatesOutOfBounds(new Coordinate(x,y))) {
-      System.out.println("CoordinatesOutOfBounds: " + x + "," + y);
-      return;
-      //todo: raise exception
-    }
-    addStone(x, y, color);
-    updateBoard(x, y, color);
+  public void addStoneAndCheckEscortRule(Square square) {
+    addStone(square);
+    checkEscortRule(square);
   }
 
-  private void updateBoard(int x, int y, Color color) {
-    if (checkDiagonalStone(x + 1, y - 1, color)) {
-      if (getGameBoard().getSquare(x, y).getColor() == Color.BLACK) {
-        updateStoneColor(x + 1, y, color);
-      } else {
-        updateStoneColor(x, y - 1, color);
+  private void checkEscortRule(Square square) {
+    gameBoard.getDownLeft(square).getStone().ifPresent(stone -> {
+      if (stoneBelongsToActivePlayer(stone)) {
+        if (square.getColor() == Color.WHITE) {
+          addOrReplaceStone(gameBoard.getLeft(square));
+        } else {
+          addOrReplaceStone(gameBoard.getDown(square));
+        }
       }
-    }
-    if (checkDiagonalStone(x - 1, y + 1, color)) {
-      if (getGameBoard().getSquare(x, y).getColor() == Color.BLACK) {
-        updateStoneColor(x, y + 1, color);
-      } else {
-        updateStoneColor(x - 1, y, color);
+    });
+    gameBoard.getUpRight(square).getStone().ifPresent(stone -> {
+      if (stoneBelongsToActivePlayer(stone)) {
+        if (square.getColor() == Color.WHITE) {
+          addOrReplaceStone(gameBoard.getUp(square));
+        } else {
+          addOrReplaceStone(gameBoard.getRight(square));
+        }
       }
-    }
+    });
   }
 
-  private boolean checkDiagonalStone(int i, int j, Color color) {
-    if (Board.isCoordinatesOutOfBounds(new Coordinate(i,j))) return false;
-    Square square = getGameBoard().getSquare(i, j);
-    if (!square.getIsOccupied()) return false;
-    return square.getStone().getColor() == color;
+  private boolean stoneBelongsToActivePlayer(Stone stone) {
+    return stone.getColor() == activePlayer.getStoneColor();
   }
-
 }
