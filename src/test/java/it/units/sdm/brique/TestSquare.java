@@ -6,8 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestSquare {
     private final Square square = new Square(new Coordinate(0,0), Color.BLACK);
@@ -15,11 +14,11 @@ public class TestSquare {
     @Test
     void toggleTestToTrue() {
         square.setStone(new Stone(Color.BLACK));
-        assertNotEquals(Optional.empty(), square.getStone());
+        assert(square.getStone().isPresent());
     }
 
     @Test
     void checkTestFalse() {
-        assertEquals(false, square.getStone() == null);
+        assertFalse(square.getStone().isPresent());
     }
 }
