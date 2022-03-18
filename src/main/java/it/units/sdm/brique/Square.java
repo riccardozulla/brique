@@ -4,9 +4,10 @@ public class Square {
   private final Color color;
   private Stone stone;
   private Boolean isOccupied = false;
-  private Coordinate coordinate;
+  private final Coordinate coordinate;
 
-  public Square(Color color) {
+  public Square(Coordinate coordinate, Color color) {
+    this.coordinate = coordinate;
     this.color = color;
   }
 
