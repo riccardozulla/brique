@@ -25,6 +25,22 @@ public class Square {
     return coordinate;
   }
 
+  public boolean isFirstRow() {
+    return getCoordinate().getX()==0;
+  }
+
+  public boolean isLastRow() {
+    return getCoordinate().getX()==Board.BOARD_SIZE-1;
+  }
+
+  public boolean isFirstCol(){
+    return getCoordinate().getY()==0;
+  }
+
+  public boolean isLastCol(){
+    return getCoordinate().getY()==Board.BOARD_SIZE-1;
+  }
+
   public void setStone(Stone stone) {
     this.stone = Optional.of(stone);
   }
