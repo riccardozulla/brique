@@ -25,19 +25,19 @@ public class Square {
     return coordinate;
   }
 
-  public boolean isFirstRow() {
+  public boolean isTopEdge() {
     return getCoordinate().getX()==0;
   }
 
-  public boolean isLastRow() {
+  public boolean isBottomEdge() {
     return getCoordinate().getX()==Board.BOARD_SIZE-1;
   }
 
-  public boolean isFirstCol(){
+  public boolean isLeftEdge(){
     return getCoordinate().getY()==0;
   }
 
-  public boolean isLastCol(){
+  public boolean isRightEdge(){
     return getCoordinate().getY()==Board.BOARD_SIZE-1;
   }
 
