@@ -1,4 +1,5 @@
 package it.units.sdm.brique;
+
 import java.util.Optional;
 
 public class Square {
@@ -16,7 +17,7 @@ public class Square {
     return color;
   }
 
-  public Optional <Stone> getStone() {
+  public Optional<Stone> getStone() {
     return stone;
   }
 
@@ -28,5 +29,9 @@ public class Square {
     this.stone = Optional.of(stone);
   }
 
+  public static int manhattanSquareDistance(Square square1, Square square2) {
+    return Math.abs(square1.getCoordinate().getX() - square2.getCoordinate().getX())
+            + Math.abs(square1.getCoordinate().getY() - square2.getCoordinate().getY());
+  }
 }
 
