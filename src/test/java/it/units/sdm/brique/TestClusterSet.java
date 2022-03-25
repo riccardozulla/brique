@@ -28,6 +28,7 @@ public class TestClusterSet {
 
   @Test
   void winningPath(){
+    Square s1 = new Square(new Coordinate(1, 0), Color.WHITE);
     Square s2 = new Square(new Coordinate(1, 1), Color.WHITE);
     Square s3 = new Square(new Coordinate(1, 2), Color.BLACK);
     Square s4 = new Square(new Coordinate(1, 3), Color.WHITE);
@@ -42,10 +43,10 @@ public class TestClusterSet {
     Square s13 = new Square(new Coordinate(1, 12), Color.BLACK);
     Square s14 = new Square(new Coordinate(1, 13), Color.BLACK);
     Square s15 = new Square(new Coordinate(1, 14), Color.BLACK);
-    ClusterSet clusterSet = new ClusterSet(Set.of(s1, s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15), Color.BLACK);
+    ClusterSet clusterSet = new ClusterSet(Set.of(s1, s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15), Color.WHITE);
     clusterSet.composeClusters();
     assertEquals(1, clusterSet.numberOfSets());
-    assertTrue(winningPath());
+    assertTrue(clusterSet.winningPath());
     //a
   }
 }
