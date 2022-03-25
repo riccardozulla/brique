@@ -12,4 +12,7 @@ public class ClusterSet extends UnionFind<Square> {
     super(elements);
     this.color = stonesColor;
   }
+
+  public void composeClusters() {
+  }
 }

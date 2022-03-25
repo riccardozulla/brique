@@ -18,4 +18,11 @@ public class TestClusterSet {
   void initializeSingleSquareClusters() {
     assertEquals(2, clusterSet.numberOfSets());
   }
+
+  @Test
+  void composeClusters() {
+    clusterSet.composeClusters();
+    assertEquals(1, clusterSet.numberOfSets());
+
+  }
 }
