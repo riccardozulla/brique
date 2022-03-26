@@ -25,7 +25,6 @@ public class ClusterSet extends UnionFind<Square> {
 
     public boolean winningPath() {
         var clusters = getParentMap().keySet().stream().collect(Collectors.groupingBy(this::find)).values();
-        System.out.println(clusters);
         return clusters.stream().anyMatch(this::isEdgeToEdge);
     }
 
