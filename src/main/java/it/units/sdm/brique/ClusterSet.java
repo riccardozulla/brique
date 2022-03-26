@@ -4,7 +4,6 @@ import com.google.common.collect.Sets;
 import org.jgrapht.alg.util.UnionFind;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,14 +24,15 @@ public class ClusterSet extends UnionFind<Square> {
     }
 
     public boolean winningPath() {
-        var clusters = getParentMap().entrySet().stream().collect(Collectors.groupingBy(Map.Entry::getValue)).values();
-        return clusters.stream().anyMatch(cluster -> isEdgeToEdge(cluster));
+        var clusters = getParentMap().keySet().stream().collect(Collectors.groupingBy(this::find)).values();
+        System.out.println(clusters);
+        return clusters.stream().anyMatch(this::isEdgeToEdge);
     }
 
-    private boolean isEdgeToEdge(List<Map.Entry<Square, Square>> cluster) {
+    private boolean isEdgeToEdge(List<Square> cluster) {
         return switch (color) {
-            case BLACK -> cluster.stream().map(Map.Entry::getKey).anyMatch(Square::isTopEdge) && cluster.stream().map(Map.Entry::getKey).anyMatch(Square::isBottomEdge);
-            case WHITE -> cluster.stream().map(Map.Entry::getKey).anyMatch(Square::isLeftEdge) && cluster.stream().map(Map.Entry::getKey).anyMatch(Square::isRightEdge);
+            case BLACK -> cluster.stream().anyMatch(Square::isTopEdge) && cluster.stream().anyMatch(Square::isBottomEdge);
+            case WHITE -> cluster.stream().anyMatch(Square::isLeftEdge) && cluster.stream().anyMatch(Square::isRightEdge);
         };
     }
 }
