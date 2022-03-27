@@ -66,9 +66,7 @@ public class Board {
 
   }
 
-  public static boolean isCoordinatesOutOfBounds(Coordinate coordinate) {
-    int x = coordinate.getX();
-    int y = coordinate.getY();
+  public static boolean isCoordinatesOutOfBounds(int x, int y) {
     return x < 0 || y < 0 || x >= BOARD_SIZE || y >= BOARD_SIZE;
   }
 
