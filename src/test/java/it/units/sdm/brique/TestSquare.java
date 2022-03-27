@@ -9,7 +9,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestSquare {
-    private final Square square = new Square(new Coordinate(0,0), Color.BLACK);
+    private final Square square = new Square(0,0);
 
     @Test
     void toggleTestToTrue() {

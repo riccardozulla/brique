@@ -11,7 +11,7 @@ public class Board {
     this.squares = new Square[BOARD_SIZE][BOARD_SIZE];
     for (int i = 0; i < BOARD_SIZE; i++) {
       for (int j = 0; j < BOARD_SIZE; j++) {
-        squares[i][j] = new Square(new Coordinate(i, j), (i + j) % 2 == 0 ? Color.WHITE : Color.BLACK);
+        squares[i][j] = new Square(i, j);
       }
     }
   }
@@ -37,38 +37,32 @@ public class Board {
   }
 
   public Optional<Square> getUp(Square square) {
-    Coordinate squareCoordinate = square.getCoordinate();
-    return getOptionalSquare(squareCoordinate.getX() - 1, squareCoordinate.getY());
+    return getOptionalSquare(square.getX() - 1, square.getY());
 
   }
 
   public Optional<Square> getDown(Square square) {
-    Coordinate squareCoordinate = square.getCoordinate();
-    return getOptionalSquare(squareCoordinate.getX() + 1, squareCoordinate.getY());
+    return getOptionalSquare(square.getX() + 1, square.getY());
 
   }
 
   public Optional<Square> getLeft(Square square) {
-    Coordinate squareCoordinate = square.getCoordinate();
-    return getOptionalSquare(squareCoordinate.getX(), squareCoordinate.getY() - 1);
+    return getOptionalSquare(square.getX(), square.getY() - 1);
 
   }
 
   public Optional<Square> getRight(Square square) {
-    Coordinate squareCoordinate = square.getCoordinate();
-    return getOptionalSquare(squareCoordinate.getX(), squareCoordinate.getY() + 1);
+    return getOptionalSquare(square.getX(), square.getY() + 1);
 
   }
 
   public Optional<Square> getUpRight(Square square) {
-    Coordinate squareCoordinate = square.getCoordinate();
-    return getOptionalSquare(squareCoordinate.getX() - 1, squareCoordinate.getY() + 1);
+    return getOptionalSquare(square.getX() - 1, square.getY() + 1);
 
   }
 
   public Optional<Square> getDownLeft(Square square) {
-    Coordinate squareCoordinate = square.getCoordinate();
-    return getOptionalSquare(squareCoordinate.getX() + 1, squareCoordinate.getY() - 1);
+    return getOptionalSquare(square.getX() + 1, square.getY() - 1);
 
   }
 
