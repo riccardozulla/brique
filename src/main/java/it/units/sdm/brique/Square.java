@@ -5,10 +5,12 @@ import java.util.Optional;
 public class Square {
   private final Color color;
   private Optional<Stone> stone;
-  private final Coordinate coordinate;
+  private final int x;
+  private final int y;
 
-  public Square(Coordinate coordinate, Color color) {
-    this.coordinate = coordinate;
+  public Square(int x, int y, Color color) {
+    this.x = x;
+    this.y = y;
     this.color = color;
     this.stone = Optional.empty();
   }
@@ -21,24 +23,24 @@ public class Square {
     return stone;
   }
 
-  public Coordinate getCoordinate() {
-    return coordinate;
+  public int getX() {
+    return x;
   }
 
+  public int getY() { return y; }
+
   public boolean isTopEdge() {
-    return getCoordinate().getX()==0;
+    return x==0;
   }
 
   public boolean isBottomEdge() {
-    return getCoordinate().getX()==Board.BOARD_SIZE-1;
+    return x==Board.BOARD_SIZE-1;
   }
 
-  public boolean isLeftEdge(){
-    return getCoordinate().getY()==0;
-  }
+  public boolean isLeftEdge(){ return y==0; }
 
   public boolean isRightEdge(){
-    return getCoordinate().getY()==Board.BOARD_SIZE-1;
+    return y==Board.BOARD_SIZE-1;
   }
 
   public void setStone(Stone stone) {
@@ -46,8 +48,8 @@ public class Square {
   }
 
   public static int manhattanSquareDistance(Square square1, Square square2) {
-    return Math.abs(square1.getCoordinate().getX() - square2.getCoordinate().getX())
-            + Math.abs(square1.getCoordinate().getY() - square2.getCoordinate().getY());
+    return Math.abs(square1.getX() - square2.getX())
+            + Math.abs(square1.getY() - square2.getY());
   }
 }
 
