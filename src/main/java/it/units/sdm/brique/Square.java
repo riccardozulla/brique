@@ -8,11 +8,11 @@ public class Square {
   private final int x;
   private final int y;
 
-  public Square(int x, int y, Color color) {
+  public Square(int x, int y) {
     this.x = x;
     this.y = y;
-    this.color = color;
     this.stone = Optional.empty();
+    this.color = (x + y) % 2 == 0 ? Color.WHITE : Color.BLACK;
   }
 
   public Color getColor() {
