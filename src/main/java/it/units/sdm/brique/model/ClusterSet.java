@@ -1,4 +1,4 @@
-package it.units.sdm.brique;
+package it.units.sdm.brique.model;
 
 import com.google.common.collect.Sets;
 import org.jgrapht.alg.util.UnionFind;

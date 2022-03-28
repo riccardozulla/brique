@@ -1,5 +1,7 @@
 package it.units.sdm.brique;
 
+import it.units.sdm.brique.model.Board;
+import it.units.sdm.brique.model.Color;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

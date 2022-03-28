@@ -1,6 +1,7 @@
 package it.units.sdm.brique;
 
-import org.junit.jupiter.api.Test;
+import it.units.sdm.brique.model.Color;
+import it.units.sdm.brique.model.Stone;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 

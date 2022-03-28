@@ -1,4 +1,4 @@
-package it.units.sdm.brique;
+package it.units.sdm.brique.model;
 
 import java.util.Optional;
 

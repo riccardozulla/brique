@@ -1,5 +1,8 @@
 package it.units.sdm.brique;
 
+import it.units.sdm.brique.model.ClusterSet;
+import it.units.sdm.brique.model.Color;
+import it.units.sdm.brique.model.Square;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;

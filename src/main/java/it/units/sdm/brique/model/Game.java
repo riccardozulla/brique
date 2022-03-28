@@ -1,6 +1,6 @@
-package it.units.sdm.brique;
+package it.units.sdm.brique.model;
 
-import it.units.sdm.brique.exceptions.StoneAlreadyPresentException;
+import it.units.sdm.brique.model.exceptions.StoneAlreadyPresentException;
 
 public class Game {
   private Status status = Status.RUNNING;

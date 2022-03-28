@@ -1,10 +1,9 @@
 package it.units.sdm.brique;
 
+import it.units.sdm.brique.model.Color;
+import it.units.sdm.brique.model.Square;
+import it.units.sdm.brique.model.Stone;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
