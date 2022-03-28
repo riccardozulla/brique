@@ -1,5 +1,6 @@
 package it.units.sdm.brique;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -14,6 +15,11 @@ public class TestGame {
   private final Player player2 = new Player("Player2", Color.WHITE);
   private final Game game = new Game(player1, player2);
   private final Board board = game.getGameBoard();
+
+  @BeforeEach
+  void resetBoard() {
+    board.reset();
+  }
 
   @Test
   void testStatus() {

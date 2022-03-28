@@ -12,7 +12,7 @@ public class Game {
   public Game(Player player1, Player player2) {
     this.player1 = player1;
     this.player2 = player2;
-    this.gameBoard = new Board();
+    this.gameBoard = Board.getBoard();
     if (player1.getStoneColor() == Color.BLACK) {
       activePlayer = player1;
     } else {

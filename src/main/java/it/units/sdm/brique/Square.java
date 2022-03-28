@@ -44,7 +44,7 @@ public class Square {
   }
 
   public void setStone(Stone stone) {
-    this.stone = Optional.of(stone);
+    this.stone = Optional.ofNullable(stone);
   }
 
   public static int manhattanSquareDistance(Square square1, Square square2) {
