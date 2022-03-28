@@ -1,5 +1,6 @@
 package it.units.sdm.brique;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 public class Board {
@@ -23,6 +24,10 @@ public class Board {
   public static Board getBoard() {
     if (boardInstance == null) boardInstance = new Board();
     return boardInstance;
+  }
+
+  public void reset(){
+    Arrays.stream(squares).flatMap(Arrays::stream).forEach(square -> square.setStone(null));
   }
 
   public Square[][] getSquares() {

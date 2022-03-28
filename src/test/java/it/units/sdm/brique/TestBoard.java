@@ -4,17 +4,25 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class TestBoard {
-  private final Board board = Board.getBoard();
+  private Board board = Board.getBoard();
 
   @ParameterizedTest
   @CsvSource({"0,0,WHITE", "1,1,WHITE", "2,0,WHITE", "1,0,BLACK", "0,1,BLACK", "3,0,BLACK", "14,14,WHITE"})
   void testSquareColor(int x, int y, Color color) {
     assertEquals(color, board.getSquare(x, y).getColor());
+  }
+
+  @Test
+  void resetBoard() {
+    board.reset();
+    assertFalse(Arrays.stream(board.getSquares()).flatMap(Arrays::stream).anyMatch(square -> square.getStone().isPresent()));
   }
 
   @Test
