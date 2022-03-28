@@ -9,7 +9,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestBoard {
-  private final Board board = new Board();
+  private final Board board = Board.getBoard();
 
   @ParameterizedTest
   @CsvSource({"0,0,WHITE", "1,1,WHITE", "2,0,WHITE", "1,0,BLACK", "0,1,BLACK", "3,0,BLACK", "14,14,WHITE"})

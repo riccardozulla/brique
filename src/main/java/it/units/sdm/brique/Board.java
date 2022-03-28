@@ -4,18 +4,25 @@ import java.util.Optional;
 
 public class Board {
 
+  private static Board boardInstance;
+
   public static final int BOARD_SIZE = 15;
   public static final int FIRST_INDEX = 0;
   public static final int LAST_INDEX = BOARD_SIZE -1;
   private final Square[][] squares;
 
-  public Board() {
+  private Board() {
     this.squares = new Square[BOARD_SIZE][BOARD_SIZE];
     for (int i = 0; i < BOARD_SIZE; i++) {
       for (int j = 0; j < BOARD_SIZE; j++) {
         squares[i][j] = new Square(i, j);
       }
     }
+  }
+
+  public static Board getBoard() {
+    if (boardInstance == null) boardInstance = new Board();
+    return boardInstance;
   }
 
   public Square[][] getSquares() {
