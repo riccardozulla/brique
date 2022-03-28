@@ -30,17 +30,17 @@ public class Square {
   public int getY() { return y; }
 
   public boolean isTopEdge() {
-    return x==0;
+    return x==Board.FIRST_INDEX;
   }
 
   public boolean isBottomEdge() {
-    return x==Board.BOARD_SIZE-1;
+    return x==Board.LAST_INDEX;
   }
 
-  public boolean isLeftEdge(){ return y==0; }
+  public boolean isLeftEdge(){ return y==Board.FIRST_INDEX; }
 
   public boolean isRightEdge(){
-    return y==Board.BOARD_SIZE-1;
+    return y==Board.LAST_INDEX;
   }
 
   public void setStone(Stone stone) {

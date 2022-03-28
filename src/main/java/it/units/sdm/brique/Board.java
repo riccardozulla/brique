@@ -4,7 +4,9 @@ import java.util.Optional;
 
 public class Board {
 
-  protected static final int BOARD_SIZE = 15;
+  public static final int BOARD_SIZE = 15;
+  public static final int FIRST_INDEX = 0;
+  public static final int LAST_INDEX = BOARD_SIZE -1;
   private final Square[][] squares;
 
   public Board() {
@@ -14,10 +16,6 @@ public class Board {
         squares[i][j] = new Square(i, j);
       }
     }
-  }
-
-  public static int getBoardSize() {
-    return BOARD_SIZE;
   }
 
   public Square[][] getSquares() {
@@ -67,7 +65,7 @@ public class Board {
   }
 
   public static boolean isCoordinatesOutOfBounds(int x, int y) {
-    return x < 0 || y < 0 || x >= BOARD_SIZE || y >= BOARD_SIZE;
+    return x < FIRST_INDEX || y < FIRST_INDEX || x > LAST_INDEX || y >= LAST_INDEX;
   }
 
 }
