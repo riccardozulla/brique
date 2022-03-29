@@ -3,10 +3,9 @@ package it.units.sdm.brique.controller;
 import it.units.sdm.brique.model.Color;
 import it.units.sdm.brique.model.Game;
 import it.units.sdm.brique.model.Player;
-import it.units.sdm.brique.model.Square;
+import it.units.sdm.brique.ui.GraphicBoard;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -21,5 +20,7 @@ public class GameController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    GraphicBoard graphicBoard = new GraphicBoard();
+    graphicBoard.draw(gameView);
   }
 }
