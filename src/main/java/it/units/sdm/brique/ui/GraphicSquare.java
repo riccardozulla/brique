@@ -6,7 +6,7 @@ import it.units.sdm.brique.model.Square;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
-public class GraphicSquare extends Rectangle {
+public class GraphicSquare extends Rectangle implements Drawable {
 
     private Square square;
 
@@ -15,7 +15,8 @@ public class GraphicSquare extends Rectangle {
         this.square = square;
     }
 
-    public void drawSquare(Pane pane) {
+    @Override
+    public void draw(Pane pane) {
         double squareSize = pane.getHeight() / Board.getBoard().BOARD_SIZE;
         this.setHeight(squareSize);
         this.setWidth(squareSize);
