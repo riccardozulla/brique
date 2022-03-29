@@ -22,6 +22,6 @@ public class GraphicBoard extends Box implements Drawable {
   }
 
   public void draw(Pane pane) {
-    Arrays.stream(graphicSquares).flatMap(Arrays::stream).forEach(graphicSquare -> graphicSquare.drawSquare(pane));
+    Arrays.stream(graphicSquares).flatMap(Arrays::stream).forEach(graphicSquare -> graphicSquare.draw(pane));
   }
 }
