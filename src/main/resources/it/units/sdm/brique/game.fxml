@@ -5,11 +5,11 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="it.units.sdm.brique.controller.GameController">
-   <MenuBar VBox.vgrow="NEVER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0"
+            prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="it.units.sdm.brique.controller.GameController">
+   <MenuBar prefHeight="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <Menu mnemonicParsing="false" text="File">
          <MenuItem mnemonicParsing="false" text="New"/>
          <MenuItem mnemonicParsing="false" text="Open…"/>
@@ -40,6 +40,6 @@
          <MenuItem mnemonicParsing="false" text="About MyHelloApp"/>
       </Menu>
    </MenuBar>
-   <AnchorPane fx:id="gameView">
-   </AnchorPane>
-</VBox>
+   <AnchorPane fx:id="gameView" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0"/>
+</AnchorPane>
