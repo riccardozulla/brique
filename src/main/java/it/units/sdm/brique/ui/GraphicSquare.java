@@ -6,11 +6,12 @@ import it.units.sdm.brique.model.Square;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 
-public class GraphicSquare extends Rectangle implements Drawable {
+public class GraphicSquare extends StackPane implements Drawable {
 
-  private Square square;
+  private final Square square;
 
   public GraphicSquare(Square square) {
     super();
@@ -20,11 +21,10 @@ public class GraphicSquare extends Rectangle implements Drawable {
   @Override
   public void draw(Pane pane) {
     NumberBinding squareSize = Bindings.min(pane.heightProperty(), pane.widthProperty()).divide(Board.BOARD_SIZE);
-    this.heightProperty().bind(squareSize);
-    this.widthProperty().bind(squareSize);
-    this.xProperty().bind(squareSize.multiply(square.getX()));
-    this.yProperty().bind(squareSize.multiply(square.getY()));
-    this.setFill(square.getColor() == Color.BLACK ? GraphicColor.BLACK_SQUARE.getColor() : GraphicColor.WHITE_SQUARE.getColor());
-    pane.getChildren().add(this);
+    this.prefHeightProperty().bind(squareSize);
+    this.prefWidthProperty().bind(squareSize);
+    this.layoutXProperty().bind(squareSize.multiply(square.getX()));
+    this.layoutYProperty().bind(squareSize.multiply(square.getY()));
+    this.setStyle("-fx-background-color:" + (square.getColor() == Color.BLACK ? GraphicColor.BLACK_SQUARE.getHexColor() : GraphicColor.WHITE_SQUARE.getHexColor()));
   }
 }
