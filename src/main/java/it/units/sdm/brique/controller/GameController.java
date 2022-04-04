@@ -4,6 +4,7 @@ import it.units.sdm.brique.model.Color;
 import it.units.sdm.brique.model.Game;
 import it.units.sdm.brique.model.Player;
 import it.units.sdm.brique.ui.GraphicBoard;
+import it.units.sdm.brique.ui.GraphicSquare;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -26,6 +27,7 @@ public class GameController implements Initializable, PropertyChangeListener {
   public void initialize(URL location, ResourceBundle resources) {
     graphicBoard = new GraphicBoard();
     graphicBoard.draw(gameView);
+    graphicBoard.setOnMouseClicked(event -> game.addStoneAndCheckEscortRule(((GraphicSquare) event.getTarget()).getSquare()));
     gameView.setPrefSize(400, 400);
     gameView.setAlignment(Pos.CENTER);
     game.addActivePlayerListener(this);

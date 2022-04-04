@@ -65,6 +65,7 @@ public class Game {
     public void addStoneAndCheckEscortRule(Square square) {
         addStone(square);
         checkEscortRule(square);
+        switchActivePlayer();
     }
 
     private void checkEscortRule(Square square) {
