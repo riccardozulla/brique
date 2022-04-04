@@ -38,4 +38,9 @@ public class GraphicSquare extends StackPane implements Drawable {
             this.getChildren().add(graphicStone);
         });
     }
+
+    public void update() {
+        eraseStone();
+        drawStone();
+    }
 }
