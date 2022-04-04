@@ -1,6 +1,5 @@
 package it.units.sdm.brique.ui;
 
-import it.units.sdm.brique.model.Board;
 import it.units.sdm.brique.model.Color;
 import it.units.sdm.brique.model.Stone;
 import javafx.beans.binding.Bindings;
@@ -17,11 +16,12 @@ public class GraphicStone extends Ellipse implements Drawable {
 
     @Override
     public void draw(Pane pane) {
-        NumberBinding squareSize = Bindings.min(pane.heightProperty(), pane.widthProperty()).divide(Board.BOARD_SIZE);
+        NumberBinding squareSize = Bindings.min(pane.heightProperty(), pane.widthProperty());
         this.radiusXProperty().bind(squareSize.multiply(0.31));
         this.radiusYProperty().bind(squareSize.multiply(0.26));
+        this.centerXProperty().bind((squareSize.divide(2)));
+        this.centerYProperty().bind((squareSize.divide(2)));
         this.setFill(stone.getColor() == Color.WHITE ? GraphicColor.WHITE_STONE.getColor()
                 : GraphicColor.BLACK_STONE.getColor());
-        pane.getChildren().add(this);
     }
 }
