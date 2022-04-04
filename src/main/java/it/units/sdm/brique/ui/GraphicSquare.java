@@ -17,6 +17,10 @@ public class GraphicSquare extends StackPane implements Drawable {
         this.square = square;
     }
 
+    public Square getSquare() {
+        return square;
+    }
+
     @Override
     public void draw(Pane pane) {
         NumberBinding squareSize = Bindings.min(pane.heightProperty(), pane.widthProperty()).divide(Board.BOARD_SIZE);
