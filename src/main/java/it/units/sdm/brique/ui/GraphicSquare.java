@@ -5,6 +5,8 @@ import it.units.sdm.brique.model.Color;
 import it.units.sdm.brique.model.Square;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -46,5 +48,15 @@ public class GraphicSquare extends StackPane implements Drawable {
     public void update() {
         eraseStone();
         drawStone();
+        toggleMouseClick();
+    }
+
+    public void toggleMouseClick() {
+        EventHandler<javafx.scene.input.MouseEvent> handler = javafx.scene.input.MouseEvent::consume;
+        if (square.getStone().isPresent()) {
+            this.addEventFilter(MouseEvent.ANY, handler);
+        } else {
+            this.removeEventFilter(MouseEvent.ANY, handler);
+        }
     }
 }

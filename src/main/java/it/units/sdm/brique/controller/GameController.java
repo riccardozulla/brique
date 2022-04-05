@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.layout.TilePane;
-
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.net.URL;
@@ -17,24 +16,27 @@ import java.util.ResourceBundle;
 
 public class GameController implements Initializable, PropertyChangeListener {
 
-  Game game = new Game(new Player("PLayer1", Color.BLACK), new Player("Player2", Color.WHITE));
-  GraphicBoard graphicBoard;
+    Game game = new Game(new Player("PLayer1", Color.BLACK), new Player("Player2", Color.WHITE));
+    GraphicBoard graphicBoard;
 
-  @FXML
-  private TilePane gameView;
+    @FXML
+    private TilePane gameView;
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    graphicBoard = new GraphicBoard();
-    graphicBoard.draw(gameView);
-    graphicBoard.setOnMouseClicked(event -> game.addStoneAndCheckEscortRule(((GraphicSquare) event.getTarget()).getSquare()));
-    gameView.setPrefSize(400, 400);
-    gameView.setAlignment(Pos.CENTER);
-    game.addActivePlayerListener(this);
-  }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        graphicBoard = new GraphicBoard();
+        graphicBoard.draw(gameView);
+        graphicBoard.setOnMouseClicked(event -> {
+            if (event.isStillSincePress())
+                game.addStoneAndCheckEscortRule(((GraphicSquare) event.getTarget()).getSquare());
+        });
+        gameView.setPrefSize(400, 400);
+        gameView.setAlignment(Pos.CENTER);
+        game.addActivePlayerListener(this);
+    }
 
-  @Override
-  public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
-    graphicBoard.update();
-  }
+    @Override
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
+        graphicBoard.update();
+    }
 }
