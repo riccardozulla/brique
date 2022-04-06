@@ -32,6 +32,7 @@ public class GameController implements Initializable, PropertyChangeListener {
         });
         gameView.setPrefSize(400, 400);
         gameView.setAlignment(Pos.CENTER);
+        gameView.setStyle("-fx-background-color: #89c4ff");//dff0d8
         game.addActivePlayerListener(this);
     }
 
