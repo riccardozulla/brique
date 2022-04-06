@@ -33,10 +33,17 @@ public class GameController implements Initializable, PropertyChangeListener {
         gameView.setPrefSize(400, 400);
         gameView.setAlignment(Pos.CENTER);
         game.addActivePlayerListener(this);
+        game.addStatusListener(this);
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
-        graphicBoard.update();
+        switch(propertyChangeEvent.getPropertyName()) {
+            case "activePlayer" -> graphicBoard.update();
+            case "status" -> {
+                System.out.println(propertyChangeEvent.getNewValue());
+                graphicBoard.update();
+            }
+        }
     }
 }

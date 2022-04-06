@@ -59,6 +59,7 @@ public class Game {
         } else {
             status = Status.WHITE_WINS;
         }
+        System.out.println("qui");
         pcs.firePropertyChange("status", oldValue, status);
     }
 
@@ -111,6 +112,10 @@ public class Game {
 
     public void addActivePlayerListener(PropertyChangeListener listener) {
         this.pcs.addPropertyChangeListener("activePlayer", listener);
+    }
+
+    public void addStatusListener(PropertyChangeListener listener) {
+        this.pcs.addPropertyChangeListener("status", listener);
     }
 
     private boolean isWinningTurn() {
