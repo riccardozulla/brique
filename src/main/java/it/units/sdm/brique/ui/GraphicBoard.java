@@ -17,6 +17,10 @@ public class GraphicBoard extends Pane implements Drawable {
     }
 
     public void draw(Pane pane) {
+        this.heightProperty().addListener((obs, oldVal, newVal) -> {
+            var squareSize = newVal.doubleValue() / Board.BOARD_SIZE;
+            this.setStyle("-fx-border-color:black red black red; -fx-border-style:solid outside; -fx-border-radius:" + squareSize / 2 + " ; -fx-border-width:" + squareSize + ";");
+        });
         this.getChildren().forEach(graphicSquare -> ((GraphicSquare) graphicSquare).draw(pane));
         pane.getChildren().add(this);
     }
