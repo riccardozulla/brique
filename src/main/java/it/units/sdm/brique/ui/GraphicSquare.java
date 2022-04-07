@@ -28,8 +28,8 @@ public class GraphicSquare extends StackPane implements Drawable {
         NumberBinding squareSize = Bindings.min(pane.heightProperty(), pane.widthProperty()).divide(Board.BOARD_SIZE+4); //todo
         this.prefHeightProperty().bind(squareSize);
         this.prefWidthProperty().bind(squareSize);
-        this.layoutXProperty().bind(squareSize.multiply(square.getX()));
-        this.layoutYProperty().bind(squareSize.multiply(square.getY()));
+        this.layoutXProperty().bind(squareSize.multiply(square.getColumn()));
+        this.layoutYProperty().bind(squareSize.multiply(square.getRow()));
         this.setStyle("-fx-background-color:" + (square.getColor() == Color.BLACK ? GraphicColor.BLACK_SQUARE.getHexColor() : GraphicColor.WHITE_SQUARE.getHexColor()));
     }
 

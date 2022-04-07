@@ -47,36 +47,36 @@ public class Board {
   }
 
   public Optional<Square> getUp(Square square) {
-    return getOptionalSquare(square.getX() - 1, square.getY());
+    return getOptionalSquare(square.getRow() - 1, square.getColumn());
 
   }
 
   public Optional<Square> getDown(Square square) {
-    return getOptionalSquare(square.getX() + 1, square.getY());
+    return getOptionalSquare(square.getRow() + 1, square.getColumn());
 
   }
 
   public Optional<Square> getLeft(Square square) {
-    return getOptionalSquare(square.getX(), square.getY() - 1);
+    return getOptionalSquare(square.getRow(), square.getColumn() - 1);
 
   }
 
   public Optional<Square> getRight(Square square) {
-    return getOptionalSquare(square.getX(), square.getY() + 1);
+    return getOptionalSquare(square.getRow(), square.getColumn() + 1);
 
   }
 
   public Optional<Square> getUpRight(Square square) {
-    return getOptionalSquare(square.getX() - 1, square.getY() + 1);
+    return getOptionalSquare(square.getRow() - 1, square.getColumn() + 1);
 
   }
 
   public Optional<Square> getDownLeft(Square square) {
-    return getOptionalSquare(square.getX() + 1, square.getY() - 1);
+    return getOptionalSquare(square.getRow() + 1, square.getColumn() - 1);
 
   }
 
-  public static boolean isCoordinatesOutOfBounds(int x, int y) { //todo, unused, to be handled
+  public static boolean isCoordinatesOutOfBounds(int x, int y) { //todo: unused, to be handled
     return x < FIRST_INDEX || y < FIRST_INDEX || x > LAST_INDEX || y > LAST_INDEX;
   }
 
