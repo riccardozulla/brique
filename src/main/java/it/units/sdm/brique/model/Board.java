@@ -76,7 +76,7 @@ public class Board {
 
   }
 
-  public static boolean isCoordinatesOutOfBounds(int x, int y) {
+  public static boolean isCoordinatesOutOfBounds(int x, int y) { //todo, unused, to be handled
     return x < FIRST_INDEX || y < FIRST_INDEX || x > LAST_INDEX || y > LAST_INDEX;
   }
 
