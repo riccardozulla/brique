@@ -4,6 +4,8 @@ import it.units.sdm.brique.model.exceptions.StoneAlreadyPresentException;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Game {
     private Status status = Status.RUNNING;
@@ -50,6 +52,16 @@ public class Game {
         pcs.firePropertyChange("activePlayer", oldValue, activePlayer);
     }
 
+    public void stateWinningStatus() {
+        Status oldValue = this.status;
+        if (activePlayer.getStoneColor() == Color.BLACK) {
+            status = Status.BLACK_WINS;
+        } else {
+            status = Status.WHITE_WINS;
+        }
+        pcs.firePropertyChange("status", oldValue, status);
+    }
+
     public void addStone(Square square) {
         square.getStone().ifPresentOrElse(s -> {
             throw new StoneAlreadyPresentException("Stone already present in the given square!");
@@ -65,6 +77,10 @@ public class Game {
     public void addStoneAndCheckEscortRule(Square square) {
         addStone(square);
         checkEscortRule(square);
+        if (isWinningTurn()) {
+            stateWinningStatus();
+            return;
+        }
         switchActivePlayer();
     }
 
@@ -95,6 +111,19 @@ public class Game {
 
     public void addActivePlayerListener(PropertyChangeListener listener) {
         this.pcs.addPropertyChangeListener("activePlayer", listener);
+    }
+
+    public void addStatusListener(PropertyChangeListener listener) {
+        this.pcs.addPropertyChangeListener("status", listener);
+    }
+
+    private boolean isWinningTurn() {
+        var placedStones = Arrays.stream(gameBoard.getSquares()).flatMap(Arrays::stream).
+                filter(square -> square.getStone().isPresent()).
+                filter(square -> square.getStone().get().getColor() == activePlayer.getStoneColor()).collect(Collectors.toSet());
+        ClusterSet activeCluster = new ClusterSet(placedStones, activePlayer.getStoneColor());
+        activeCluster.composeClusters();
+        return activeCluster.winningPath();
     }
 
 }
