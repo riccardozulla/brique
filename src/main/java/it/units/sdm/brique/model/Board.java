@@ -34,13 +34,13 @@ public class Board {
     return squares;
   }
 
-  public Square getSquare(int x, int y) {
-    return squares[x][y];
+  public Square getSquare(int i, int j) {
+    return squares[i][j];
   }
 
-  private Optional<Square> getOptionalSquare(int x, int y) {
+  private Optional<Square> getOptionalSquare(int i, int j) {
     try {
-      return Optional.of(getSquare(x, y));
+      return Optional.of(getSquare(i, j));
     } catch (ArrayIndexOutOfBoundsException exception) {
       return Optional.empty();
     }
