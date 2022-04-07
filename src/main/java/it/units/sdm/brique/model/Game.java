@@ -59,7 +59,6 @@ public class Game {
         } else {
             status = Status.WHITE_WINS;
         }
-        System.out.println("qui");
         pcs.firePropertyChange("status", oldValue, status);
     }
 
