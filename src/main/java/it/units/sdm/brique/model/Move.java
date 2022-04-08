@@ -16,6 +16,10 @@ public class Move {
         this.chosenSquare = chosenSquare;
     }
 
+    public void make() {
+        placeStone(chosenSquare);
+    }
+
     private void placeStone(Square square) {
         square.setStone(new Stone(player.getStoneColor()));
     }
