@@ -1,5 +1,7 @@
 package it.units.sdm.brique.model;
 
+import it.units.sdm.brique.model.exceptions.StoneAlreadyPresentException;
+
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -16,6 +18,7 @@ public class Move {
     }
 
     public void setChosenSquare(Square chosenSquare) {
+        if(chosenSquare.getStone().isPresent()) throw new StoneAlreadyPresentException("Stone already present in the given square!");
         this.chosenSquare = chosenSquare;
     }
 
