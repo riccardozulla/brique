@@ -24,6 +24,28 @@ public class Move {
         square.setStone(new Stone(player.getStoneColor()));
     }
 
+    private void applyEscortRule() {
+        Board gameBoard = Board.getBoard();
+        gameBoard.getDownLeft(chosenSquare).flatMap(Square::getStone).ifPresent(stone -> {
+            if (stoneBelongsToPlayer(stone)) {
+                if (chosenSquare.getColor() == Color.WHITE) {
+                    placeStone(gameBoard.getLeft(chosenSquare).get()); //left square always exits
+                } else {
+                    placeStone(gameBoard.getDown(chosenSquare).get());
+                }
+            }
+        });
+        gameBoard.getUpRight(chosenSquare).flatMap(Square::getStone).ifPresent(stone -> {
+            if (stoneBelongsToPlayer(stone)) {
+                if (chosenSquare.getColor() == Color.WHITE) {
+                    placeStone(gameBoard.getUp(chosenSquare).get());
+                } else {
+                    placeStone(gameBoard.getRight(chosenSquare).get());
+                }
+            }
+        });
+    }
+
     private boolean stoneBelongsToPlayer(Stone stone) {
         return stone.getColor() == player.getStoneColor();
     }
