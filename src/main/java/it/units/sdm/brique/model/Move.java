@@ -23,4 +23,8 @@ public class Move {
     private void placeStone(Square square) {
         square.setStone(new Stone(player.getStoneColor()));
     }
+
+    private boolean stoneBelongsToPlayer(Stone stone) {
+        return stone.getColor() == player.getStoneColor();
+    }
 }
