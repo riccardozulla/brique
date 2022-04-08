@@ -18,6 +18,7 @@ public class Move {
 
     public void make() {
         placeStone(chosenSquare);
+        applyEscortRule();
     }
 
     private void placeStone(Square square) {
