@@ -40,7 +40,7 @@ public class TestGame {
     //Precondition: The square near the occupied escort is free. The specified coordinates are on a white square.
     Square square = board.getSquare(x, y);
     game.addStone(board.getDownLeft(square).get());
-    game.addStoneAndCheckEscortRule(square);
+    game.addStone(square);
     assert(board.getLeft(square).get().getStone().isPresent());
     assertEquals(board.getLeft(square).get().getStone().get().getColor(), Color.BLACK);
   }
@@ -51,7 +51,7 @@ public class TestGame {
     //Precondition: The square near the occupied escort is free. The specified coordinates are on a black square.
     Square square = board.getSquare(x, y);
     game.addStone(board.getDownLeft(square).get());
-    game.addStoneAndCheckEscortRule(square);
+    game.addStone(square);
     assert(board.getDown(square).get().getStone().isPresent());
     assertEquals(board.getDown(square).get().getStone().get().getColor(), Color.BLACK);
   }
@@ -63,7 +63,7 @@ public class TestGame {
     Square square = board.getSquare(x, y);
     game.addStone(board.getDownLeft(square).get());
     game.switchActivePlayer();
-    game.addStoneAndCheckEscortRule(square);
+    game.addStone(square);
     assertFalse(board.getLeft(square).get().getStone().isPresent());
   }
 
@@ -74,7 +74,7 @@ public class TestGame {
     Square square = board.getSquare(x, y);
     game.addStone(board.getDownLeft(square).get());
     game.switchActivePlayer();
-    game.addStoneAndCheckEscortRule(square);
+    game.addStone(square);
     assertFalse(board.getDown(square).get().getStone().isPresent());
   }
 
@@ -87,7 +87,7 @@ public class TestGame {
     game.switchActivePlayer();
     game.addStone(board.getLeft(square).get());
     game.switchActivePlayer();
-    game.addStoneAndCheckEscortRule(square);
+    game.addStone(square);
     assert(board.getLeft(square).get().getStone().isPresent());
     assertEquals(board.getLeft(square).get().getStone().get().getColor(), Color.BLACK);
   }
@@ -101,7 +101,7 @@ public class TestGame {
     game.switchActivePlayer();
     game.addStone(board.getDown(square).get());
     game.switchActivePlayer();
-    game.addStoneAndCheckEscortRule(square);
+    game.addStone(square);
     assert(board.getDown(square).get().getStone().isPresent());
     assertEquals(board.getDown(square).get().getStone().get().getColor(), Color.BLACK);
   }
@@ -115,7 +115,7 @@ public class TestGame {
     game.addStone(board.getDownLeft(square).get());
     game.addStone(board.getLeft(square).get());
     game.switchActivePlayer();
-    game.addStoneAndCheckEscortRule(square);
+    game.addStone(square);
     assert(board.getLeft(square).get().getStone().isPresent());
     assertEquals(board.getLeft(square).get().getStone().get().getColor(), Color.WHITE);
   }
@@ -129,7 +129,7 @@ public class TestGame {
     game.addStone(board.getDownLeft(square).get());
     game.addStone(board.getDown(square).get());
     game.switchActivePlayer();
-    game.addStoneAndCheckEscortRule(square);
+    game.addStone(square);
     assert(board.getDown(square).get().getStone().isPresent());
     assertEquals(board.getDown(square).get().getStone().get().getColor(), Color.WHITE);
   }

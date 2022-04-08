@@ -63,50 +63,9 @@ public class Game {
     }
 
     public void addStone(Square square) {
-        square.getStone().ifPresentOrElse(s -> {
-            throw new StoneAlreadyPresentException("Stone already present in the given square!");
-        }, () -> square.setStone(new Stone(activePlayer.getStoneColor())));
-    }
-
-    private void addOrReplaceStone(Square square) {
-        square.getStone().ifPresentOrElse(
-                stone -> stone.setColor(activePlayer.getStoneColor()),
-                () -> addStone(square));
-    }
-
-    public void addStoneAndCheckEscortRule(Square square) {
-        addStone(square);
-        checkEscortRule(square);
-        if (isWinningTurn()) {
-            stateWinningStatus();
-            return;
-        }
-        switchActivePlayer();
-    }
-
-    private void checkEscortRule(Square square) {
-        gameBoard.getDownLeft(square).flatMap(Square::getStone).ifPresent(stone -> {
-            if (stoneBelongsToActivePlayer(stone)) {
-                if (square.getColor() == Color.WHITE) {
-                    addOrReplaceStone(gameBoard.getLeft(square).get()); //left square always exits
-                } else {
-                    addOrReplaceStone(gameBoard.getDown(square).get());
-                }
-            }
-        });
-        gameBoard.getUpRight(square).flatMap(Square::getStone).ifPresent(stone -> {
-            if (stoneBelongsToActivePlayer(stone)) {
-                if (square.getColor() == Color.WHITE) {
-                    addOrReplaceStone(gameBoard.getUp(square).get());
-                } else {
-                    addOrReplaceStone(gameBoard.getRight(square).get());
-                }
-            }
-        });
-    }
-
-    private boolean stoneBelongsToActivePlayer(Stone stone) {
-        return stone.getColor() == activePlayer.getStoneColor();
+        Move move = new Move(activePlayer);
+        move.setChosenSquare(square);
+        move.make();
     }
 
     public void addActivePlayerListener(PropertyChangeListener listener) {
@@ -125,5 +84,4 @@ public class Game {
         activeCluster.composeClusters();
         return activeCluster.winningPath();
     }
-
 }
