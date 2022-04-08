@@ -66,6 +66,9 @@ public class Game {
         Move move = new Move(activePlayer);
         move.setChosenSquare(square);
         move.make();
+        if(move.isWinning())
+            stateWinningStatus();
+        switchActivePlayer();
     }
 
     public void addActivePlayerListener(PropertyChangeListener listener) {
@@ -74,14 +77,5 @@ public class Game {
 
     public void addStatusListener(PropertyChangeListener listener) {
         this.pcs.addPropertyChangeListener("status", listener);
-    }
-
-    private boolean isWinningTurn() {
-        var placedStones = Arrays.stream(gameBoard.getSquares()).flatMap(Arrays::stream).
-                filter(square -> square.getStone().isPresent()).
-                filter(square -> square.getStone().get().getColor() == activePlayer.getStoneColor()).collect(Collectors.toSet());
-        ClusterSet activeCluster = new ClusterSet(placedStones, activePlayer.getStoneColor());
-        activeCluster.composeClusters();
-        return activeCluster.winningPath();
     }
 }

@@ -1,5 +1,8 @@
 package it.units.sdm.brique.model;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class Move {
     private final Player player;
     private Square chosenSquare;
@@ -49,5 +52,15 @@ public class Move {
 
     private boolean stoneBelongsToPlayer(Stone stone) {
         return stone.getColor() == player.getStoneColor();
+    }
+
+    public boolean isWinning() {
+        Board gameBoard = Board.getBoard();
+        var placedStones = Arrays.stream(gameBoard.getSquares()).flatMap(Arrays::stream).
+                filter(square -> square.getStone().isPresent()).
+                filter(square -> square.getStone().get().getColor() == player.getStoneColor()).collect(Collectors.toSet());
+        ClusterSet activeCluster = new ClusterSet(placedStones, player.getStoneColor());
+        activeCluster.composeClusters();
+        return activeCluster.winningPath();
     }
 }
