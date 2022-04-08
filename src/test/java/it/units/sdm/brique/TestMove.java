@@ -1,4 +1,4 @@
 package it.units.sdm.brique;
 
-public class TestTurn {
+public class TestMove {
 }
