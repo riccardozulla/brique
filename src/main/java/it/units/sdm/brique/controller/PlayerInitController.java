@@ -1,5 +1,8 @@
 package it.units.sdm.brique.controller;
 
+import it.units.sdm.brique.model.Color;
+import it.units.sdm.brique.model.Player;
+import it.units.sdm.brique.model.PlayerHolder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,7 +27,10 @@ public class PlayerInitController implements Initializable {
     }
 
     @FXML protected void handleConfirmButtonAction(ActionEvent event) {
-        System.out.println("Name entered 1: " + player1TextField.getText());
-        System.out.println("Name entered 1: " + player2TextField.getText());
+        Player player1 = new Player(player1TextField.getText(), Color.BLACK);
+        Player player2 = new Player(player2TextField.getText(), Color.WHITE);
+        PlayerHolder playerHolder = PlayerHolder.getInstance();
+        playerHolder.setPlayer1(player1);
+        playerHolder.setPlayer2(player2);
     }
 }
