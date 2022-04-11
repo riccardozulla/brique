@@ -3,6 +3,7 @@ package it.units.sdm.brique.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -14,10 +15,12 @@ public class LoginController implements Initializable {
     private TextField player1TextField;
     @FXML
     private TextField player2TextField;
+    @FXML
+    private Button confirmButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        confirmButton.setDefaultButton(true);
     }
 
     @FXML protected void handleConfirmButtonAction(ActionEvent event) {

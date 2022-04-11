@@ -13,7 +13,7 @@
       <AnchorPane layoutX="300.0" layoutY="51.0" prefHeight="297.0" prefWidth="272.0">
          <children>
             <TextField fx:id="player1TextField" layoutX="55.0" layoutY="115.0" promptText="Player 1" />
-            <Button layoutX="102.0" layoutY="225.0" mnemonicParsing="false" text="Confirm" onAction="#handleConfirmButtonAction"/>
+            <Button fx:id="confirmButton" layoutX="102.0" layoutY="225.0" mnemonicParsing="false" text="Confirm" onAction="#handleConfirmButtonAction"/>
             <Label layoutX="55.0" layoutY="76.0" text="Enter your nicknames:" />
             <Label layoutX="39.0" layoutY="14.0" text="Welcome to Brique!">
                <font>
