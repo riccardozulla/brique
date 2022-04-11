@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class PlayerInitController implements Initializable {
 
     @FXML
     private TextField player1TextField;
