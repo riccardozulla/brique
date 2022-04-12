@@ -1,5 +1,6 @@
 package it.units.sdm.brique;
 
+import it.units.sdm.brique.controller.PlayerInitController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +10,7 @@ import javafx.stage.Stage;
 public class Brique extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("game.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("playerinit.fxml"));
         Scene scene = new Scene(root);
 
         stage.setTitle("Brique");
