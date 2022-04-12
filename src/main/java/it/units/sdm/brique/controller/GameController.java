@@ -27,7 +27,7 @@ public class GameController implements Initializable, PropertyChangeListener {
         graphicBoard = new GraphicBoard();
         graphicBoard.draw(gameView);
         graphicBoard.setOnMouseClicked(event -> {
-            if (event.isStillSincePress())
+            if (event.isStillSincePress() && event.getTarget() instanceof GraphicSquare)
                 game.addStoneAndCheckEscortRule(((GraphicSquare) event.getTarget()).getSquare());
         });
         gameView.setPrefSize(400, 400);
