@@ -44,6 +44,7 @@ public class GameController implements Initializable, PropertyChangeListener {
             case "status" -> {
                 System.out.println(propertyChangeEvent.getNewValue());
                 graphicBoard.update();
+                graphicBoard.setDisable(true);
             }
         }
     }
