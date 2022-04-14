@@ -85,21 +85,21 @@ public class Game {
     }
 
     private void checkEscortRule(Square square) {
-        gameBoard.getDownLeft(square).flatMap(Square::getStone).ifPresent(stone -> {
+        gameBoard.getDownLeftSquare(square).flatMap(Square::getStone).ifPresent(stone -> {
             if (stoneBelongsToActivePlayer(stone)) {
                 if (square.getColor() == Color.WHITE) {
-                    addOrReplaceStone(gameBoard.getLeft(square).get()); //left square always exits
+                    addOrReplaceStone(gameBoard.getLeftSquare(square).get()); //left square always exits
                 } else {
-                    addOrReplaceStone(gameBoard.getDown(square).get());
+                    addOrReplaceStone(gameBoard.getDownSquare(square).get());
                 }
             }
         });
-        gameBoard.getUpRight(square).flatMap(Square::getStone).ifPresent(stone -> {
+        gameBoard.getUpRightSquare(square).flatMap(Square::getStone).ifPresent(stone -> {
             if (stoneBelongsToActivePlayer(stone)) {
                 if (square.getColor() == Color.WHITE) {
-                    addOrReplaceStone(gameBoard.getUp(square).get());
+                    addOrReplaceStone(gameBoard.getUpSquare(square).get());
                 } else {
-                    addOrReplaceStone(gameBoard.getRight(square).get());
+                    addOrReplaceStone(gameBoard.getRightSquare(square).get());
                 }
             }
         });

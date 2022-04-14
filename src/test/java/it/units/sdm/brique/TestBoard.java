@@ -29,61 +29,61 @@ public class TestBoard {
 
   @Test
   void getUp() {
-    assertEquals(board.getSquare(0, 1), board.getUp(board.getSquare(1, 1)).get());
+    assertEquals(board.getSquare(0, 1), board.getUpSquare(board.getSquare(1, 1)).get());
   }
 
   @Test
   void getDown() {
-    assertEquals(board.getSquare(2, 1), board.getDown(board.getSquare(1, 1)).get());
+    assertEquals(board.getSquare(2, 1), board.getDownSquare(board.getSquare(1, 1)).get());
   }
 
   @Test
   void getLeft() {
-    assertEquals(board.getSquare(1, 0), board.getLeft(board.getSquare(1, 1)).get());
+    assertEquals(board.getSquare(1, 0), board.getLeftSquare(board.getSquare(1, 1)).get());
   }
 
   @Test
   void getRight() {
-    assertEquals(board.getSquare(1, 2), board.getRight(board.getSquare(1, 1)).get());
+    assertEquals(board.getSquare(1, 2), board.getRightSquare(board.getSquare(1, 1)).get());
   }
 
   @Test
   void getDownLeft() {
-    assertEquals(board.getSquare(2, 0), board.getDownLeft(board.getSquare(1, 1)).get());
+    assertEquals(board.getSquare(2, 0), board.getDownLeftSquare(board.getSquare(1, 1)).get());
   }
 
   @Test
   void getUpRight() {
-    assertEquals(board.getSquare(0, 2), board.getUpRight(board.getSquare(1, 1)).get());
+    assertEquals(board.getSquare(0, 2), board.getUpRightSquare(board.getSquare(1, 1)).get());
   }
 
   @Test
   void getUpReturnsOptionalEmpty() {
-    assertEquals(Optional.empty(), board.getUp(board.getSquare(0, 0)));
+    assertEquals(Optional.empty(), board.getUpSquare(board.getSquare(0, 0)));
   }
 
   @Test
   void getDownReturnsOptionalEmpty() {
-    assertEquals(Optional.empty(), board.getDown(board.getSquare(14, 0)));
+    assertEquals(Optional.empty(), board.getDownSquare(board.getSquare(14, 0)));
   }
 
   @Test
   void getRightReturnsOptionalEmpty() {
-    assertEquals(Optional.empty(), board.getRight(board.getSquare(0, 14)));
+    assertEquals(Optional.empty(), board.getRightSquare(board.getSquare(0, 14)));
   }
 
   @Test
   void getLeftReturnsOptionalEmpty() {
-    assertEquals(Optional.empty(), board.getLeft(board.getSquare(0, 0)));
+    assertEquals(Optional.empty(), board.getLeftSquare(board.getSquare(0, 0)));
   }
 
   @Test
   void getUpRightReturnsOptionalEmpty() {
-    assertEquals(Optional.empty(), board.getUpRight(board.getSquare(0, 0)));
+    assertEquals(Optional.empty(), board.getUpRightSquare(board.getSquare(0, 0)));
   }
 
   @Test
   void getDownLeftReturnsOptionalEmpty() {
-    assertEquals(Optional.empty(), board.getDownLeft(board.getSquare(0, 0)));
+    assertEquals(Optional.empty(), board.getDownLeftSquare(board.getSquare(0, 0)));
   }
 }
