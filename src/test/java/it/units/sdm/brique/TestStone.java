@@ -13,14 +13,14 @@ public class TestStone {
 
   @ParameterizedTest
   @EnumSource(value = Color.class)
-  void testNewStoneColor(Color color) {
+  void stoneColorIsAssignedDuringStoneCreation(Color color) {
     Stone stone = new Stone(color);
     assertEquals(color, stone.getColor());
   }
 
   @ParameterizedTest
   @EnumSource(value = Color.class)
-  void testSetColor(Color color) {
+  void setColor(Color color) {
     stone.setColor(color);
     assertEquals(color, stone.getColor());
   }
