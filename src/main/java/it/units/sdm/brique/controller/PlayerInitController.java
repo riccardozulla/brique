@@ -43,15 +43,14 @@ public class PlayerInitController implements Initializable {
         img.setFitWidth(40);
         img.setFitHeight(40);
         swapButton.setGraphic(img);
-        System.out.println(swapButton.getBackground());
         ColorAdjust blackout = new ColorAdjust();
         blackout.setBrightness(-0.8);
         player1StoneImageView.setEffect(blackout);
     }
 
     @FXML protected void handleConfirmButtonAction(ActionEvent event) {
-        Player player1 = new Player(player1TextField.getText(), Color.BLACK);
-        Player player2 = new Player(player2TextField.getText(), Color.WHITE);
+        Player player1 = new Player(player1TextField.getText(), swapHappened ? Color.WHITE : Color.BLACK);
+        Player player2 = new Player(player2TextField.getText(), swapHappened ? Color.BLACK : Color.WHITE);
         PlayerHolder playerHolder = PlayerHolder.getInstance();
         playerHolder.setPlayer1(player1);
         playerHolder.setPlayer2(player2);
@@ -70,18 +69,17 @@ public class PlayerInitController implements Initializable {
     }
 
     @FXML protected void handleToggleButtonAction(ActionEvent event) {
-        if(!swapHappened) {
-            player1StoneImageView.setEffect(null);
-            ColorAdjust blackout = new ColorAdjust();
-            blackout.setBrightness(-0.8);
-            player2StoneImageView.setEffect(blackout);
-            swapHappened = true;
-        } else {
-            player2StoneImageView.setEffect(null);
-            ColorAdjust blackout = new ColorAdjust();
-            blackout.setBrightness(-0.8);
-            player1StoneImageView.setEffect(blackout);
-            swapHappened = false;
-        }
+        if(swapHappened)
+            swapColor(player2StoneImageView, player1StoneImageView);
+        else
+            swapColor(player1StoneImageView, player2StoneImageView);
+    }
+
+    private void swapColor(ImageView img1, ImageView img2) {
+        img1.setEffect(null);
+        ColorAdjust blackout = new ColorAdjust();
+        blackout.setBrightness(-0.8);
+        img2.setEffect(blackout);
+        swapHappened = !swapHappened;
     }
 }
