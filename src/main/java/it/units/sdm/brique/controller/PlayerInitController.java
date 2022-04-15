@@ -1,6 +1,5 @@
 package it.units.sdm.brique.controller;
 
-import it.units.sdm.brique.Brique;
 import it.units.sdm.brique.model.Color;
 import it.units.sdm.brique.model.Player;
 import it.units.sdm.brique.model.PlayerHolder;
@@ -8,11 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.CacheHint;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.effect.ColorAdjust;
@@ -41,9 +38,10 @@ public class PlayerInitController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //TODO: Use CSS file instead
-        ImageView img = new ImageView(new Image("https://icon-library.com/images/swap-icon/swap-icon-14.jpg"));
-        img.setFitWidth(50);
-        img.setFitHeight(50);
+        String url = getClass().getResource("../images/swap.png").toString();
+        ImageView img = new ImageView(new Image(url));
+        img.setFitWidth(40);
+        img.setFitHeight(40);
         swapButton.setGraphic(img);
         System.out.println(swapButton.getBackground());
         ColorAdjust blackout = new ColorAdjust();
