@@ -8,11 +8,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.CacheHint;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -20,6 +24,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PlayerInitController implements Initializable {
+
+    private boolean swapHappened = false;
 
     @FXML
     private TextField player1TextField;
@@ -29,10 +35,22 @@ public class PlayerInitController implements Initializable {
     private ImageView player1StoneImageView;
     @FXML
     private ImageView player2StoneImageView;
+    @FXML
+    private ToggleButton swapButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        //TODO: Use CSS file instead
+        ImageView img = new ImageView(new Image("https://icon-library.com/images/swap-icon/swap-icon-14.jpg"));
+        img.setFitWidth(50);
+        img.setFitHeight(50);
+        swapButton.setGraphic(img);
+        System.out.println(swapButton.getBackground());
+        ColorAdjust blackout = new ColorAdjust();
+        blackout.setBrightness(-0.8);
+        player1StoneImageView.setEffect(blackout);
+        player1StoneImageView.setCache(true);
+        player1StoneImageView.setCacheHint(CacheHint.SPEED);
     }
 
     @FXML protected void handleConfirmButtonAction(ActionEvent event) {
@@ -56,6 +74,18 @@ public class PlayerInitController implements Initializable {
     }
 
     @FXML protected void handleToggleButtonAction(ActionEvent event) {
-
+        if(!swapHappened) {
+            player1StoneImageView.setEffect(null);
+            ColorAdjust blackout = new ColorAdjust();
+            blackout.setBrightness(-0.8);
+            player2StoneImageView.setEffect(blackout);
+            swapHappened = true;
+        } else {
+            player2StoneImageView.setEffect(null);
+            ColorAdjust blackout = new ColorAdjust();
+            blackout.setBrightness(-0.8);
+            player1StoneImageView.setEffect(blackout);
+            swapHappened = false;
+        }
     }
 }
