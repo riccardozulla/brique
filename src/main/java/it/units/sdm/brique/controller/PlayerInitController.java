@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -25,11 +26,13 @@ public class PlayerInitController implements Initializable {
     @FXML
     private TextField player2TextField;
     @FXML
-    private Button confirmButton;
+    private ImageView player1StoneImageView;
+    @FXML
+    private ImageView player2StoneImageView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        confirmButton.setDefaultButton(true);
+
     }
 
     @FXML protected void handleConfirmButtonAction(ActionEvent event) {
@@ -50,5 +53,9 @@ public class PlayerInitController implements Initializable {
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML protected void handleToggleButtonAction(ActionEvent event) {
+
     }
 }
