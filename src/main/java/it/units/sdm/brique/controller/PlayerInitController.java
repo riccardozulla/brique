@@ -49,8 +49,6 @@ public class PlayerInitController implements Initializable {
         ColorAdjust blackout = new ColorAdjust();
         blackout.setBrightness(-0.8);
         player1StoneImageView.setEffect(blackout);
-        player1StoneImageView.setCache(true);
-        player1StoneImageView.setCacheHint(CacheHint.SPEED);
     }
 
     @FXML protected void handleConfirmButtonAction(ActionEvent event) {
