@@ -46,32 +46,32 @@ public class Board {
     }
   }
 
-  public Optional<Square> getUpSquare(Square square) {
+  public Optional<Square> getUp(Square square) {
     return getOptionalSquare(square.getRow() - 1, square.getColumn());
 
   }
 
-  public Optional<Square> getDownSquare(Square square) {
+  public Optional<Square> getDown(Square square) {
     return getOptionalSquare(square.getRow() + 1, square.getColumn());
 
   }
 
-  public Optional<Square> getLeftSquare(Square square) {
+  public Optional<Square> getLeft(Square square) {
     return getOptionalSquare(square.getRow(), square.getColumn() - 1);
 
   }
 
-  public Optional<Square> getRightSquare(Square square) {
+  public Optional<Square> getRight(Square square) {
     return getOptionalSquare(square.getRow(), square.getColumn() + 1);
 
   }
 
-  public Optional<Square> getUpRightSquare(Square square) {
+  public Optional<Square> getUpRight(Square square) {
     return getOptionalSquare(square.getRow() - 1, square.getColumn() + 1);
 
   }
 
-  public Optional<Square> getDownLeftSquare(Square square) {
+  public Optional<Square> getDownLeft(Square square) {
     return getOptionalSquare(square.getRow() + 1, square.getColumn() - 1);
 
   }
