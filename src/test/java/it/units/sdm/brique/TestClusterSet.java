@@ -24,13 +24,13 @@ public class TestClusterSet {
   }
 
   @Test
-  void composeClustersWithNearbySquaresCreatesOneCluster() {
+  void composeClusters() {
     clusterSet.composeClusters();
     assertEquals(1, clusterSet.numberOfSets());
   }
 
   @Test
-  void horizontalWhitePathIsWinning(){
+  void winningPath(){
     Square s1 = new Square(1, 0);
     Square s2 = new Square(1,1);
     Square s3 = new Square(1,2);

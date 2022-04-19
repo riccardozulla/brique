@@ -11,13 +11,13 @@ public class TestSquare {
     private final Square square = new Square(0,0);
 
     @Test
-    void stoneIsCorrectlySet() {
+    void toggleTestToTrue() {
         square.setStone(new Stone(Color.BLACK));
         assert(square.getStone().isPresent());
     }
 
     @Test
-    void emptyStoneHasNotStoneOnIt() {
+    void checkTestFalse() {
         assertFalse(square.getStone().isPresent());
     }
 }

@@ -18,13 +18,13 @@ public class TestPlayer {
     }
 
     @Test
-    void blackPlayerHasBlackStoneColor() {
+    void testPlayerBlackStoneColor() {
         Player player = new Player("default", Color.BLACK);
         assertEquals(Color.BLACK, player.getStoneColor());
     }
 
     @Test
-    void whitePlayerHasWhiteStoneColor() {
+    void testPlayerWhiteStoneColor() {
         Player player = new Player("default", Color.WHITE);
         assertEquals(Color.WHITE, player.getStoneColor());
     }

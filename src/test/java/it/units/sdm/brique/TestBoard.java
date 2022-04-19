@@ -28,62 +28,62 @@ public class TestBoard {
   }
 
   @Test
-  void getUpSquare() {
+  void getUp() {
     assertEquals(board.getSquare(0, 1), board.getUpSquare(board.getSquare(1, 1)).get());
   }
 
   @Test
-  void getDownSquare() {
+  void getDown() {
     assertEquals(board.getSquare(2, 1), board.getDownSquare(board.getSquare(1, 1)).get());
   }
 
   @Test
-  void getLeftSquare() {
+  void getLeft() {
     assertEquals(board.getSquare(1, 0), board.getLeftSquare(board.getSquare(1, 1)).get());
   }
 
   @Test
-  void getRightSquare() {
+  void getRight() {
     assertEquals(board.getSquare(1, 2), board.getRightSquare(board.getSquare(1, 1)).get());
   }
 
   @Test
-  void getDownLeftSquare() {
+  void getDownLeft() {
     assertEquals(board.getSquare(2, 0), board.getDownLeftSquare(board.getSquare(1, 1)).get());
   }
 
   @Test
-  void getUpRightSquare() {
+  void getUpRight() {
     assertEquals(board.getSquare(0, 2), board.getUpRightSquare(board.getSquare(1, 1)).get());
   }
 
   @Test
-  void getUpSquareReturnsOptionalEmpty() {
+  void getUpReturnsOptionalEmpty() {
     assertEquals(Optional.empty(), board.getUpSquare(board.getSquare(0, 0)));
   }
 
   @Test
-  void getDownSquareReturnsOptionalEmpty() {
+  void getDownReturnsOptionalEmpty() {
     assertEquals(Optional.empty(), board.getDownSquare(board.getSquare(14, 0)));
   }
 
   @Test
-  void getRightSquareReturnsOptionalEmpty() {
+  void getRightReturnsOptionalEmpty() {
     assertEquals(Optional.empty(), board.getRightSquare(board.getSquare(0, 14)));
   }
 
   @Test
-  void getLeftSquareReturnsOptionalEmpty() {
+  void getLeftReturnsOptionalEmpty() {
     assertEquals(Optional.empty(), board.getLeftSquare(board.getSquare(0, 0)));
   }
 
   @Test
-  void getUpRightSquareReturnsOptionalEmpty() {
+  void getUpRightReturnsOptionalEmpty() {
     assertEquals(Optional.empty(), board.getUpRightSquare(board.getSquare(0, 0)));
   }
 
   @Test
-  void getDownLeftSquareReturnsOptionalEmpty() {
+  void getDownLeftReturnsOptionalEmpty() {
     assertEquals(Optional.empty(), board.getDownLeftSquare(board.getSquare(0, 0)));
   }
 }
