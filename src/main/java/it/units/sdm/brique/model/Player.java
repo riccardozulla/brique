@@ -1,7 +1,7 @@
 package it.units.sdm.brique.model;
 
 public class Player {
-    private String nickname;
+    private final String nickname;
     private Color stoneColor;
 
     public Player (String nickname, Color stoneColor){
