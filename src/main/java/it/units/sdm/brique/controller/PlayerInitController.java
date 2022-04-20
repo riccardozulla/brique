@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.effect.ColorAdjust;
@@ -49,22 +50,27 @@ public class PlayerInitController implements Initializable {
     }
 
     @FXML protected void handleConfirmButtonAction(ActionEvent event) {
-        Player player1 = new Player(player1TextField.getText(), swapHappened ? Color.WHITE : Color.BLACK);
-        Player player2 = new Player(player2TextField.getText(), swapHappened ? Color.BLACK : Color.WHITE);
-        PlayerHolder playerHolder = PlayerHolder.getInstance();
-        playerHolder.setPlayer1(player1);
-        playerHolder.setPlayer2(player2);
-
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/it/units/sdm/brique/game.fxml"));
-            Stage currentStage = (Stage)((Node) event.getSource()).getScene().getWindow();
-            Stage newStage = new Stage();
-            Scene scene = new Scene(root);
-            newStage.setScene(scene);
-            currentStage.close();
-            newStage.show();
-        } catch(Exception e) {
-            e.printStackTrace();
+        if(player1TextField.getText().equals(player2TextField.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Nickname error!");
+            alert.setContentText("You entered the same nickname for both players. "
+                    + "\nPlease choose a different nickname.");
+            alert.showAndWait();
+        }
+        else {
+            savePlayerData();
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/it/units/sdm/brique/game.fxml"));
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Stage newStage = new Stage();
+                Scene scene = new Scene(root);
+                newStage.setScene(scene);
+                currentStage.close();
+                newStage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -81,5 +87,24 @@ public class PlayerInitController implements Initializable {
         blackout.setBrightness(-0.8);
         img2.setEffect(blackout);
         swapHappened = !swapHappened;
+    }
+
+    private void validateNickname() {
+        if(player1TextField.getText().equals(player2TextField.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Nickname error!");
+            alert.setContentText("You entered the same nickname for both players. "
+                    + "\nPlease choose a different nickname.");
+            alert.showAndWait();
+        }
+    }
+
+    private void savePlayerData() {
+        Player player1 = new Player(player1TextField.getText(), swapHappened ? Color.WHITE : Color.BLACK);
+        Player player2 = new Player(player2TextField.getText(), swapHappened ? Color.BLACK : Color.WHITE);
+        PlayerHolder playerHolder = PlayerHolder.getInstance();
+        playerHolder.setPlayer1(player1);
+        playerHolder.setPlayer2(player2);
     }
 }
