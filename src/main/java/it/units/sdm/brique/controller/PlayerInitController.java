@@ -75,13 +75,12 @@ public class PlayerInitController implements Initializable {
     }
 
     @FXML protected void handleToggleButtonAction(ActionEvent event) {
-        if(swapHappened)
-            swapColor(player2StoneImageView, player1StoneImageView);
-        else
-            swapColor(player1StoneImageView, player2StoneImageView);
+        swapColor();
     }
 
-    private void swapColor(ImageView img1, ImageView img2) {
+    private void swapColor() {
+        ImageView img1 = swapHappened ? player2StoneImageView : player1StoneImageView;
+        ImageView img2 = swapHappened ? player1StoneImageView : player2StoneImageView;
         img1.setEffect(null);
         ColorAdjust blackout = new ColorAdjust();
         blackout.setBrightness(-0.8);
