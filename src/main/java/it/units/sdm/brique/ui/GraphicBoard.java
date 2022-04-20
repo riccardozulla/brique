@@ -2,6 +2,7 @@ package it.units.sdm.brique.ui;
 
 import it.units.sdm.brique.model.Board;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.shape.Polygon;
 
 public class GraphicBoard extends Pane {
@@ -52,6 +53,12 @@ public class GraphicBoard extends Pane {
         leftBorder.setFill(GraphicColor.WHITE_STONE.getColor());
 
         this.getChildren().addAll(topBorder, rightBorder, bottomBorder, leftBorder);
+    }
+
+    public void fit(Region region) {
+        double ratio = Math.min(region.getHeight(), region.getWidth()) / DEFAULT_BOARD_LENGTH;
+        this.setScaleX(ratio);
+        this.setScaleY(ratio);
     }
 
     public void update() {
