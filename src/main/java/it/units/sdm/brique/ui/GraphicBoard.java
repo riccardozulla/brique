@@ -1,8 +1,9 @@
 package it.units.sdm.brique.ui;
 
 import it.units.sdm.brique.model.Board;
+import javafx.beans.value.ChangeListener;
+import javafx.geometry.Bounds;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.shape.Polygon;
 
 public class GraphicBoard extends Pane {
@@ -10,6 +11,12 @@ public class GraphicBoard extends Pane {
     public static final int DEFAULT_BORDER_WIDTH = GraphicSquare.SQUARE_SIZE / 4;
     public static final int DEFAULT_OFFSET = GraphicBoard.DEFAULT_BORDER_WIDTH;
     public static final int DEFAULT_BOARD_LENGTH = Board.BOARD_SIZE * GraphicSquare.SQUARE_SIZE + 2 * DEFAULT_OFFSET;
+
+    public ChangeListener<Bounds> fit = (observable, oldValue, newValue) -> {
+        double ratio = Math.min(newValue.getHeight(), newValue.getWidth()) / DEFAULT_BOARD_LENGTH;
+        this.setScaleX(ratio);
+        this.setScaleY(ratio);
+    };
 
     Board board;
 
@@ -53,12 +60,6 @@ public class GraphicBoard extends Pane {
         leftBorder.setFill(GraphicColor.WHITE_STONE.getColor());
 
         this.getChildren().addAll(topBorder, rightBorder, bottomBorder, leftBorder);
-    }
-
-    public void fit(Region region) {
-        double ratio = Math.min(region.getHeight(), region.getWidth()) / DEFAULT_BOARD_LENGTH;
-        this.setScaleX(ratio);
-        this.setScaleY(ratio);
     }
 
     public void update() {

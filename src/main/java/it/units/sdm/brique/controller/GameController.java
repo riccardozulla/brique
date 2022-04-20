@@ -26,7 +26,7 @@ public class GameController implements Initializable, PropertyChangeListener {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        board_wrapper.layoutBoundsProperty().addListener(observable -> graphicBoard.fit(board_wrapper));
+        board_wrapper.layoutBoundsProperty().addListener(graphicBoard.fit);
 
         graphicBoard.setOnMouseClicked(event -> {
             if (event.isStillSincePress() && event.getTarget() instanceof GraphicSquare)
