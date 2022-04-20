@@ -64,6 +64,7 @@ public class GraphicBoard extends Pane {
     }
 
     public void update() {
-        this.getChildren().forEach(graphicSquare -> ((GraphicSquare) graphicSquare).update());
+        this.getChildren().stream().filter(child -> child instanceof GraphicSquare).
+                forEach(graphicSquare -> ((GraphicSquare) graphicSquare).update());
     }
 }
