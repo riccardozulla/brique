@@ -17,6 +17,10 @@ public class Player {
         return stoneColor;
     }
 
+    public void setStoneColor(Color stoneColor) {
+        this.stoneColor = stoneColor;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
