@@ -89,17 +89,6 @@ public class PlayerInitController implements Initializable {
         swapHappened = !swapHappened;
     }
 
-    private void validateNickname() {
-        if(player1TextField.getText().equals(player2TextField.getText())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Warning");
-            alert.setHeaderText("Nickname error!");
-            alert.setContentText("You entered the same nickname for both players. "
-                    + "\nPlease choose a different nickname.");
-            alert.showAndWait();
-        }
-    }
-
     private void savePlayerData() {
         Player player1 = new Player(player1TextField.getText(), swapHappened ? Color.WHITE : Color.BLACK);
         Player player2 = new Player(player2TextField.getText(), swapHappened ? Color.BLACK : Color.WHITE);
