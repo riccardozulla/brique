@@ -10,7 +10,7 @@ public class Game {
     private final Board gameBoard;
     private Player activePlayer;
     private boolean whiteMadeFirstMove;
-    private boolean pieRuleIsApplicable;
+    private boolean whiteAppliedPieRule;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     public Game(Player player1, Player player2) {
@@ -64,27 +64,38 @@ public class Game {
         Move move = new Move(activePlayer);
         move.setChosenSquare(square);
         move.make();
-        if(move.isWinning())
+        checkWhiteMadeFirstMove();
+        if (move.isWinning())
             stateWinningStatus();
-//        if(getActivePlayer().getStoneColor() == Color.WHITE){
-//            whiteMadeFirstMove = true;
-//        }
-//        if (getActivePlayer().getStoneColor() == Color.WHITE && whiteMadeFirstMove==false){
-//            pieRuleIsApplicable = true;
-//        }
         switchActivePlayer();
     }
 
-//    private void pieRule() {
-//        if (activePlayer.equals(player1)){
-//            player2.setStoneColor(Color.WHITE);
-//            player1.setStoneColor(Color.BLACK);
-//        }
-//        else {
-//            player1.setStoneColor(Color.WHITE);
-//            player2.setStoneColor(Color.BLACK);
-//        }
-//    }
+    private void checkWhiteMadeFirstMove() {
+        if (getActivePlayer().getStoneColor() == Color.WHITE && !whiteMadeFirstMove){
+            whiteMadeFirstMove=true;
+        }
+    }
+
+    private boolean pieRuleApplicable() {
+        if (getActivePlayer().getStoneColor() == Color.WHITE && whiteMadeFirstMove == false) {
+            return true;
+        }
+        return false;
+    }
+
+    public void pieRule() {
+        if (pieRuleApplicable()) {
+            if (player1.equals(activePlayer)) {
+                player2.setStoneColor(Color.WHITE);
+                player1.setStoneColor(Color.BLACK);
+            } else if (player2.equals(activePlayer)) {
+                player1.setStoneColor(Color.WHITE);
+                player2.setStoneColor(Color.BLACK);
+            }
+            whiteAppliedPieRule = true;
+            switchActivePlayer();
+        }
+    }
 
     public void addActivePlayerListener(PropertyChangeListener listener) {
         this.pcs.addPropertyChangeListener("activePlayer", listener);
