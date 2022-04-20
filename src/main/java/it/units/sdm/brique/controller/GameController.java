@@ -7,7 +7,8 @@ import it.units.sdm.brique.ui.GraphicBoard;
 import it.units.sdm.brique.ui.GraphicSquare;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -19,6 +20,9 @@ public class GameController implements Initializable, PropertyChangeListener {
     Game game = new Game(new Player("PLayer1", Color.BLACK), new Player("Player2", Color.WHITE));
 
     @FXML
+    private VBox game_wrapper;
+
+    @FXML
     private HBox board_wrapper;
 
     @FXML
@@ -26,6 +30,11 @@ public class GameController implements Initializable, PropertyChangeListener {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        Image background = new Image("it/units/sdm/brique/game_carpet.jpg");
+        BackgroundImage backgroundImage = new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, new BackgroundSize(300,300,false, false, false, false));
+        game_wrapper.setBackground(new Background(backgroundImage));
+
         board_wrapper.layoutBoundsProperty().addListener(graphicBoard.fit);
 
         graphicBoard.setOnMouseClicked(event -> {
