@@ -1,11 +1,7 @@
 package it.units.sdm.brique.model;
 
-import it.units.sdm.brique.model.exceptions.StoneAlreadyPresentException;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class Game {
     private Status status = Status.RUNNING;
@@ -13,6 +9,8 @@ public class Game {
     private final Player player2;
     private final Board gameBoard;
     private Player activePlayer;
+    private boolean whiteMadeFirstMove;
+    private boolean pieRuleIsApplicable;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     public Game(Player player1, Player player2) {
@@ -68,8 +66,25 @@ public class Game {
         move.make();
         if(move.isWinning())
             stateWinningStatus();
+//        if(getActivePlayer().getStoneColor() == Color.WHITE){
+//            whiteMadeFirstMove = true;
+//        }
+//        if (getActivePlayer().getStoneColor() == Color.WHITE && whiteMadeFirstMove==false){
+//            pieRuleIsApplicable = true;
+//        }
         switchActivePlayer();
     }
+
+//    private void pieRule() {
+//        if (activePlayer.equals(player1)){
+//            player2.setStoneColor(Color.WHITE);
+//            player1.setStoneColor(Color.BLACK);
+//        }
+//        else {
+//            player1.setStoneColor(Color.WHITE);
+//            player2.setStoneColor(Color.BLACK);
+//        }
+//    }
 
     public void addActivePlayerListener(PropertyChangeListener listener) {
         this.pcs.addPropertyChangeListener("activePlayer", listener);
