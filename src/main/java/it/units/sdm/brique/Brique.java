@@ -10,10 +10,13 @@ public class Brique extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("game.fxml"));
+        root.getStylesheets().add("/it/units/sdm/brique/stylesheet.css");
         Scene scene = new Scene(root);
 
         stage.setTitle("Brique");
         stage.setScene(scene);
+        stage.setMinWidth(400);
+        stage.setMinHeight(500);
         stage.show();
     }
 
