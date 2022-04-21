@@ -59,6 +59,7 @@ public class GameController implements Initializable, PropertyChangeListener {
         game.addActivePlayerListener(this);
         game.addStatusListener(this);
         highlightActivePlayer();
+        updatePieButton();
     }
 
     @Override
@@ -67,6 +68,7 @@ public class GameController implements Initializable, PropertyChangeListener {
             case "activePlayer" -> {
                 graphicBoard.update();
                 highlightActivePlayer();
+                updatePieButton();
             }
             case "status" -> {
                 System.out.println(propertyChangeEvent.getNewValue());
@@ -85,5 +87,9 @@ public class GameController implements Initializable, PropertyChangeListener {
             player_two_wrapper.getStyleClass().add("activePlayer");
             player_one_wrapper.getStyleClass().remove("activePlayer");
         }
+    }
+
+    private void updatePieButton() {
+        pie_button.setDisable(false); //TODO
     }
 }
