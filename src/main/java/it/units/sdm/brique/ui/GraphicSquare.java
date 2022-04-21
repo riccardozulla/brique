@@ -28,11 +28,7 @@ public class GraphicSquare extends StackPane {
     }
 
     private void drawStone() {
-        square.getStone().ifPresent(stone -> {
-            GraphicStone graphicStone = new GraphicStone(stone);
-            graphicStone.draw(this);
-            this.getChildren().add(graphicStone);
-        });
+        square.getStone().ifPresent(stone -> this.getChildren().add(new GraphicStone(stone)));
     }
 
     public void update() {
@@ -44,7 +40,7 @@ public class GraphicSquare extends StackPane {
     public void toggleMouseClick() {
         EventHandler<javafx.scene.input.MouseEvent> handler = javafx.scene.input.MouseEvent::consume;
         if (square.getStone().isPresent()) {
-            this.addEventFilter(MouseEvent.ANY, handler);
+            this.addEventFilter(MouseEvent.ANY, handler); //TODO
         } else {
             this.removeEventFilter(MouseEvent.ANY, handler);
         }
