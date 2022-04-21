@@ -77,10 +77,7 @@ public class Game {
     }
 
     private boolean pieRuleApplicable() {
-        if (getActivePlayer().getStoneColor() == Color.WHITE && whiteMadeFirstMove == false) {
-            return true;
-        }
-        return false;
+        return getActivePlayer().getStoneColor() == Color.WHITE && !whiteMadeFirstMove;
     }
 
     public void pieRule() {
