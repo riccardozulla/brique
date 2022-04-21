@@ -42,14 +42,14 @@
     </HBox>
     <HBox fx:id="player_wrapper" alignment="CENTER" VBox.vgrow="NEVER">
         <VBox fx:id="player_one_wrapper" alignment="CENTER" styleClass="">
-            <Text text="Player 1"/>
+            <Text text="PLAYER 1"/>
             <Text fx:id="player_one_nickname" text="Nickname 1"/>
         </VBox>
         <VBox alignment="CENTER">
             <Button fx:id="pie_button" text="PIE"/>
         </VBox>
         <VBox fx:id="player_two_wrapper" alignment="CENTER">
-            <Text text="Player 2"/>
+            <Text text="PLAYER 2"/>
             <Text fx:id="player_two_nickname" text="Nickname 2"/>
         </VBox>
     </HBox>
