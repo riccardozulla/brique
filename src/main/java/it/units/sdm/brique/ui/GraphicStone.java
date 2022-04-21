@@ -25,8 +25,6 @@ public class GraphicStone extends Ellipse implements Drawable {
         this.setFill(stone.getColor() == Color.WHITE ? GraphicColor.WHITE_STONE.getColor()
                 : GraphicColor.BLACK_STONE.getColor());
         DropShadow dropShadow = new DropShadow();
-//        dropShadow.setOffsetX(1.0);
-//        dropShadow.setOffsetY(8.0);
         dropShadow.offsetXProperty().bind(radiusXProperty().multiply(0.33));
         dropShadow.offsetYProperty().bind(radiusYProperty().multiply(0.8));
         dropShadow.setColor(stone.getColor() == Color.BLACK ? javafx.scene.paint.Color.BLACK
