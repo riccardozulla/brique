@@ -46,7 +46,7 @@
             <Text fx:id="player_one_nickname" text="Nickname 1"/>
         </VBox>
         <VBox alignment="CENTER">
-            <Button fx:id="pie_button" text="PIE"/>
+            <Button fx:id="pie_button" text="PIE" onAction="#handlePieButtonAction"/>
         </VBox>
         <VBox fx:id="player_two_wrapper" alignment="CENTER">
             <Text text="PLAYER 2"/>

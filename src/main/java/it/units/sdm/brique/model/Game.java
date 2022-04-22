@@ -68,8 +68,8 @@ public class Game {
         move.make();
         if (move.isWinning())
             stateWinningStatus();
-        switchActivePlayer();
         togglePieRule();
+        switchActivePlayer();
     }
 
     private void togglePieRule() {

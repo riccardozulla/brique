@@ -92,7 +92,11 @@ public class GameController implements Initializable, PropertyChangeListener {
         }
     }
 
+    @FXML protected void handlePieButtonAction() {
+        game.pieRule();
+    }
+
     private void updatePieButton() {
-        pie_button.setDisable(game.isPieRuleApplicable());
+        pie_button.setDisable(!game.isPieRuleApplicable());
     }
 }
