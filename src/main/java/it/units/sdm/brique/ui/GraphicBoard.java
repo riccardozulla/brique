@@ -23,11 +23,11 @@ public class GraphicBoard extends Pane {
 
     public GraphicBoard() {
         this.board = Board.getBoard();
-        for (int i = 0; i < Board.BOARD_SIZE; i++) {
-            for (int j = 0; j < Board.BOARD_SIZE; j++) {
-                GraphicSquare graphicSquare = new GraphicSquare(board.getSquare(i, j));
-                graphicSquare.setLayoutX(i * GraphicSquare.SQUARE_SIZE + DEFAULT_OFFSET);
-                graphicSquare.setLayoutY(j * GraphicSquare.SQUARE_SIZE + DEFAULT_OFFSET);
+        for (int row = 0; row < Board.BOARD_SIZE; row++) {
+            for (int col = 0; col < Board.BOARD_SIZE; col++) {
+                GraphicSquare graphicSquare = new GraphicSquare(board.getSquare(row, col));
+                graphicSquare.setLayoutX(col * GraphicSquare.SQUARE_SIZE + DEFAULT_OFFSET);
+                graphicSquare.setLayoutY(row * GraphicSquare.SQUARE_SIZE + DEFAULT_OFFSET);
                 this.getChildren().add(graphicSquare);
             }
         }
