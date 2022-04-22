@@ -8,8 +8,8 @@ import javafx.stage.Stage;
 
 public class Brique extends Application {
 
-    public static final double WINDOW_HEIGHT = 600.0;
-    public static final double WINDOW_WIDTH = 700.0;
+    public static final double PRIMARY_STAGE_HEIGHT = 600.0;
+    public static final double PRIMARY_STAGE_WIDTH = 700.0;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -18,8 +18,8 @@ public class Brique extends Application {
 
         primaryStage.setTitle("Brique");
         primaryStage.setScene(scene);
-        primaryStage.setHeight(WINDOW_HEIGHT);
-        primaryStage.setWidth(WINDOW_WIDTH);
+        primaryStage.setHeight(PRIMARY_STAGE_HEIGHT);
+        primaryStage.setWidth(PRIMARY_STAGE_WIDTH);
         primaryStage.show();
     }
 

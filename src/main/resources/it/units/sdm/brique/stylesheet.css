@@ -1,0 +1,65 @@
+#player_wrapper {
+    -fx-padding: 20;
+    -fx-spacing: 30;
+    -fx-background-color: rgba(0,0,0,0.3);
+}
+
+.button {
+    -fx-background-color: goldenrod;
+    -fx-background-radius: 50;
+    -fx-border-width: 2;
+    -fx-border-style: solid;
+    -fx-border-color: #422800;
+    -fx-border-radius: 50;
+    -fx-font-weight: 600;
+    -fx-font-size: 18;
+    -fx-text-alignment: center;
+    -fx-padding: 0 18;
+    -fx-effect: dropshadow(one-pass-box, #422800, 0, 0, 4, 4);
+}
+.button:hover {
+    -fx-background-color: gold;
+    /*-fx-background-color: #fff;*/
+}
+
+.button:disabled{
+    -fx-background-color: #fbeee0;
+    -fx-effect: dropshadow(one-pass-box, #422800, 0,0,1,1);
+    -fx-translate-x: 2;
+    -fx-translate-y: 2;
+}
+
+#player_one_wrapper, #player_two_wrapper {
+    -fx-spacing: 8;
+}
+
+Text {
+    -fx-font: 20 Verdana;
+    -fx-font-weight: bold;
+    -fx-underline: true;
+    /*-fx-highlight-text-fill: true;*/
+    -fx-fill: black;
+}
+
+#player_one_nickname, #player_two_nickname {
+    -fx-font-weight: 500;
+    -fx-underline: false;
+    -fx-font-size: 15;
+}
+
+.activePlayer {
+    -fx-effect: dropshadow(one-pass-box, rgba(255, 255, 255, 0.4), 10, 1, 0, 0);
+}
+
+GraphicBoard > * {
+    -fx-stroke: black;
+    -fx-stroke-width: 0.2;
+    -fx-border-color: black;
+    -fx-border-width: 0.2;
+    -fx-border-style: solid;
+}
+GraphicStone {
+    -fx-stroke: black;
+    -fx-stroke-width: 0.5;
+    -fx-effect: dropshadow(one-pass-box, black,0,1,0,2)
+}

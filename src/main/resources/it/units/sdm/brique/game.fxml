@@ -1,46 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.layout.VBox?>
+<?import it.units.sdm.brique.ui.GraphicBoard?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<VBox fx:id="game_wrapper" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.units.sdm.brique.controller.GameController">
+    <MenuBar VBox.vgrow="NEVER">
+        <Menu mnemonicParsing="false" text="File">
+            <MenuItem mnemonicParsing="false" text="New"/>
+            <MenuItem mnemonicParsing="false" text="Open…"/>
+            <Menu mnemonicParsing="false" text="Open Recent"/>
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem mnemonicParsing="false" text="Close"/>
+            <MenuItem mnemonicParsing="false" text="Save"/>
+            <MenuItem mnemonicParsing="false" text="Save As…"/>
+            <MenuItem mnemonicParsing="false" text="Revert"/>
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem mnemonicParsing="false" text="Preferences…"/>
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem mnemonicParsing="false" text="Quit"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+            <MenuItem mnemonicParsing="false" text="Undo"/>
+            <MenuItem mnemonicParsing="false" text="Redo"/>
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem mnemonicParsing="false" text="Cut"/>
+            <MenuItem mnemonicParsing="false" text="Copy"/>
+            <MenuItem mnemonicParsing="false" text="Paste"/>
+            <MenuItem mnemonicParsing="false" text="Delete"/>
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem mnemonicParsing="false" text="Select All"/>
+            <MenuItem mnemonicParsing="false" text="Unselect All"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp"/>
+        </Menu>
+    </MenuBar>
+    <HBox fx:id="board_wrapper" VBox.vgrow="ALWAYS" alignment="CENTER">
+        <GraphicBoard fx:id="graphicBoard" maxHeight="-Infinity" maxWidth="-Infinity"/>
+    </HBox>
+    <HBox fx:id="player_wrapper" alignment="CENTER" VBox.vgrow="NEVER">
+        <VBox fx:id="player_one_wrapper" alignment="CENTER" styleClass="">
+            <Text text="PLAYER 1"/>
+            <Text fx:id="player_one_nickname" text="Nickname 1"/>
+        </VBox>
+        <VBox alignment="CENTER">
+            <Button fx:id="pie_button" text="PIE"/>
+        </VBox>
+        <VBox fx:id="player_two_wrapper" alignment="CENTER">
+            <Text text="PLAYER 2"/>
+            <Text fx:id="player_two_nickname" text="Nickname 2"/>
+        </VBox>
+    </HBox>
 
-<?import javafx.scene.layout.Pane?>
-<!--<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.units.sdm.brique.controller.GameController">-->
-<!--   <MenuBar VBox.vgrow="NEVER">-->
-<!--      <Menu mnemonicParsing="false" text="File">-->
-<!--         <MenuItem mnemonicParsing="false" text="New" />-->
-<!--         <MenuItem mnemonicParsing="false" text="Open…" />-->
-<!--         <Menu mnemonicParsing="false" text="Open Recent" />-->
-<!--         <SeparatorMenuItem mnemonicParsing="false" />-->
-<!--         <MenuItem mnemonicParsing="false" text="Close" />-->
-<!--         <MenuItem mnemonicParsing="false" text="Save" />-->
-<!--         <MenuItem mnemonicParsing="false" text="Save As…" />-->
-<!--         <MenuItem mnemonicParsing="false" text="Revert" />-->
-<!--         <SeparatorMenuItem mnemonicParsing="false" />-->
-<!--         <MenuItem mnemonicParsing="false" text="Preferences…" />-->
-<!--         <SeparatorMenuItem mnemonicParsing="false" />-->
-<!--         <MenuItem mnemonicParsing="false" text="Quit" />-->
-<!--      </Menu>-->
-<!--      <Menu mnemonicParsing="false" text="Edit">-->
-<!--         <MenuItem mnemonicParsing="false" text="Undo" />-->
-<!--         <MenuItem mnemonicParsing="false" text="Redo" />-->
-<!--         <SeparatorMenuItem mnemonicParsing="false" />-->
-<!--         <MenuItem mnemonicParsing="false" text="Cut" />-->
-<!--         <MenuItem mnemonicParsing="false" text="Copy" />-->
-<!--         <MenuItem mnemonicParsing="false" text="Paste" />-->
-<!--         <MenuItem mnemonicParsing="false" text="Delete" />-->
-<!--         <SeparatorMenuItem mnemonicParsing="false" />-->
-<!--         <MenuItem mnemonicParsing="false" text="Select All" />-->
-<!--         <MenuItem mnemonicParsing="false" text="Unselect All" />-->
-<!--      </Menu>-->
-<!--      <Menu mnemonicParsing="false" text="Help">-->
-<!--         <MenuItem mnemonicParsing="false" text="About MyHelloApp" />-->
-<!--      </Menu>-->
-<!--   </MenuBar>-->
+</VBox>
 
-<!--</VBox>-->
-
-<TilePane fx:id="gameView" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.units.sdm.brique.controller.GameController"/>

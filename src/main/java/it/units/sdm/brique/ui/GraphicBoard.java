@@ -1,31 +1,70 @@
 package it.units.sdm.brique.ui;
 
 import it.units.sdm.brique.model.Board;
+import javafx.beans.value.ChangeListener;
+import javafx.geometry.Bounds;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Polygon;
 
-public class GraphicBoard extends Pane implements Drawable {
+public class GraphicBoard extends Pane {
+
+    public static final int DEFAULT_BORDER_WIDTH = GraphicSquare.SQUARE_SIZE / 4;
+    public static final int DEFAULT_OFFSET = GraphicBoard.DEFAULT_BORDER_WIDTH;
+    public static final int DEFAULT_BOARD_LENGTH = Board.BOARD_SIZE * GraphicSquare.SQUARE_SIZE + 2 * DEFAULT_OFFSET;
+    public static final double PERCENTAGE_PADDING = 0.9;
+
+    public ChangeListener<Bounds> fit = (observable, oldValue, newValue) -> {
+        double ratio = Math.min(newValue.getHeight(), newValue.getWidth()) * PERCENTAGE_PADDING / DEFAULT_BOARD_LENGTH;
+        this.setScaleX(ratio);
+        this.setScaleY(ratio);
+    };
 
     Board board;
 
     public GraphicBoard() {
         this.board = Board.getBoard();
-        for (int i = 0; i < Board.BOARD_SIZE; i++) {
-            for (int j = 0; j < Board.BOARD_SIZE; j++) {
-                this.getChildren().add(new GraphicSquare(board.getSquare(i, j)));
+        for (int row = 0; row < Board.BOARD_SIZE; row++) {
+            for (int col = 0; col < Board.BOARD_SIZE; col++) {
+                GraphicSquare graphicSquare = new GraphicSquare(board.getSquare(row, col));
+                graphicSquare.setLayoutX(col * GraphicSquare.SQUARE_SIZE + DEFAULT_OFFSET);
+                graphicSquare.setLayoutY(row * GraphicSquare.SQUARE_SIZE + DEFAULT_OFFSET);
+                this.getChildren().add(graphicSquare);
             }
         }
+        buildBorder();
     }
 
-    public void draw(Pane pane) {
-        this.heightProperty().addListener((obs, oldVal, newVal) -> {
-            var squareSize = newVal.doubleValue() / Board.BOARD_SIZE;
-            this.setStyle("-fx-border-color:" + GraphicColor.BLACK_STONE.getHexColor() + " " + GraphicColor.WHITE_STONE.getHexColor() + " " + GraphicColor.BLACK_STONE.getHexColor() + " " + GraphicColor.WHITE_STONE.getHexColor() + "; -fx-border-style:solid outside; -fx-border-radius:" + squareSize / 2 + " ; -fx-border-width:" + squareSize + ";"); //todo
-        });
-        this.getChildren().forEach(graphicSquare -> ((GraphicSquare) graphicSquare).draw(pane));
-        pane.getChildren().add(this);
+    private void buildBorder() {
+        Polygon topBorder = new Polygon(
+                0.0, 0.0,
+                DEFAULT_BOARD_LENGTH, 0.0,
+                DEFAULT_BOARD_LENGTH - DEFAULT_OFFSET, DEFAULT_OFFSET,
+                DEFAULT_OFFSET, DEFAULT_OFFSET);
+        topBorder.setFill(GraphicColor.BLACK_STONE.getColor());
+        Polygon rightBorder = new Polygon(
+                DEFAULT_BOARD_LENGTH, 0.0,
+                DEFAULT_BOARD_LENGTH, DEFAULT_BOARD_LENGTH,
+                DEFAULT_BOARD_LENGTH - DEFAULT_OFFSET, DEFAULT_BOARD_LENGTH - DEFAULT_OFFSET,
+                DEFAULT_BOARD_LENGTH - DEFAULT_OFFSET, DEFAULT_OFFSET);
+        rightBorder.setFill(GraphicColor.WHITE_STONE.getColor());
+        Polygon bottomBorder = new Polygon(
+                DEFAULT_BOARD_LENGTH - DEFAULT_OFFSET, DEFAULT_BOARD_LENGTH - DEFAULT_OFFSET,
+                DEFAULT_BOARD_LENGTH, DEFAULT_BOARD_LENGTH,
+                0, DEFAULT_BOARD_LENGTH,
+                DEFAULT_OFFSET, DEFAULT_BOARD_LENGTH - DEFAULT_OFFSET);
+        bottomBorder.setFill(GraphicColor.BLACK_STONE.getColor());
+        Polygon leftBorder = new Polygon(
+                0.0, 0.0,
+                DEFAULT_OFFSET, DEFAULT_OFFSET,
+                DEFAULT_OFFSET, DEFAULT_BOARD_LENGTH - DEFAULT_OFFSET,
+                0.0, DEFAULT_BOARD_LENGTH);
+        leftBorder.setFill(GraphicColor.WHITE_STONE.getColor());
+
+        this.getChildren().addAll(topBorder, rightBorder, bottomBorder, leftBorder);
     }
 
     public void update() {
-        this.getChildren().forEach(graphicSquare -> ((GraphicSquare) graphicSquare).update());
+        this.getChildren().stream().filter(child -> child instanceof GraphicSquare).
+                forEach(graphicSquare -> ((GraphicSquare) graphicSquare).update());
     }
 }
