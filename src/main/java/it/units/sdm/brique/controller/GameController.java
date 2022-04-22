@@ -93,6 +93,6 @@ public class GameController implements Initializable, PropertyChangeListener {
     }
 
     private void updatePieButton() {
-        pie_button.setDisable(false); //TODO
+        pie_button.setDisable(game.isPieRuleApplicable());
     }
 }
