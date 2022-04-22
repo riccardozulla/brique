@@ -1,11 +1,9 @@
 package it.units.sdm.brique;
 
-import it.units.sdm.brique.controller.PlayerInitController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Brique extends Application {
@@ -16,6 +14,8 @@ public class Brique extends Application {
 
         stage.setTitle("Brique");
         stage.setScene(scene);
+        stage.setHeight(600);
+        stage.setWidth(800);
         stage.show();
         stage.setOnHidden(event -> {
             try {
