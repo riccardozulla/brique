@@ -35,12 +35,6 @@ public class PlayerInitController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO: Use CSS file instead
-        String url = getClass().getResource("../images/swap.png").toString();
-        ImageView img = new ImageView(new Image(url));
-        img.setFitWidth(40);
-        img.setFitHeight(40);
-        swapButton.setGraphic(img);
         ColorAdjust blackout = new ColorAdjust();
         blackout.setBrightness(-0.8);
         player1StoneImageView.setEffect(blackout);

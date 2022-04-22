@@ -35,7 +35,7 @@
                   </Label>
                   <ImageView fx:id="player1StoneImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/whitestone.png" />
+                        <Image url="@images/stone.png" />
                      </image>
                   </ImageView>
                   <TextField fx:id="player1TextField" promptText="Nickname" />
@@ -46,7 +46,13 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="180.0" HBox.hgrow="ALWAYS">
                <children>
-                  <ToggleButton fx:id="swapButton" mnemonicParsing="false" text="" onAction="#handleToggleButtonAction"/>
+                  <ToggleButton fx:id="swapButton" mnemonicParsing="false" text="" onAction="#handleToggleButtonAction">
+                          <graphic>
+                             <ImageView fitHeight="40" fitWidth="40">
+                                <Image url="@images/swap.png"/>
+                             </ImageView>
+                          </graphic>
+                  </ToggleButton>
                </children>
             </VBox>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" spacing="20.0" HBox.hgrow="ALWAYS">
@@ -58,7 +64,7 @@
                   </Label>
                   <ImageView fx:id="player2StoneImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/whitestone.png" />
+                        <Image url="@images/stone.png" />
                      </image>
                   </ImageView>
                   <TextField fx:id="player2TextField" promptText="Nickname" />
