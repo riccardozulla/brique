@@ -81,7 +81,7 @@ public class Game {
         }
     }
 
-    private boolean isPieRuleApplicable() {
+    public boolean isPieRuleApplicable() {
         return pieRuleApplicable;
     }
 
