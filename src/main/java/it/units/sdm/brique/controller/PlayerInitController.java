@@ -9,9 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -30,8 +28,6 @@ public class PlayerInitController implements Initializable {
     private ImageView player1StoneImageView;
     @FXML
     private ImageView player2StoneImageView;
-    @FXML
-    private ToggleButton swapButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
