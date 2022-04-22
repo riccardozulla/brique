@@ -5,8 +5,11 @@ import it.units.sdm.brique.model.Player;
 import it.units.sdm.brique.model.PlayerHolder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
@@ -36,7 +39,7 @@ public class PlayerInitController implements Initializable {
         player1StoneImageView.setEffect(blackout);
     }
 
-    @FXML protected void handleConfirmButtonAction(ActionEvent event) {
+    @FXML protected void handleConfirmButtonAction(ActionEvent event) throws Exception {
         if(isSameNickname()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Warning");
@@ -47,7 +50,12 @@ public class PlayerInitController implements Initializable {
         }
         else {
             savePlayerData();
+            Parent gameView = FXMLLoader.load(getClass().getResource("/it/units/sdm/brique/game.fxml"));
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage secondaryStage = new Stage();
+            Scene newScene = new Scene(gameView);
+            secondaryStage.setScene(newScene);
+            secondaryStage.show();
             currentStage.close();
         }
     }

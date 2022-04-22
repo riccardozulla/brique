@@ -14,7 +14,6 @@ public class Brique extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent playerInitView = FXMLLoader.load(getClass().getResource("playerinit.fxml"));
-        Parent gameView = FXMLLoader.load(getClass().getResource("/it/units/sdm/brique/game.fxml"));
         Scene scene = new Scene(playerInitView);
 
         primaryStage.setTitle("Brique");
@@ -22,12 +21,6 @@ public class Brique extends Application {
         primaryStage.setHeight(WINDOW_HEIGHT);
         primaryStage.setWidth(WINDOW_WIDTH);
         primaryStage.show();
-        primaryStage.setOnHidden(event -> {
-            Stage secondaryStage = new Stage();
-            Scene newScene = new Scene(gameView);
-            secondaryStage.setScene(newScene);
-            secondaryStage.show();
-        });
     }
 
     public static void main(String[] args) {
