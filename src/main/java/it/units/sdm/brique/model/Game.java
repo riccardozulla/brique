@@ -1,11 +1,9 @@
 package it.units.sdm.brique.model;
 
-import it.units.sdm.brique.model.exceptions.StoneAlreadyPresentException;
+import it.units.sdm.brique.model.exceptions.PieRuleNotApplicableException;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class Game {
     private Status status = Status.RUNNING;
@@ -13,6 +11,8 @@ public class Game {
     private final Player player2;
     private final Board gameBoard;
     private Player activePlayer;
+    private boolean firstGameMoveDone;
+    private boolean pieRuleApplicable;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     public Game(Player player1, Player player2) {
@@ -66,8 +66,37 @@ public class Game {
         Move move = new Move(activePlayer);
         move.setChosenSquare(square);
         move.make();
-        if(move.isWinning())
+        if (move.isWinning())
             stateWinningStatus();
+        switchActivePlayer();
+        togglePieRule();
+    }
+
+    private void togglePieRule() {
+        if (!firstGameMoveDone) {
+            firstGameMoveDone = true;
+            pieRuleApplicable = true;
+        } else if (firstGameMoveDone && pieRuleApplicable) {
+            pieRuleApplicable = false;
+        }
+    }
+
+    private boolean isPieRuleApplicable() {
+        return pieRuleApplicable;
+    }
+
+    public void pieRule() {
+        if (!pieRuleApplicable) {
+            throw new PieRuleNotApplicableException("Pie rule not applicable");
+        }
+        if (player1.equals(activePlayer)) {
+            player2.setStoneColor(Color.WHITE);
+            player1.setStoneColor(Color.BLACK);
+        } else if (player2.equals(activePlayer)) {
+            player1.setStoneColor(Color.WHITE);
+            player2.setStoneColor(Color.BLACK);
+        }
+        pieRuleApplicable = false;
         switchActivePlayer();
     }
 
