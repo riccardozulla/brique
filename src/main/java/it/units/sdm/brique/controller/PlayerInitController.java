@@ -50,7 +50,7 @@ public class PlayerInitController implements Initializable {
     }
 
     @FXML protected void handleConfirmButtonAction(ActionEvent event) {
-        if(player1TextField.getText().equals(player2TextField.getText())) {
+        if(isSameNickname()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Warning");
             alert.setHeaderText("Nickname error!");
@@ -60,17 +60,8 @@ public class PlayerInitController implements Initializable {
         }
         else {
             savePlayerData();
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("/it/units/sdm/brique/game.fxml"));
-                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Stage newStage = new Stage();
-                Scene scene = new Scene(root);
-                newStage.setScene(scene);
-                currentStage.close();
-                newStage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
         }
     }
 
@@ -94,5 +85,9 @@ public class PlayerInitController implements Initializable {
         PlayerHolder playerHolder = PlayerHolder.getInstance();
         playerHolder.setPlayer1(player1);
         playerHolder.setPlayer2(player2);
+    }
+
+    private boolean isSameNickname() {
+        return player1TextField.getText().equals(player2TextField.getText());
     }
 }
