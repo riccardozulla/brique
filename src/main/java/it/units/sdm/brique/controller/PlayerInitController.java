@@ -51,10 +51,13 @@ public class PlayerInitController implements Initializable {
         else {
             savePlayerData();
             Parent gameView = FXMLLoader.load(getClass().getResource("/it/units/sdm/brique/game.fxml"));
+            gameView.getStylesheets().add("/it/units/sdm/brique/stylesheet.css");
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Stage secondaryStage = new Stage();
             Scene newScene = new Scene(gameView);
             secondaryStage.setScene(newScene);
+            secondaryStage.setMinWidth(400);
+            secondaryStage.setMinHeight(500);
             secondaryStage.show();
             currentStage.close();
         }
