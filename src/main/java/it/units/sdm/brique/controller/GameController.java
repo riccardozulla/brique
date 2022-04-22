@@ -1,8 +1,6 @@
 package it.units.sdm.brique.controller;
 
-import it.units.sdm.brique.model.Color;
 import it.units.sdm.brique.model.Game;
-import it.units.sdm.brique.model.Player;
 import it.units.sdm.brique.model.PlayerHolder;
 import it.units.sdm.brique.ui.GraphicBoard;
 import it.units.sdm.brique.ui.GraphicSquare;
@@ -57,6 +55,9 @@ public class GameController implements Initializable, PropertyChangeListener {
             if (event.isStillSincePress() && event.getTarget() instanceof GraphicSquare)
                 game.addStone(((GraphicSquare) event.getTarget()).getSquare());
         });
+
+        player_one_nickname.setText(game.getPlayer1().getNickname());
+        player_two_nickname.setText(game.getPlayer2().getNickname());
 
         game.addActivePlayerListener(this);
         game.addStatusListener(this);
