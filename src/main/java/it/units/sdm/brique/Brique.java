@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Brique extends Application {
+    public static final double WINDOW_HEIGHT = 600.0;
+    public static final double WINDOW_WIDTH = 700.0;
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("playerinit.fxml"));
@@ -14,8 +16,8 @@ public class Brique extends Application {
 
         stage.setTitle("Brique");
         stage.setScene(scene);
-        stage.setHeight(600);
-        stage.setWidth(800);
+        stage.setHeight(WINDOW_HEIGHT);
+        stage.setWidth(WINDOW_WIDTH);
         stage.show();
         stage.setOnHidden(event -> {
             try {
