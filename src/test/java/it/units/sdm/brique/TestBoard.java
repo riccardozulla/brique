@@ -14,6 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestBoard {
   private Board board = Board.getBoard();
 
+  @Test
+  void getSquaresLengthReturnsExpectedDimensions(){
+    assertEquals(board.getSquares().length, Board.BOARD_SIZE);
+  }
+
   @ParameterizedTest
   @CsvSource({"0,0,WHITE", "1,1,WHITE", "2,0,WHITE", "1,0,BLACK", "0,1,BLACK", "3,0,BLACK", "14,14,WHITE"})
   void testSquareColor(int x, int y, Color color) {
