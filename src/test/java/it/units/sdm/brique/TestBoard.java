@@ -69,9 +69,10 @@ public class TestBoard {
     assertEquals(Optional.empty(), board.getDown(board.getSquare(i, j)));
   }
 
-  @Test
-  void getRightReturnsOptionalEmpty() {
-    assertEquals(Optional.empty(), board.getRight(board.getSquare(0, 14)));
+  @ParameterizedTest
+  @CsvSource({"0,14", "1,14", "2,14", "3,14", "4,14", "5,14", "6,14","7,14","8,14","9,14","10,14","11,14","12,14","13,14","14,14"})
+  void getRightReturnsOptionalEmpty(int i, int j) {
+    assertEquals(Optional.empty(), board.getRight(board.getSquare(i, j)));
   }
 
   @Test
