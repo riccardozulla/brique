@@ -37,21 +37,22 @@ public class TestBoard {
     assertEquals(board.getSquare(2, 1), board.getDown(board.getSquare(1, 1)).get());
   }
 
-  @Test
-  void getLeft() {
-    assertEquals(board.getSquare(1, 0), board.getLeft(board.getSquare(1, 1)).get());
+  @ParameterizedTest
+  @CsvSource({"1,0,1,1","2,1,2,2", "3,2,3,3", "4,3,4,4","5,4,5,5", "6,5,6,6", "7,6,7,7", "8,7,8,8", "9,8,9,9", "10,9,10,10", "11,10,11,11"})
+  void getLeft(int actualRow, int actualCol, int rightRow, int rightCol) {
+    assertEquals(board.getSquare(actualRow, actualCol), board.getLeft(board.getSquare(rightRow, rightCol)).get());
   }
 
   @ParameterizedTest
   @CsvSource({"1,2,1,1","2,3,2,2", "3,4,3,3", "4,5,4,4","5,6,5,5", "6,7,6,6", "7,8,7,7", "8,9,8,8", "9,10,9,9", "10,11,10,10", "11,12,11,11"})
-          void getRight(int actualRow, int actualCol, int upRightRow, int upRightCol) {
-    assertEquals(board.getSquare(actualRow, actualCol), board.getRight(board.getSquare(upRightRow, upRightCol)).get());
+          void getRight(int actualRow, int actualCol, int rightRow, int rightCol) {
+    assertEquals(board.getSquare(actualRow, actualCol), board.getRight(board.getSquare(rightRow, rightCol)).get());
   }
 
   @ParameterizedTest
   @CsvSource({"2,0,1,1", "3,1,2,2", "4,2,3,3", "5,3,4,4","6,4,5,5", "7,5,6,6", "8,6,7,7", "9,7,8,8", "9,7,8,8", "10,8,9,9", "11,9,10,10"})
-  void getDownLeft(int actualRow, int actualCol, int upRightRow, int upRightCol) {
-    assertEquals(board.getSquare(actualRow, actualCol), board.getDownLeft(board.getSquare(upRightRow, upRightCol)).get());
+  void getDownLeft(int actualRow, int actualCol, int downLeftRow, int downLeftCol) {
+    assertEquals(board.getSquare(actualRow, actualCol), board.getDownLeft(board.getSquare(downLeftRow, downLeftCol)).get());
   }
 
   @ParameterizedTest
