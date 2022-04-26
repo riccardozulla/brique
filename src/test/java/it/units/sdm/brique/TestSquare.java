@@ -33,56 +33,56 @@ public class TestSquare {
     @ParameterizedTest
     @CsvSource({"0,14", "1,14", "2,14", "3,14","4,14","5,14","6,14","7,14","8,14","9,14","10,14","11,14","12,14","13,14","14,14"})
     void lastColSquaresAreOnTheRightEdge(int i, int j){
-        Square rightEdgeSquare = new Square(i,j);
-        assertTrue(rightEdgeSquare.isRightEdge());
+        Square lastColSquare = new Square(i,j);
+        assertTrue(lastColSquare.isRightEdge());
     }
 
     @ParameterizedTest
     @CsvSource({"0,0", "1,0", "2,0", "3,0","4,0","5,0","6,0","7,0","8,0","9,0","10,0","11,0","12,0","13,0","14,0"})
     void firstColSquaresAreOnTheLeftEdge(int i, int j){
-        Square leftEdgeSquare = new Square(i,j);
-        assertTrue(leftEdgeSquare.isLeftEdge());
+        Square firstColSquare = new Square(i,j);
+        assertTrue(firstColSquare.isLeftEdge());
     }
 
     @ParameterizedTest
     @CsvSource({"0,0", "0,1", "0,2", "0,3","0,4","0,5","0,6","0,7","0,8","0,9","0,10","0,11","0,12","0,13","0,14"})
     void firstRowSquaresAreOnTheTopEdge(int i, int j){
-        Square topEdgeSquare = new Square(i,j);
-        assertTrue(topEdgeSquare.isTopEdge());
+        Square firstRowSquare = new Square(i,j);
+        assertTrue(firstRowSquare.isTopEdge());
     }
 
     @ParameterizedTest
     @CsvSource({"14,0", "14,1", "14,2", "14,3","14,4", "14,5","14,6","14,7","14,8","14,9","14,10","14,11","14,12","14,13","14,14"})
     void lastRowSquaresAreOnTheBottomEdge(int i, int j){
-        Square bottomEdgeSquare = new Square(i,j);
-        assertTrue(bottomEdgeSquare.isBottomEdge());
+        Square lastRowSquare = new Square(i,j);
+        assertTrue(lastRowSquare.isBottomEdge());
     }
 
     @ParameterizedTest
     @CsvSource({"0,14", "1,14", "2,14", "3,14","4,14","5,14","6,14","7,14","8,14","9,14","10,14","11,14","12,14","13,14","14,14"})
     void getColumnOnRightEdgeSquareReturnsExpectedValue(int i, int j){
-        Square rightEdgeSquare = new Square(i,j);
-        assertEquals(14, rightEdgeSquare.getColumn());
+        Square lastColSquare = new Square(i,j);
+        assertEquals(14, lastColSquare.getColumn());
     }
 
     @ParameterizedTest
     @CsvSource({"0,0", "1,0", "2,0", "3,0","4,0","5,0","6,0","7,0","8,0","9,0","10,0","11,0","12,0","13,0","14,0"})
     void getColumnOnLeftEdgeSquareReturnsExpectedValue(int i, int j){
-        Square leftEdgeSquare = new Square(i,j);
-        assertEquals(0, leftEdgeSquare.getColumn());
+        Square firstColSquare = new Square(i,j);
+        assertEquals(0, firstColSquare.getColumn());
     }
 
     @ParameterizedTest
     @CsvSource({"0,0", "0,1", "0,2", "0,3","0,4","0,5","0,6","0,7","0,8","0,9","0,10","0,11","0,12","0,13","0,14"})
     void getRowOnTopEdgeSquareReturnsExpectedValue(int i, int j){
-        Square topEdgeSquare = new Square(i,j);
-        assertEquals(0, topEdgeSquare.getRow());
+        Square firstRowSquare = new Square(i,j);
+        assertEquals(0, firstRowSquare.getRow());
     }
 
     @ParameterizedTest
     @CsvSource({"14,0", "14,1", "14,2", "14,3","14,4", "14,5","14,6","14,7","14,8","14,9","14,10","14,11","14,12","14,13","14,14"})
     void getRowOnBottomEdgeSquareReturnsExpectedValue(int i, int j){
-        Square bottomEdgeSquare = new Square(i,j);
-        assertEquals(14, bottomEdgeSquare.getRow());
+        Square lastRowSquare = new Square(i,j);
+        assertEquals(14, lastRowSquare.getRow());
     }
 }
