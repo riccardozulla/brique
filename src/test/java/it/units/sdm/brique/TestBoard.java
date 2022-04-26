@@ -47,9 +47,10 @@ public class TestBoard {
     assertEquals(board.getSquare(1, 2), board.getRight(board.getSquare(1, 1)).get());
   }
 
-  @Test
-  void getDownLeft() {
-    assertEquals(board.getSquare(2, 0), board.getDownLeft(board.getSquare(1, 1)).get());
+  @ParameterizedTest
+  @CsvSource({"2,0,1,1", "3,1,2,2", "4,2,3,3", "5,3,4,4","6,4,5,5", "7,5,6,6", "8,6,7,7", "9,7,8,8", "9,7,8,8", "10,8,9,9", "11,9,10,10"})
+  void getDownLeft(int actualRow, int actualCol, int upRightRow, int upRightCol) {
+    assertEquals(board.getSquare(actualRow, actualCol), board.getDownLeft(board.getSquare(upRightRow, upRightCol)).get());
   }
 
   @ParameterizedTest
