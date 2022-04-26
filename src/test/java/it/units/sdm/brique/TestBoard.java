@@ -5,6 +5,7 @@ import it.units.sdm.brique.model.Color;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -62,9 +63,10 @@ public class TestBoard {
     assertEquals(Optional.empty(), board.getUp(board.getSquare(i,j)));
   }
 
-  @Test
-  void getDownReturnsOptionalEmpty() {
-    assertEquals(Optional.empty(), board.getDown(board.getSquare(14, 0)));
+  @ParameterizedTest
+  @CsvSource({"14,0", "14,1", "14,2", "14,3", "14,4", "14,5", "14,6","14,7","14,8","14,9","14,10","14,11","14,12","14,13","14,14"})
+  void getDownReturnsOptionalEmpty(int i, int j) {
+    assertEquals(Optional.empty(), board.getDown(board.getSquare(i, j)));
   }
 
   @Test
