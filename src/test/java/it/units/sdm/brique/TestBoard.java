@@ -9,8 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.Arrays;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestBoard {
   private Board board = Board.getBoard();
@@ -57,9 +56,10 @@ public class TestBoard {
     assertEquals(board.getSquare(0, 2), board.getUpRight(board.getSquare(1, 1)).get());
   }
 
-  @Test
-  void getUpReturnsOptionalEmpty() {
-    assertEquals(Optional.empty(), board.getUp(board.getSquare(0, 0)));
+  @ParameterizedTest
+  @CsvSource({"0,0", "0,1", "0,2", "0,3", "0,4", "0,5", "0,6","0,7","0,8","0,9","0,10","0,11","0,12","0,13","0,14"})
+  void getUpReturnsOptionalEmpty(int i, int j) {
+    assertEquals(Optional.empty(), board.getUp(board.getSquare(i,j)));
   }
 
   @Test
