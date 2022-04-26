@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
@@ -41,12 +42,16 @@ public class PlayerInitController implements Initializable {
 
     @FXML protected void handleConfirmButtonAction(ActionEvent event) throws Exception {
         if(isSameNickname()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Warning");
-            alert.setHeaderText("Nickname error!");
-            alert.setContentText("You entered the same nickname for both players. "
-                    + "\nPlease choose a different nickname.");
-            alert.showAndWait();
+            displayNicknameErrorAlert("The two players can't have the same nickname." +
+                                        "\nPlease choose a different nickname.");
+        }
+        else if(isNicknameEmpty()) {
+            displayNicknameErrorAlert("The nickname can't be empty." +
+                                        "\nPlease choose a nickname.");
+        }
+        else if(isNicknameTooLong()) {
+            displayNicknameErrorAlert("The nickname can't exceed 15 characters." +
+                                        "\nPlease choose a shorter nickname.");
         }
         else {
             savePlayerData();
@@ -85,7 +90,17 @@ public class PlayerInitController implements Initializable {
         playerHolder.setPlayer2(player2);
     }
 
-    private boolean isSameNickname() {
-        return player1TextField.getText().equals(player2TextField.getText());
+    private boolean isSameNickname() { return player1TextField.getText().equals(player2TextField.getText()); }
+
+    private boolean isNicknameEmpty() { return player1TextField.getText().isEmpty() || player2TextField.getText().isEmpty(); }
+
+    private boolean isNicknameTooLong() { return player1TextField.getText().length() >= 15 || player2TextField.getText().length() >= 15; }
+
+    private void displayNicknameErrorAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Nickname error!");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
