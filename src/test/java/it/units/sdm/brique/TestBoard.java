@@ -26,9 +26,10 @@ public class TestBoard {
     assertFalse(Arrays.stream(board.getSquares()).flatMap(Arrays::stream).anyMatch(square -> square.getStone().isPresent()));
   }
 
-  @Test
-  void getUp() {
-    assertEquals(board.getSquare(0, 1), board.getUp(board.getSquare(1, 1)).get());
+  @ParameterizedTest
+  @CsvSource({"0,1,1,1","1,2,2,2", "2,3,3,3", "3,4,4,4","4,5,5,5", "5,6,6,6", "6,7,7,7", "7,8,8,8", "8,9,9,9", "9,10,10,10", "10,11,11,11"})
+  void getUp(int actualRow, int actualCol, int upRow, int upCol) {
+    assertEquals(board.getSquare(actualRow, actualCol), board.getUp(board.getSquare(upRow, upCol)).get());
   }
 
   @ParameterizedTest
