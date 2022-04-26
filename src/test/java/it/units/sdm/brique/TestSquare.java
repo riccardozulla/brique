@@ -43,4 +43,11 @@ public class TestSquare {
         Square leftEdgeSquare = new Square(i,j);
         assertTrue(leftEdgeSquare.isLeftEdge());
     }
+
+    @ParameterizedTest
+    @CsvSource({"0,0", "0,1", "0,2", "0,3","0,4","0,5","0,6","0,7","0,8","0,9","0,10","0,11","0,12","0,13","0,14"})
+    void firstRowSquaresAreOnTheTopEdge(int i, int j){
+        Square topEdgeSquare = new Square(i,j);
+        assertTrue(topEdgeSquare.isTopEdge());
+    }
 }
