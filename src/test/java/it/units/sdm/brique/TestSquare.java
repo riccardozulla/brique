@@ -24,6 +24,20 @@ public class TestSquare {
     }
 
     @ParameterizedTest
+    @CsvSource({"0,0", "1,1", "2,2","3,3","4,4","5,5","6,6","7,7","8,8","9,9","10,10","11,11","12,12","13,13","14,14"})
+    void getColorReturnsWhiteOnTheFirstDiagonal(int i, int j){
+        Square square = new Square(i,j);
+        assertEquals(Color.WHITE, square.getColor());
+    }
+
+    @ParameterizedTest
+    @CsvSource({"0,1","0,3", "0,5","0,7","0,9","0,11","0,13"})
+    void getColorReturnsBlackOnTheEvenSquaresOfFirstRow(int i, int j){
+        Square square = new Square(i,j);
+        assertEquals(Color.BLACK, square.getColor());
+    }
+
+    @ParameterizedTest
     @CsvSource({"1,1,1,2", "2,2,2,3", "3,3,3,4", "4,4,4,5", "5,5,5,6","6,6,6,7","7,7,7,8","8,8,8,9","9,9,9,10", "10,10,10,11"})
     void manhattanDistanceBetweenAdjacentOrthogonalSquareIsOne(int i, int j, int k, int l)
     {
