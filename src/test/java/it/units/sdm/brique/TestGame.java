@@ -90,9 +90,10 @@ public class TestGame {
     }
 
     @Test
-    void pieRuleApplicableDuringSecondTurn(){
+    void pieRuleApplicableDuringSecondTurnAfterBlackMoved(){
+        game.addStone(new Square(0,0));
         game.switchActivePlayer();
-        assertFalse(game.isPieRuleApplicable());
+        assertTrue(game.isPieRuleApplicable());
     }
 
     @Test
@@ -100,5 +101,15 @@ public class TestGame {
         game.switchActivePlayer();
         game.switchActivePlayer();
         assertFalse(game.isPieRuleApplicable());
+    }
+
+    @Test
+    void afterPieRulePlayerColorsAreSwapped(){
+        Color oldPlayer1Color = player1.getStoneColor();
+        Color oldPlayer2Color = player2.getStoneColor();
+        game.addStone(new Square(0,0));
+        game.pieRule();
+        assertNotEquals(player1.getStoneColor(), oldPlayer1Color);
+        assertNotEquals(player2.getStoneColor(), oldPlayer2Color);
     }
 }
