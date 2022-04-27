@@ -18,9 +18,6 @@ import java.util.ResourceBundle;
 
 public class GameController implements Initializable, PropertyChangeListener {
 
-    PlayerHolder playerHolder = PlayerHolder.getInstance();
-    Game game = new Game(playerHolder.getPlayer1(), playerHolder.getPlayer2());
-
     @FXML
     private VBox player_one_wrapper;
     @FXML
@@ -42,8 +39,12 @@ public class GameController implements Initializable, PropertyChangeListener {
     @FXML
     private GraphicBoard graphicBoard;
 
+    Game game;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        initializeNewGame();
 
         Image background = new Image("it/units/sdm/brique/game_carpet.jpg");
         BackgroundImage backgroundImage = new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, new BackgroundSize(300, 300, false, false, false, false));
@@ -81,6 +82,15 @@ public class GameController implements Initializable, PropertyChangeListener {
         }
     }
 
+    private void initializeNewGame() {
+        game = new Game(PlayerHolder.getInstance().getPlayer1(), PlayerHolder.getInstance().getPlayer2());
+        game.addActivePlayerListener(this);
+        game.addStatusListener(this);
+        graphicBoard.update();
+        highlightActivePlayer();
+        updatePieButton();
+        graphicBoard.setDisable(false);
+    }
 
     private void highlightActivePlayer() {
         if (game.getPlayer1().equals(game.getActivePlayer())) {
