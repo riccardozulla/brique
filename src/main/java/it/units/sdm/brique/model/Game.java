@@ -19,6 +19,7 @@ public class Game {
         this.player1 = player1;
         this.player2 = player2;
         this.gameBoard = Board.getBoard();
+        this.gameBoard.reset();
         if (player1.getStoneColor() == Color.BLACK) {
             activePlayer = player1;
         } else {
