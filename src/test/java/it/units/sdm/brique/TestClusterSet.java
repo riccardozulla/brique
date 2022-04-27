@@ -42,4 +42,16 @@ public class TestClusterSet {
         assertEquals(1, clusterSet.numberOfSets());
         assertTrue(clusterSet.winningPath());
     }
+
+    @Test
+    void blackEdgeToEdgePathIsWinning() {
+        Set<Square> squareSet = new HashSet<>();
+        for (int i = 0; i < Board.BOARD_SIZE; i++) {
+            squareSet.add(Board.getBoard().getSquare(i, 1));
+        }
+        ClusterSet clusterSet = new ClusterSet(squareSet, Color.BLACK);
+        clusterSet.composeClusters();
+        assertEquals(1, clusterSet.numberOfSets());
+        assertTrue(clusterSet.winningPath());
+    }
 }
