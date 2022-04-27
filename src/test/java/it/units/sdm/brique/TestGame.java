@@ -36,11 +36,8 @@ public class TestGame {
 
     @Test
     void statusBecomesWHITE_WINSWhenWhiteWins() {
-        List<Square> squareList = new ArrayList<>();
         game.switchActivePlayer();
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
-            Square s = new Square(1, i);
-            squareList.add(s);
             game.addStone(board.getSquare(1, i));
             game.switchActivePlayer();
         }
@@ -49,10 +46,7 @@ public class TestGame {
 
     @Test
     void statusBecomesBLACK_WINSWhenBlackWins() {
-        List<Square> squareList = new ArrayList<>();
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
-            Square s = new Square(i, 2);
-            squareList.add(s);
             game.addStone(board.getSquare(i, 2));
             game.switchActivePlayer();
         }
@@ -89,7 +83,7 @@ public class TestGame {
 
     @Test
     void pieRuleApplicableDuringSecondTurnAfterBlackMoved(){
-        game.addStone(new Square(0,0));
+        game.addStone(Board.getBoard().getSquare(0,0));
         assertTrue(game.isPieRuleApplicable());
     }
 
@@ -104,7 +98,7 @@ public class TestGame {
     void afterPieRulePlayerColorsAreSwapped(){
         Color oldPlayer1Color = player1.getStoneColor();
         Color oldPlayer2Color = player2.getStoneColor();
-        game.addStone(new Square(0,0));
+        game.addStone(Board.getBoard().getSquare(0,0));
         game.pieRule();
         assertNotEquals(player1.getStoneColor(), oldPlayer1Color);
         assertNotEquals(player2.getStoneColor(), oldPlayer2Color);
