@@ -13,14 +13,11 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.units.sdm.brique.controller.PlayerInitController">
+<AnchorPane fx:id="welcomeView"  styleClass="anchor"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.units.sdm.brique.controller.PlayerInitController">
    <children>
       <HBox alignment="CENTER" prefHeight="58.0" prefWidth="600.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <children>
-            <Label text="Welcome to Brique!" textAlignment="CENTER">
-               <font>
-                  <Font size="32.0" />
-               </font>
+            <Label text="Welcome to Brique!" styleClass="titleLabel">
             </Label>
          </children>
       </HBox>
@@ -28,15 +25,9 @@
          <children>
             <VBox alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="200.0" spacing="20.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label prefHeight="18.0" prefWidth="164.0" text="Player 1">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
+                  <Label text="Player 1" styleClass="playerLabel">
                   </Label>
-                  <ImageView fx:id="player1StoneImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/stone.png" />
-                     </image>
+                  <ImageView fx:id="player1StoneImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="stone">
                   </ImageView>
                   <TextField fx:id="player1TextField" promptText="Nickname" />
                </children>
@@ -46,26 +37,15 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="180.0" HBox.hgrow="ALWAYS">
                <children>
-                  <ToggleButton fx:id="swapButton" mnemonicParsing="false" text="" onAction="#handleToggleButtonAction">
-                          <graphic>
-                             <ImageView fitHeight="40" fitWidth="40">
-                                <Image url="@images/swap.png"/>
-                             </ImageView>
-                          </graphic>
+                  <ToggleButton fx:id="swapButton" onAction="#handleToggleButtonAction" styleClass="swapButton">
                   </ToggleButton>
                </children>
             </VBox>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" spacing="20.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label prefHeight="18.0" prefWidth="184.0" text="Player 2">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
+                  <Label text="Player 2" styleClass="playerLabel">
                   </Label>
-                  <ImageView fx:id="player2StoneImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/stone.png" />
-                     </image>
+                  <ImageView fx:id="player2StoneImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="stone">
                   </ImageView>
                   <TextField fx:id="player2TextField" promptText="Nickname" />
                </children>
@@ -75,9 +55,9 @@
             <Insets top="40.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER" layoutY="341.0" prefHeight="20.0" prefWidth="600.0 " AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0">
+      <HBox alignment="CENTER" prefHeight="20.0" prefWidth="600.0 " AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0">
          <children>
-            <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#handleConfirmButtonAction" text="Confirm" />
+            <Button fx:id="confirmButton" onAction="#handleConfirmButtonAction" text="Confirm" styleClass="confirmButton"/>
          </children>
       </HBox>
    </children>

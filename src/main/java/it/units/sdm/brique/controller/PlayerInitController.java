@@ -14,7 +14,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -32,13 +34,19 @@ public class PlayerInitController implements Initializable {
     private ImageView player1StoneImageView;
     @FXML
     private ImageView player2StoneImageView;
+    @FXML
+    private AnchorPane welcomeView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ColorAdjust blackout = new ColorAdjust();
         blackout.setBrightness(-0.8);
         player1StoneImageView.setEffect(blackout);
-    }
+        Image background = new Image("it/units/sdm/brique/images/boa3d_op.png");
+        BackgroundImage backgroundImage = new BackgroundImage(background, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(300, 300, false, false, true, false));
+        welcomeView.setBackground(new Background(backgroundImage));
+        welcomeView.getStylesheets().add("it/units/sdm/brique/playerInit_style.css");
+        }
 
     @FXML protected void handleConfirmButtonAction(ActionEvent event) throws Exception {
         if(isSameNickname()) {
