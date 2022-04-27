@@ -79,9 +79,9 @@ public class TestGame {
 
     @Test
     void switchActivePlayerWorksProperly(){
-        Player firstActivePlayer = game.getActivePlayer();
+        Player oldActivePlayer = game.getActivePlayer();
         game.switchActivePlayer();
-        assertNotEquals(firstActivePlayer, game.getActivePlayer());
+        assertNotEquals(oldActivePlayer, game.getActivePlayer());
     }
 
     @Test
@@ -92,14 +92,13 @@ public class TestGame {
     @Test
     void pieRuleApplicableDuringSecondTurnAfterBlackMoved(){
         game.addStone(new Square(0,0));
-        game.switchActivePlayer();
         assertTrue(game.isPieRuleApplicable());
     }
 
     @Test
     void pieRuleDisabledAfterSecondTurn(){
-        game.switchActivePlayer();
-        game.switchActivePlayer();
+        game.addStone(board.getSquare(0,0));
+        game.addStone(board.getSquare(0,1));
         assertFalse(game.isPieRuleApplicable());
     }
 
