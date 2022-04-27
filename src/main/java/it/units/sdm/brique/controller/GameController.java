@@ -2,14 +2,19 @@ package it.units.sdm.brique.controller;
 
 import it.units.sdm.brique.model.Game;
 import it.units.sdm.brique.model.PlayerHolder;
+import it.units.sdm.brique.model.Status;
 import it.units.sdm.brique.ui.GraphicBoard;
 import it.units.sdm.brique.ui.GraphicSquare;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -75,7 +80,7 @@ public class GameController implements Initializable, PropertyChangeListener {
                 updatePieButton();
             }
             case "status" -> {
-                System.out.println(propertyChangeEvent.getNewValue());
+                winningPopup((Status) propertyChangeEvent.getNewValue());
                 graphicBoard.update();
                 graphicBoard.setDisable(true);
             }
@@ -102,11 +107,37 @@ public class GameController implements Initializable, PropertyChangeListener {
         }
     }
 
-    @FXML protected void handlePieButtonAction() {
+    @FXML
+    protected void handlePieButtonAction() {
         game.pieRule();
     }
 
     private void updatePieButton() {
         pie_button.setDisable(!game.isPieRuleApplicable());
+    }
+
+    private void winningPopup(Status status) {
+        Stage stage = (Stage) game_wrapper.getScene().getWindow();
+        Popup popup = new Popup();
+        HBox headerBox = new HBox(new Label("CONGRATULATIONS"));
+        headerBox.prefHeight(100);
+        Label personalizedLabel = new Label();
+        switch (status) {
+            case WHITE_WINS -> personalizedLabel.setText("White player wins!");
+            case BLACK_WINS -> personalizedLabel.setText("Black player wins!");
+        }
+        HBox contentBox = new HBox(personalizedLabel);
+        Button playAgainButton = new Button("Play again");
+        playAgainButton.setOnMouseClicked(event -> {
+            initializeNewGame();
+            popup.hide();
+        });
+        Button closeButton = new Button("Close");
+        closeButton.setOnMouseClicked(event -> stage.close());
+        HBox buttonsBox = new HBox(playAgainButton, closeButton);
+        Parent root = new VBox(headerBox, contentBox, buttonsBox);
+        VBox.setVgrow(contentBox, Priority.ALWAYS);
+        popup.getContent().add(root);
+        popup.show(stage);
     }
 }
