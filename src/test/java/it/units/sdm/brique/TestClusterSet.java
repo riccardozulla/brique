@@ -14,11 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestClusterSet {
 
-    Square s1 = new Square(1, 1);
-    Square s2 = new Square(1, 2);
-
-    ClusterSet clusterSet = new ClusterSet(Set.of(s1, s2), Color.BLACK);
-
+    ClusterSet clusterSet = new ClusterSet(Set.of(Board.getBoard().getSquare(1,1), Board.getBoard().getSquare(1,2)), Color.BLACK);
 
     @Test
     void initializeSingleSquareClusters() {
