@@ -9,8 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 //TODO: Test when a stone is in a corner
 
@@ -83,5 +82,23 @@ public class TestGame {
         Player firstActivePlayer = game.getActivePlayer();
         game.switchActivePlayer();
         assertNotEquals(firstActivePlayer, game.getActivePlayer());
+    }
+
+    @Test
+    void pieRuleDisabledAtBoardReset(){
+        assertFalse(game.isPieRuleApplicable());
+    }
+
+    @Test
+    void pieRuleApplicableDuringSecondTurn(){
+        game.switchActivePlayer();
+        assertFalse(game.isPieRuleApplicable());
+    }
+
+    @Test
+    void pieRuleDisabledAfterSecondTurn(){
+        game.switchActivePlayer();
+        game.switchActivePlayer();
+        assertFalse(game.isPieRuleApplicable());
     }
 }
