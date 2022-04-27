@@ -2,7 +2,10 @@ package it.units.sdm.brique.ui;
 
 import it.units.sdm.brique.model.Board;
 import javafx.beans.value.ChangeListener;
+import javafx.event.Event;
 import javafx.geometry.Bounds;
+import javafx.scene.Group;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 
@@ -60,7 +63,10 @@ public class GraphicBoard extends Pane {
                 0.0, DEFAULT_BOARD_LENGTH);
         leftBorder.setFill(GraphicColor.WHITE_STONE.getColor());
 
-        this.getChildren().addAll(topBorder, rightBorder, bottomBorder, leftBorder);
+        Group borders = new Group(topBorder, rightBorder, bottomBorder, leftBorder);
+        borders.addEventFilter(MouseEvent.MOUSE_CLICKED, Event::consume);
+
+        this.getChildren().addAll(borders);
     }
 
     public void update() {
