@@ -44,9 +44,8 @@ public class TestGame {
             Square s = new Square(1, i);
             squareList.add(s);
             game.addStone(board.getSquare(1, i));
-            if (i != 15)
-                game.switchActivePlayer();
+            game.switchActivePlayer();
         }
-        assertEquals(Status.WHITE_WINS, game.getStatus());
+            assertEquals(Status.WHITE_WINS, game.getStatus());
+        }
     }
-}
