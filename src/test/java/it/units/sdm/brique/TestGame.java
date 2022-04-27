@@ -25,12 +25,12 @@ public class TestGame {
   }
 
   @Test
-  void testStatus() {
+  void statusIsRunningAtBoardReset() {
     assertEquals(Status.RUNNING, game.getStatus());
   }
 
   @Test
-  void testAddStone() {
+  void addStoneMakesSquareOccupied() {
     Square square = game.getGameBoard().getSquare(0,0);
     game.addStone(square);
     assert(square.getStone().isPresent());
