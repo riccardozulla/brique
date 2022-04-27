@@ -106,4 +106,6 @@ public class TestSquare {
         Square lastRowSquare = new Square(i,j);
         assertEquals(14, lastRowSquare.getRow());
     }
+
+    //cornerSquares top & left
 }
