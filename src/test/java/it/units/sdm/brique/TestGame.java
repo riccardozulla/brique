@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 //TODO: Test when a stone is in a corner
 
@@ -70,5 +71,10 @@ public class TestGame {
     void whiteMovesAfterBlack(){
         game.switchActivePlayer();
         assertEquals(Color.WHITE,game.getActivePlayer().getStoneColor());
+    }
+
+    @Test
+    void involvedPlayersHaveDifferentStoneColor(){
+        assertNotEquals(game.getPlayer1().getStoneColor(), game.getPlayer2().getStoneColor());
     }
 }
