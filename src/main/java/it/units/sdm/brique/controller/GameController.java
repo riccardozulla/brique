@@ -58,8 +58,7 @@ public class GameController implements Initializable, PropertyChangeListener {
         board_wrapper.layoutBoundsProperty().addListener(graphicBoard.fit);
 
         graphicBoard.setOnMouseClicked(event -> {
-            if (event.isStillSincePress() && event.getTarget() instanceof GraphicSquare)
-                game.addStone(((GraphicSquare) event.getTarget()).getSquare());
+            if (event.isStillSincePress()) game.addStone(((GraphicSquare) event.getTarget()).getSquare());
         });
 
         player_one_nickname.setText(game.getPlayer1().getNickname());
