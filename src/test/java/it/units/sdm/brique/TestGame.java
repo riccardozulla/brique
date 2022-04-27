@@ -46,6 +46,18 @@ public class TestGame {
             game.addStone(board.getSquare(1, i));
             game.switchActivePlayer();
         }
-            assertEquals(Status.WHITE_WINS, game.getStatus());
-        }
+        assertEquals(Status.WHITE_WINS, game.getStatus());
     }
+
+    @Test
+    void StatusBecomesBLACK_WINSWhenBlackWins() {
+        List<Square> squareList = new ArrayList<>();
+        for (int i = 0; i < Board.BOARD_SIZE; i++) {
+            Square s = new Square(i, 2);
+            squareList.add(s);
+            game.addStone(board.getSquare(i, 2));
+            game.switchActivePlayer();
+        }
+        assertEquals(Status.BLACK_WINS, game.getStatus());
+    }
+}
