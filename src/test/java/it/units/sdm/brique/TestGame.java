@@ -77,4 +77,11 @@ public class TestGame {
     void involvedPlayersHaveDifferentStoneColor(){
         assertNotEquals(game.getPlayer1().getStoneColor(), game.getPlayer2().getStoneColor());
     }
+
+    @Test
+    void switchActivePlayerWorksProperly(){
+        Player firstActivePlayer = game.getActivePlayer();
+        game.switchActivePlayer();
+        assertNotEquals(firstActivePlayer, game.getActivePlayer());
+    }
 }
