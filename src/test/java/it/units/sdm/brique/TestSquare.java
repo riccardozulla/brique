@@ -38,6 +38,13 @@ public class TestSquare {
     }
 
     @ParameterizedTest
+    @CsvSource({"14,1","14,3", "14,5","14,7","14,9","14,11","14,13"})
+    void getColorReturnsBlackOnTheEvenSquaresOfLastRow(int i, int j){
+        Square square = new Square(i,j);
+        assertEquals(Color.BLACK, square.getColor());
+    }
+
+    @ParameterizedTest
     @CsvSource({"1,1,1,2", "2,2,2,3", "3,3,3,4", "4,4,4,5", "5,5,5,6","6,6,6,7","7,7,7,8","8,8,8,9","9,9,9,10", "10,10,10,11"})
     void manhattanDistanceBetweenAdjacentOrthogonalSquareIsOne(int i, int j, int k, int l)
     {
