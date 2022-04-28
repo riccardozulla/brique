@@ -40,9 +40,9 @@ public class GraphicSquare extends StackPane {
     public void toggleMouseClick() {
         EventHandler<MouseEvent> handler = MouseEvent::consume;
         if (square.getStone().isPresent()) {
-            this.addEventFilter(MouseEvent.MOUSE_CLICKED, handler);
+            this.addEventFilter(MouseEvent.MOUSE_PRESSED, handler);
         } else {
-            this.removeEventFilter(MouseEvent.MOUSE_CLICKED, handler);
+            this.removeEventFilter(MouseEvent.MOUSE_PRESSED, handler);
         }
     }
 }
