@@ -38,11 +38,11 @@ public class GraphicSquare extends StackPane {
     }
 
     public void toggleMouseClick() {
-        EventHandler<javafx.scene.input.MouseEvent> handler = javafx.scene.input.MouseEvent::consume;
+        EventHandler<MouseEvent> handler = MouseEvent::consume;
         if (square.getStone().isPresent()) {
-            this.addEventFilter(MouseEvent.ANY, handler); //TODO
+            this.addEventFilter(MouseEvent.MOUSE_CLICKED, handler);
         } else {
-            this.removeEventFilter(MouseEvent.ANY, handler);
+            this.removeEventFilter(MouseEvent.MOUSE_CLICKED, handler);
         }
     }
 }
