@@ -12,19 +12,19 @@ public class TestPlayer {
 
     @ParameterizedTest
     @ValueSource(strings = {"Alessandro", "Antonio", "Riccardo"})
-    void testPlayerNickname(String nickname){
+    void playerNicknameCorrectlyAssigned(String nickname){
         Player player = new Player(nickname, Color.BLACK);
         assertEquals(nickname, player.getNickname());
     }
 
     @Test
-    void testPlayerBlackStoneColor() {
+    void blackPlayerHasBlackStoneColor() {
         Player player = new Player("default", Color.BLACK);
         assertEquals(Color.BLACK, player.getStoneColor());
     }
 
     @Test
-    void testPlayerWhiteStoneColor() {
+    void whitePlayerHasWhiteStoneColor() {
         Player player = new Player("default", Color.WHITE);
         assertEquals(Color.WHITE, player.getStoneColor());
     }
