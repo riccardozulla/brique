@@ -29,4 +29,17 @@ public class TestPlayer {
         assertEquals(Color.WHITE, player.getStoneColor());
     }
 
+    @Test
+    void blackPlayerStoneColorIsSetToWhite(){
+        Player player = new Player("default", Color.BLACK);
+        player.setStoneColor(Color.WHITE);
+        assertEquals(Color.WHITE, player.getStoneColor());
+    }
+
+    @Test
+    void whitePlayerStoneColorIsSetToBlack(){
+        Player player = new Player("default", Color.WHITE);
+        player.setStoneColor(Color.BLACK);
+        assertEquals(Color.BLACK, player.getStoneColor());
+    }
 }
