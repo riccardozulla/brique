@@ -4,42 +4,45 @@ import it.units.sdm.brique.model.Color;
 import it.units.sdm.brique.model.Player;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestPlayer {
 
-    @ParameterizedTest
-    @ValueSource(strings = {"Alessandro", "Antonio", "Riccardo"})
-    void playerNicknameCorrectlyAssigned(String nickname){
-        Player player = new Player(nickname, Color.BLACK);
-        assertEquals(nickname, player.getNickname());
+    Player player1 = new Player("Player1", Color.BLACK);
+    Player player2 = new Player("Player2", Color.WHITE);
+
+    @Test
+    void player1NicknameCorrectlyAssigned(){
+        assertEquals("Player1", player1.getNickname());
+    }
+
+    @Test
+    void player2NicknameCorrectlyAssigned(){
+        assertEquals("Player2", player2.getNickname());
     }
 
     @Test
     void blackPlayerHasBlackStoneColor() {
-        Player player = new Player("default", Color.BLACK);
-        assertEquals(Color.BLACK, player.getStoneColor());
+        assertEquals(Color.BLACK, player1.getStoneColor());
     }
 
     @Test
     void whitePlayerHasWhiteStoneColor() {
-        Player player = new Player("default", Color.WHITE);
-        assertEquals(Color.WHITE, player.getStoneColor());
+        assertEquals(Color.WHITE, player2.getStoneColor());
     }
 
     @Test
     void blackPlayerStoneColorIsSetToWhite(){
-        Player player = new Player("default", Color.BLACK);
-        player.setStoneColor(Color.WHITE);
-        assertEquals(Color.WHITE, player.getStoneColor());
+        player1.setStoneColor(Color.WHITE);
+        assertEquals(Color.WHITE, player1.getStoneColor());
     }
 
     @Test
     void whitePlayerStoneColorIsSetToBlack(){
-        Player player = new Player("default", Color.WHITE);
-        player.setStoneColor(Color.BLACK);
-        assertEquals(Color.BLACK, player.getStoneColor());
+        player2.setStoneColor(Color.BLACK);
+        assertEquals(Color.BLACK, player2.getStoneColor());
     }
 }
