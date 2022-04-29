@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class ClusterSet extends UnionFind<Square> {
 
-    Color color;
+    final Color color;
 
     public ClusterSet(Set<Square> elements, Color stonesColor) {
         super(elements);
