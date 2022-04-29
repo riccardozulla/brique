@@ -8,7 +8,7 @@ public class Board {
 
     private static Board boardInstance;
 
-    public static final int BOARD_SIZE = 3;
+    public static final int BOARD_SIZE = 15;
     public static final int FIRST_INDEX = 0;
     public static final int LAST_INDEX = BOARD_SIZE - 1;
     private final Square[][] squares;
