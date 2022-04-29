@@ -69,8 +69,10 @@ public class Game {
         Move move = new Move(activePlayer);
         move.setChosenSquare(square);
         move.make();
-        if (activePlayerWins())
+        if (activePlayerWins()) {
             stateWinningStatus();
+            return;
+        }
         togglePieRule();
         switchActivePlayer();
     }
