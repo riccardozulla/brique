@@ -48,13 +48,13 @@ public class PlayerInitController implements Initializable {
         }
 
     @FXML protected void handleConfirmButtonAction(ActionEvent event) throws Exception {
-        if(isSameNickname()) {
+        if(isNicknameEmpty()) {
+            displayNicknameErrorAlert("The nickname can't be empty." +
+                    "\nPlease choose a nickname.");
+        }
+        else if(isSameNickname()) {
             displayNicknameErrorAlert("The two players can't have the same nickname." +
                                         "\nPlease choose a different nickname.");
-        }
-        else if(isNicknameEmpty()) {
-            displayNicknameErrorAlert("The nickname can't be empty." +
-                                        "\nPlease choose a nickname.");
         }
         else if(isNicknameTooLong()) {
             displayNicknameErrorAlert("The nickname can't exceed 15 characters." +
