@@ -5,7 +5,7 @@ import it.units.sdm.brique.model.Stone;
 import javafx.scene.shape.Ellipse;
 
 public class GraphicStone extends Ellipse {
-    Stone stone;
+    final Stone stone;
 
     public GraphicStone(Stone stone) {
         super(GraphicSquare.SQUARE_SIZE / 2, GraphicSquare.SQUARE_SIZE / 2,
