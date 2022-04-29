@@ -104,7 +104,6 @@ public class Game {
     }
 
     public boolean activePlayerWins() {
-        Board gameBoard = Board.getBoard();
         var placedStones = Arrays.stream(gameBoard.getSquares()).flatMap(Arrays::stream).
                 filter(square -> square.getStone().isPresent()).
                 filter(square -> square.getStone().get().getColor() == activePlayer.getStoneColor()).collect(Collectors.toSet());
