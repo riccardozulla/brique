@@ -16,7 +16,7 @@ public class GraphicBoard extends Pane {
     public static final int DEFAULT_BOARD_LENGTH = Board.BOARD_SIZE * GraphicSquare.SQUARE_SIZE + 2 * DEFAULT_OFFSET;
     public static final double PERCENTAGE_PADDING = 0.9;
 
-    public ChangeListener<Bounds> fit = (observable, oldValue, newValue) -> {
+    public final ChangeListener<Bounds> fit = (observable, oldValue, newValue) -> {
         double ratio = Math.min(newValue.getHeight(), newValue.getWidth()) * PERCENTAGE_PADDING / DEFAULT_BOARD_LENGTH;
         this.setScaleX(ratio);
         this.setScaleY(ratio);
