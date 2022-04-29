@@ -13,7 +13,7 @@ public class Brique extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent playerInitView = FXMLLoader.load(getClass().getResource("playerinit.fxml"));
+        Parent playerInitView = FXMLLoader.load(getClass().getResource("playerInit.fxml"));
         Scene scene = new Scene(playerInitView);
 
         primaryStage.setTitle("Brique");
