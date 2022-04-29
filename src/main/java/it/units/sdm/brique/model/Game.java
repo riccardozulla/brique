@@ -4,6 +4,8 @@ import it.units.sdm.brique.model.exceptions.PieRuleNotApplicableException;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Game {
     private Status status = Status.RUNNING;
@@ -67,7 +69,7 @@ public class Game {
         Move move = new Move(activePlayer);
         move.setChosenSquare(square);
         move.make();
-        if (move.isWinning())
+        if (activePlayerWins())
             stateWinningStatus();
         togglePieRule();
         switchActivePlayer();
@@ -99,6 +101,16 @@ public class Game {
         }
         pieRuleApplicable = false;
         switchActivePlayer();
+    }
+
+    public boolean activePlayerWins() {
+        Board gameBoard = Board.getBoard();
+        var placedStones = Arrays.stream(gameBoard.getSquares()).flatMap(Arrays::stream).
+                filter(square -> square.getStone().isPresent()).
+                filter(square -> square.getStone().get().getColor() == activePlayer.getStoneColor()).collect(Collectors.toSet());
+        ClusterSet activeCluster = new ClusterSet(placedStones, activePlayer.getStoneColor());
+        activeCluster.composeClusters();
+        return activeCluster.winningPath();
     }
 
     public void addActivePlayerListener(PropertyChangeListener listener) {
