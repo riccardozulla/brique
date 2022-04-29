@@ -31,6 +31,16 @@ public class TestMove {
         secondMove.make();
     }
 
+    @ParameterizedTest
+    @CsvSource({"0,0","2,2","4,4","6,6","8,8","10,10","12,12","14,14"})
+    void makeMoveAddsStoneOnTheChosenSquare(int i, int j)
+    {
+        Move move = new Move(player1);
+        move.setChosenSquare(board.getSquare(i,j));
+        move.make();
+        assertTrue(board.getSquare(i,j).getStone().isPresent());
+    }
+
     @Test
     void placeStoneInOccupiedSquare() {
         board.getSquare(0, 0).setStone(new Stone(Color.BLACK));
