@@ -5,12 +5,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 
 <AnchorPane fx:id="welcomeView"  styleClass="anchor"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.units.sdm.brique.controller.PlayerInitController">
@@ -29,7 +27,7 @@
                   </Label>
                   <ImageView fx:id="player1StoneImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="stone">
                   </ImageView>
-                  <TextField fx:id="player1TextField" promptText="Nickname" />
+                  <TextField fx:id="player1TextField" promptText="Nickname" text="Player1"/>
                </children>
                <opaqueInsets>
                   <Insets />
@@ -47,7 +45,7 @@
                   </Label>
                   <ImageView fx:id="player2StoneImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="stone">
                   </ImageView>
-                  <TextField fx:id="player2TextField" promptText="Nickname" />
+                  <TextField fx:id="player2TextField" promptText="Nickname" text="Player2" />
                </children>
             </VBox>
          </children>
