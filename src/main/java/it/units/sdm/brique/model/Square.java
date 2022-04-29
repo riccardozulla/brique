@@ -4,14 +4,13 @@ import java.util.Optional;
 
 public class Square {
   private final Color color;
-  private Optional<Stone> stone;
+  private Stone stone;
   private final int row;
   private final int column;
 
   public Square(int row, int column) {
     this.row = row;
     this.column = column;
-    this.stone = Optional.empty();
     this.color = (row + column) % 2 == 0 ? Color.WHITE : Color.BLACK;
   }
 
@@ -20,7 +19,7 @@ public class Square {
   }
 
   public Optional<Stone> getStone() {
-    return stone;
+    return Optional.ofNullable(stone);
   }
 
   public int getRow() {
@@ -44,7 +43,7 @@ public class Square {
   }
 
   public void setStone(Stone stone) {
-    this.stone = Optional.ofNullable(stone);
+    this.stone = stone;
   }
 
   public static int manhattanSquareDistance(Square square1, Square square2) {
