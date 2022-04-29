@@ -4,9 +4,6 @@ import it.units.sdm.brique.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 //TODO: Test when a stone is in a corner

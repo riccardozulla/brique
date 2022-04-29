@@ -2,9 +2,6 @@ package it.units.sdm.brique.model;
 
 import it.units.sdm.brique.model.exceptions.StoneAlreadyPresentException;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 public class Move {
     private final Player player;
     private Square chosenSquare;
