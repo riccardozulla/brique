@@ -27,7 +27,7 @@ public class TestMove {
         firstMove.setChosenSquare(board.getDownLeft(square).get());
         firstMove.make();
         Move secondMove;
-        if (samePlayer == true) secondMove = new Move(player1);
+        if (samePlayer) secondMove = new Move(player1);
         else secondMove = new Move(player2);
         secondMove.setChosenSquare(board.getSquare(i, j));
         secondMove.make();
