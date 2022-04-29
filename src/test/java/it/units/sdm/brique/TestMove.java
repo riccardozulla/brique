@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import it.units.sdm.brique.model.exceptions.StoneAlreadyPresentException;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,12 +21,14 @@ public class TestMove {
         board.reset();
     }
 
-    void setUpBoard(int i, int j, Player blackPlayer, Player whitePlayer) {
+    void setUpBoard(int i, int j, boolean samePlayer) {
         Square square = board.getSquare(i, j);
-        Move firstMove = new Move(blackPlayer);
+        Move firstMove = new Move(player1);
         firstMove.setChosenSquare(board.getDownLeft(square).get());
         firstMove.make();
-        Move secondMove = new Move(whitePlayer);
+        Move secondMove;
+        if (samePlayer == true) secondMove = new Move(player1);
+        else secondMove = new Move(player2);
         secondMove.setChosenSquare(board.getSquare(i, j));
         secondMove.make();
     }
@@ -53,7 +54,7 @@ public class TestMove {
     @CsvSource({"8, 12", "1, 1", "5, 7"})
     void escortRuleCorrectlyAppliedOnBlackSquares(int i, int j) {
         //Precondition: The square near the occupied escort is free. The specified coordinates are on a white square.
-        setUpBoard(i, j, player1, player1);
+        setUpBoard(i, j, true);
         assertEquals(board.getLeft(board.getSquare(i, j)).get().getStone().get().getColor(), Color.BLACK);
     }
 
@@ -61,7 +62,7 @@ public class TestMove {
     @CsvSource({"5, 6", "6, 9", "10, 11"})
     void escortRuleCorrectlyAppliedOnWhiteSquares(int i, int j) {
         //Precondition: The square near the occupied escort is free. The specified coordinates are on a black square.
-        setUpBoard(i, j, player1, player1);
+        setUpBoard(i, j, true);
         assertEquals(Color.BLACK, board.getDown(board.getSquare(i, j)).get().getStone().get().getColor());
     }
 
@@ -70,13 +71,13 @@ public class TestMove {
         Move whiteMove = new Move(player2);
         whiteMove.setChosenSquare(board.getLeft(board.getSquare(1,1)).get());
         whiteMove.make();
-        setUpBoard(1,1, player1,player1);
+        setUpBoard(1,1, true);
         assertNotEquals(Color.WHITE, board.getLeft(board.getSquare(1, 1)).get().getStone().get().getColor());
     }
 
     @Test
     void escortRuleNotAppliedWithEnemyStones(){
-        setUpBoard(1,1, player2,player1);
+        setUpBoard(1,1, false);
         assertFalse(board.getLeft(board.getSquare(1,1)).get().getStone().isPresent());
     }
 
