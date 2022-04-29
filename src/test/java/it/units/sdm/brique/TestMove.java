@@ -5,21 +5,42 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import it.units.sdm.brique.model.exceptions.StoneAlreadyPresentException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestMove {
 
     private final Board board = Board.getBoard();
+    private final Player player1 = new Player("defaultName1", Color.BLACK);
+    private final Player player2 = new Player("defaultName2", Color.WHITE);
 
     @BeforeEach
     void resetBoard() {
         board.reset();
+    }
+
+    void setUpBoard(int i, int j, boolean samePlayer) {
+        Square square = board.getSquare(i, j);
+        Move firstMove = new Move(player1);
+        firstMove.setChosenSquare(board.getDownLeft(square).get());
+        firstMove.make();
+        Move secondMove;
+        if (samePlayer == true) secondMove = new Move(player1);
+        else secondMove = new Move(player2);
+        secondMove.setChosenSquare(board.getSquare(i, j));
+        secondMove.make();
+    }
+
+    @ParameterizedTest
+    @CsvSource({"0,0","2,2","4,4","6,6","8,8","10,10","12,12","14,14"})
+    void makeMoveAddsStoneOnTheChosenSquare(int i, int j)
+    {
+        Move move = new Move(player1);
+        move.setChosenSquare(board.getSquare(i,j));
+        move.make();
+        assertTrue(board.getSquare(i,j).getStone().isPresent());
     }
 
     @Test
@@ -31,108 +52,33 @@ public class TestMove {
 
     @ParameterizedTest
     @CsvSource({"8, 12", "1, 1", "5, 7"})
-    void testStonePlacementWhenFriendlyStoneIsAlreadyPresentAndBlackSquareIsFree(int x, int y) {
+    void escortRuleCorrectlyAppliedOnBlackSquares(int i, int j) {
         //Precondition: The square near the occupied escort is free. The specified coordinates are on a white square.
-        Square square = board.getSquare(x, y);
-        board.getDownLeft(square).get().setStone(new Stone(Color.BLACK));
-        Move move = new Move(new Player("Player", Color.BLACK));
-        move.setChosenSquare(square);
-        move.make();
-        assert(board.getLeft(square).get().getStone().isPresent());
-        assertEquals(board.getLeft(square).get().getStone().get().getColor(), Color.BLACK);
+        setUpBoard(i, j, true);
+        assertEquals(board.getLeft(board.getSquare(i, j)).get().getStone().get().getColor(), Color.BLACK);
     }
 
     @ParameterizedTest
     @CsvSource({"5, 6", "6, 9", "10, 11"})
-    void testStonePlacementWhenFriendlyStoneIsAlreadyPresentAndWhiteSquareIsFree(int x, int y) {
+    void escortRuleCorrectlyAppliedOnWhiteSquares(int i, int j) {
         //Precondition: The square near the occupied escort is free. The specified coordinates are on a black square.
-        Square square = board.getSquare(x, y);
-        board.getDownLeft(square).get().setStone(new Stone(Color.BLACK));
-        Move move = new Move(new Player("Player", Color.BLACK));
-        move.setChosenSquare(square);
-        move.make();
-        assert(board.getDown(square).get().getStone().isPresent());
-        assertEquals(board.getDown(square).get().getStone().get().getColor(), Color.BLACK);
+        setUpBoard(i, j, true);
+        assertEquals(Color.BLACK, board.getDown(board.getSquare(i, j)).get().getStone().get().getColor());
     }
 
-    @ParameterizedTest
-    @CsvSource({"8, 12", "1, 1", "5, 7"})
-    void testStonePlacementWhenEnemyStoneIsAlreadyPresentAndBlackSquareIsFree(int x, int y) {
-        //Precondition: The square near the occupied escort is free. The specified coordinates are on a white square.
-        Square square = board.getSquare(x, y);
-        board.getDownLeft(square).get().setStone(new Stone(Color.WHITE));
-        Move move = new Move(new Player("Player", Color.BLACK));
-        move.setChosenSquare(square);
-        move.make();
-        assertFalse(board.getLeft(square).get().getStone().isPresent());
+    @Test
+    void escortRuleCorrectlyReplacesEnemyStone(){
+        Move whiteMove = new Move(player2);
+        whiteMove.setChosenSquare(board.getLeft(board.getSquare(1,1)).get());
+        whiteMove.make();
+        setUpBoard(1,1, true);
+        assertNotEquals(Color.WHITE, board.getLeft(board.getSquare(1, 1)).get().getStone().get().getColor());
     }
 
-    @ParameterizedTest
-    @CsvSource({"5, 6", "6, 9", "10, 11"})
-    void testStonePlacementWhenEnemyStoneIsAlreadyPresentAndWhiteSquareIsFree(int x, int y) {
-        //Precondition: The square near the occupied escort is free. The specified coordinates are on a black square.
-        Square square = board.getSquare(x, y);
-        board.getDownLeft(square).get().setStone(new Stone(Color.WHITE));
-        Move move = new Move(new Player("Player", Color.BLACK));
-        move.setChosenSquare(square);
-        move.make();
-        assertFalse(board.getDown(square).get().getStone().isPresent());
-    }
-
-    @ParameterizedTest
-    @CsvSource({"8, 12", "1, 1", "5, 7"})
-    void testStonePlacementWhenFriendlyStoneIsAlreadyPresentAndBlackSquareIsOccupiedByEnemyStone(int x, int y) {
-        //Precondition: The square near the occupied escort is occupied by an enemy stone. The specified coordinates are on a white square.
-        Square square = board.getSquare(x, y);
-        board.getDownLeft(square).get().setStone(new Stone(Color.BLACK));
-        board.getLeft(square).get().setStone(new Stone(Color.BLACK));
-        Move move = new Move(new Player("Player", Color.BLACK));
-        move.setChosenSquare(square);
-        move.make();
-        assert(board.getLeft(square).get().getStone().isPresent());
-        assertEquals(board.getLeft(square).get().getStone().get().getColor(), Color.BLACK);
-    }
-
-    @ParameterizedTest
-    @CsvSource({"5, 6", "6, 9", "10, 11"})
-    void testStonePlacementWhenFriendlyStoneIsAlreadyPresentAndWhiteSquareIsOccupiedByEnemyStone(int x, int y) {
-        //Precondition: The square near the occupied escort is occupied by an enemy stone. The specified coordinates are on a black square.
-        Square square = board.getSquare(x, y);
-        board.getDownLeft(square).get().setStone(new Stone(Color.BLACK));
-        board.getDown(square).get().setStone(new Stone(Color.BLACK));
-        Move move = new Move(new Player("Player", Color.BLACK));
-        move.setChosenSquare(square);
-        move.make();
-        assert(board.getDown(square).get().getStone().isPresent());
-        assertEquals(board.getDown(square).get().getStone().get().getColor(), Color.BLACK);
-    }
-
-    @ParameterizedTest
-    @CsvSource({"8, 12", "1, 1", "5, 7"})
-    void testStonePlacementWhenEnemyStoneIsAlreadyPresentAndBlackSquareIsOccupiedByEnemyStone(int x, int y) {
-        //Precondition: The square near the occupied escort is occupied by an enemy stone. The specified coordinates are on a white square.
-        Square square = board.getSquare(x, y);
-        board.getDownLeft(square).get().setStone(new Stone(Color.WHITE));
-        board.getLeft(square).get().setStone(new Stone(Color.WHITE));
-        Move move = new Move(new Player("Player", Color.BLACK));
-        move.setChosenSquare(square);
-        move.make();
-        assert(board.getLeft(square).get().getStone().isPresent());
-        assertEquals(board.getLeft(square).get().getStone().get().getColor(), Color.WHITE);
-    }
-
-    @ParameterizedTest
-    @CsvSource({"5, 6", "6, 9", "10, 11"})
-    void testStonePlacementWhenEnemyStoneIsAlreadyPresentAndWhiteSquareIsOccupiedByEnemyStone(int x, int y) {
-        //Precondition: The square near the occupied escort is occupied by an enemy stone. The specified coordinates are on a black square.
-        Square square = board.getSquare(x, y);
-        board.getDownLeft(square).get().setStone(new Stone(Color.WHITE));
-        board.getDown(square).get().setStone(new Stone(Color.WHITE));
-        Move move = new Move(new Player("Player", Color.BLACK));
-        move.setChosenSquare(square);
-        move.make();
-        assert(board.getDown(square).get().getStone().isPresent());
-        assertEquals(board.getDown(square).get().getStone().get().getColor(), Color.WHITE);
+    @Test
+    void escortRuleNotAppliedWithEnemyStones(){
+        setUpBoard(1,1, false);
+        assertFalse(board.getLeft(board.getSquare(1,1)).get().getStone().isPresent());
     }
 
 }

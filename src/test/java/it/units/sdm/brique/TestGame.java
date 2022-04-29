@@ -3,66 +3,104 @@ package it.units.sdm.brique;
 import it.units.sdm.brique.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 //TODO: Test when a stone is in a corner
 
 public class TestGame {
-  private final Player player1 = new Player("Player1", Color.BLACK);
-  private final Player player2 = new Player("Player2", Color.WHITE);
-  private final Game game = new Game(player1, player2);
-  private final Board board = game.getGameBoard();
+    private final Player player1 = new Player("Player1", Color.BLACK);
+    private final Player player2 = new Player("Player2", Color.WHITE);
+    private final Game game = new Game(player1, player2);
+    private final Board board = game.getGameBoard();
 
-  @BeforeEach
-  void resetBoard() {
-    board.reset();
-  }
-
-  @Test
-  void testStatus() {
-    assertEquals(Status.RUNNING, game.getStatus());
-  }
-
-  @Test
-  void testAddStone() {
-    Square square = game.getGameBoard().getSquare(0,0);
-    game.addStone(square);
-    assert(square.getStone().isPresent());
-  }
-
-  @Test
-  void testStatusWhenWhiteWins(){
-    List<Square> squareList = new ArrayList<>();
-    Square s1 = new Square(1, 0); squareList.add(s1);
-    Square s2 = new Square(1,1); squareList.add(s2);
-    Square s3 = new Square(1,2);squareList.add(s3);
-    Square s4 = new Square(1,3);squareList.add(s4);
-    Square s5 = new Square(1,4);squareList.add(s5);
-    Square s6 = new Square(1,5);squareList.add(s6);
-    Square s7 = new Square(1,6);squareList.add(s7);
-    Square s8 = new Square(1,7);squareList.add(s8);
-    Square s9 = new Square(1,8);squareList.add(s9);
-    Square s10 = new Square(1,9);squareList.add(s10);
-    Square s11 = new Square(1,10);squareList.add(s11);
-    Square s12 = new Square(1,11);squareList.add(s12);
-    Square s13 = new Square(1,12);squareList.add(s13);
-    Square s14 = new Square(1,13);squareList.add(s14);
-    Square s15 = new Square(1,14);//squareList.add(s15);
-
-    game.switchActivePlayer();
-    for (int i=0; i<15;i++) {
-      System.out.println(game.getActivePlayer());
-      game.addStone(board.getSquare(1,i));
-      game.switchActivePlayer();
+    @BeforeEach
+    void resetBoard() {
+        board.reset();
     }
-    System.out.println(game.getActivePlayer());
-    game.addStone(s15);
-      assertEquals(Status.WHITE_WINS, game.getStatus());
-  }
+
+    @Test
+    void statusIsRunningAtBoardReset() {
+        assertEquals(Status.RUNNING, game.getStatus());
+    }
+
+    @Test
+    void addStoneMakesSquareOccupied() {
+        Square square = game.getGameBoard().getSquare(0, 0);
+        game.addStone(square);
+        assert (square.getStone().isPresent());
+    }
+
+    @Test
+    void statusBecomesWHITE_WINSWhenWhiteWins() {
+        game.switchActivePlayer();
+        for (int i = 0; i < Board.BOARD_SIZE; i++) {
+            game.addStone(board.getSquare(1, i));
+            game.switchActivePlayer();
+        }
+        assertEquals(Status.WHITE_WINS, game.getStatus());
+    }
+
+    @Test
+    void statusBecomesBLACK_WINSWhenBlackWins() {
+        for (int i = 0; i < Board.BOARD_SIZE; i++) {
+            game.addStone(board.getSquare(i, 2));
+            game.switchActivePlayer();
+        }
+        assertEquals(Status.BLACK_WINS, game.getStatus());
+    }
+
+    @Test
+    void blackPlayerMovesFirst(){
+        assertEquals(Color.BLACK,game.getActivePlayer().getStoneColor());
+    }
+
+    @Test
+    void whiteMovesAfterBlack(){
+        game.switchActivePlayer();
+        assertEquals(Color.WHITE,game.getActivePlayer().getStoneColor());
+    }
+
+    @Test
+    void involvedPlayersHaveDifferentStoneColor(){
+        assertNotEquals(game.getPlayer1().getStoneColor(), game.getPlayer2().getStoneColor());
+    }
+
+    @Test
+    void switchActivePlayerWorksProperly(){
+        Player oldActivePlayer = game.getActivePlayer();
+        game.switchActivePlayer();
+        assertNotEquals(oldActivePlayer, game.getActivePlayer());
+    }
+
+    @Test
+    void pieRuleDisabledAtBoardReset(){
+        assertFalse(game.isPieRuleApplicable());
+    }
+
+    @Test
+    void pieRuleApplicableDuringSecondTurnAfterBlackMoved(){
+        game.addStone(Board.getBoard().getSquare(0,0));
+        assertTrue(game.isPieRuleApplicable());
+    }
+
+    @Test
+    void pieRuleDisabledAfterSecondTurn(){
+        game.addStone(board.getSquare(0,0));
+        game.addStone(board.getSquare(0,1));
+        assertFalse(game.isPieRuleApplicable());
+    }
+
+    @Test
+    void afterPieRulePlayerColorsAreSwapped(){
+        Color oldPlayer1Color = player1.getStoneColor();
+        Color oldPlayer2Color = player2.getStoneColor();
+        game.addStone(Board.getBoard().getSquare(0,0));
+        game.pieRule();
+        assertNotEquals(player1.getStoneColor(), oldPlayer1Color);
+        assertNotEquals(player2.getStoneColor(), oldPlayer2Color);
+    }
 }
