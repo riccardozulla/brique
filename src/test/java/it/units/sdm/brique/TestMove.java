@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import it.units.sdm.brique.model.exceptions.StoneAlreadyPresentException;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,7 +49,6 @@ public class TestMove {
         assertThrowsExactly(StoneAlreadyPresentException.class, () -> move.setChosenSquare(Board.getBoard().getSquare(0, 0)));
     }
 
-
     @ParameterizedTest
     @CsvSource({"8, 12", "1, 1", "5, 7"})
     void escortRuleCorrectlyAppliedOnBlackSquares(int i, int j) {
@@ -66,7 +66,7 @@ public class TestMove {
     }
 
     @Test
-    void escortRuleCorrectlyReplacesWhiteEnemyStone(){
+    void escortRuleCorrectlyReplacesEnemyStone(){
         Move whiteMove = new Move(player2);
         whiteMove.setChosenSquare(board.getLeft(board.getSquare(1,1)).get());
         whiteMove.make();
@@ -75,14 +75,9 @@ public class TestMove {
     }
 
     @Test
-    void escortRuleCorrectlyReplacesBlackEnemyStone(){
-        Move whiteMove = new Move(player1);
-        whiteMove.setChosenSquare(board.getLeft(board.getSquare(1,1)).get());
-        whiteMove.make();
-        setUpBoard(1,1, player2,player2);
-        assertNotEquals(Color.BLACK, board.getLeft(board.getSquare(1, 1)).get().getStone().get().getColor());
+    void escortRuleNotAppliedWithEnemyStones(){
+        setUpBoard(1,1, player2,player1);
+        assertFalse(board.getLeft(board.getSquare(1,1)).get().getStone().isPresent());
     }
-
-    //replacement escort rule
 
 }
