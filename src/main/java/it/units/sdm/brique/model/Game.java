@@ -81,7 +81,7 @@ public class Game {
         if (!firstGameMoveDone) {
             firstGameMoveDone = true;
             pieRuleApplicable = true;
-        } else if (firstGameMoveDone && pieRuleApplicable) {
+        } else if (pieRuleApplicable) {
             pieRuleApplicable = false;
         }
     }
