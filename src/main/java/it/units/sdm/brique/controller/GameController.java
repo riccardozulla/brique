@@ -62,10 +62,6 @@ public class GameController implements Initializable, PropertyChangeListener {
         player_one_nickname.setText(game.getPlayer1().getNickname());
         player_two_nickname.setText(game.getPlayer2().getNickname());
 
-        game.addActivePlayerListener(this);
-        game.addStatusListener(this);
-        highlightActivePlayer();
-        updatePieButton();
     }
 
     @Override
