@@ -15,8 +15,8 @@
 }
 
 .swapButton {
-    -fx-background-image: url("../brique/images/swap.png");
-    -fx-background-size: 40 40;
+    -fx-background-image: url("../brique/images/swap6.png");
+    -fx-background-size: 50 50;
     -fx-background-position: center;
     -fx-pref-width: 55;
     -fx-pref-height: 55;
