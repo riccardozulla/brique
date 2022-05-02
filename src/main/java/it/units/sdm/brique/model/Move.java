@@ -15,7 +15,8 @@ public class Move {
     }
 
     public void setChosenSquare(Square chosenSquare) {
-        if(chosenSquare.getStone().isPresent()) throw new StoneAlreadyPresentException("Stone already present in the given square!");
+        if (chosenSquare.getStone().isPresent())
+            throw new StoneAlreadyPresentException("Stone already present in the given square!");
         this.chosenSquare = chosenSquare;
     }
 
@@ -30,24 +31,28 @@ public class Move {
 
     private void applyEscortRule() {
         Board gameBoard = Board.getBoard();
-        gameBoard.getDownLeft(chosenSquare).flatMap(Square::getStone).ifPresent(stone -> {
-            if (stoneBelongsToPlayer(stone)) {
-                if (chosenSquare.getColor() == Color.WHITE) {
-                    placeStone(gameBoard.getLeft(chosenSquare).get()); //left square always exits
-                } else {
-                    placeStone(gameBoard.getDown(chosenSquare).get());
+        if (!chosenSquare.isBottomEdge() && !chosenSquare.isLeftEdge()) {
+            gameBoard.getDownLeft(chosenSquare).getStone().ifPresent(stone -> {
+                if (stoneBelongsToPlayer(stone)) {
+                    if (chosenSquare.getColor() == Color.WHITE) {
+                        placeStone(gameBoard.getLeft(chosenSquare)); //left square always exits
+                    } else {
+                        placeStone(gameBoard.getDown(chosenSquare));
+                    }
                 }
-            }
-        });
-        gameBoard.getUpRight(chosenSquare).flatMap(Square::getStone).ifPresent(stone -> {
-            if (stoneBelongsToPlayer(stone)) {
-                if (chosenSquare.getColor() == Color.WHITE) {
-                    placeStone(gameBoard.getUp(chosenSquare).get());
-                } else {
-                    placeStone(gameBoard.getRight(chosenSquare).get());
+            });
+        }
+        if (!chosenSquare.isTopEdge() && !chosenSquare.isRightEdge()) {
+            gameBoard.getUpRight(chosenSquare).getStone().ifPresent(stone -> {
+                if (stoneBelongsToPlayer(stone)) {
+                    if (chosenSquare.getColor() == Color.WHITE) {
+                        placeStone(gameBoard.getUp(chosenSquare));
+                    } else {
+                        placeStone(gameBoard.getRight(chosenSquare));
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     private boolean stoneBelongsToPlayer(Stone stone) {
