@@ -24,7 +24,7 @@ public class TestMove {
     void setUpBoard(int i, int j, boolean samePlayer) {
         Square square = board.getSquare(i, j);
         Move firstMove = new Move(player1);
-        firstMove.setChosenSquare(board.getDownLeft(square).get());
+        firstMove.setChosenSquare(board.getDownLeft(square));
         firstMove.make();
         Move secondMove;
         if (samePlayer) secondMove = new Move(player1);
@@ -55,7 +55,7 @@ public class TestMove {
     void escortRuleCorrectlyAppliedOnBlackSquares(int i, int j) {
         //Precondition: The square near the occupied escort is free. The specified coordinates are on a white square.
         setUpBoard(i, j, true);
-        assertEquals(board.getLeft(board.getSquare(i, j)).get().getStone().get().getColor(), Color.BLACK);
+        assertEquals(board.getLeft(board.getSquare(i, j)).getStone().get().getColor(), Color.BLACK);
     }
 
     @ParameterizedTest
@@ -63,22 +63,22 @@ public class TestMove {
     void escortRuleCorrectlyAppliedOnWhiteSquares(int i, int j) {
         //Precondition: The square near the occupied escort is free. The specified coordinates are on a black square.
         setUpBoard(i, j, true);
-        assertEquals(Color.BLACK, board.getDown(board.getSquare(i, j)).get().getStone().get().getColor());
+        assertEquals(Color.BLACK, board.getDown(board.getSquare(i, j)).getStone().get().getColor());
     }
 
     @Test
     void escortRuleCorrectlyReplacesEnemyStone(){
         Move whiteMove = new Move(player2);
-        whiteMove.setChosenSquare(board.getLeft(board.getSquare(1,1)).get());
+        whiteMove.setChosenSquare(board.getLeft(board.getSquare(1,1)));
         whiteMove.make();
         setUpBoard(1,1, true);
-        assertNotEquals(Color.WHITE, board.getLeft(board.getSquare(1, 1)).get().getStone().get().getColor());
+        assertNotEquals(Color.WHITE, board.getLeft(board.getSquare(1, 1)).getStone().get().getColor());
     }
 
     @Test
     void escortRuleNotAppliedWithEnemyStones(){
         setUpBoard(1,1, false);
-        assertFalse(board.getLeft(board.getSquare(1,1)).get().getStone().isPresent());
+        assertFalse(board.getLeft(board.getSquare(1,1)).getStone().isPresent());
     }
 
 }
