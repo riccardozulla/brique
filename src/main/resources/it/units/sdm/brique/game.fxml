@@ -13,7 +13,6 @@
         </Menu>
         <Menu text="Help">
             <MenuItem text="Guide" onAction="#openPDFGuide"/>
-            <MenuItem text="About Brique"/>
         </Menu>
     </MenuBar>
     <HBox fx:id="board_wrapper" VBox.vgrow="ALWAYS" alignment="CENTER">
