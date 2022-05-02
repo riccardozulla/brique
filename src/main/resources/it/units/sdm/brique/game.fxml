@@ -7,34 +7,13 @@
 <VBox fx:id="game_wrapper" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.units.sdm.brique.controller.GameController">
     <MenuBar VBox.vgrow="NEVER">
-        <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" text="New"/>
-            <MenuItem mnemonicParsing="false" text="Open…"/>
-            <Menu mnemonicParsing="false" text="Open Recent"/>
-            <SeparatorMenuItem mnemonicParsing="false"/>
-            <MenuItem mnemonicParsing="false" text="Close"/>
-            <MenuItem mnemonicParsing="false" text="Save"/>
-            <MenuItem mnemonicParsing="false" text="Save As…"/>
-            <MenuItem mnemonicParsing="false" text="Revert"/>
-            <SeparatorMenuItem mnemonicParsing="false"/>
-            <MenuItem mnemonicParsing="false" text="Preferences…"/>
-            <SeparatorMenuItem mnemonicParsing="false"/>
-            <MenuItem mnemonicParsing="false" text="Quit"/>
+        <Menu text="File">
+            <MenuItem text="New game" onAction="#initializeNewGame"/>
+            <MenuItem text="Quit"/>
         </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-            <MenuItem mnemonicParsing="false" text="Undo"/>
-            <MenuItem mnemonicParsing="false" text="Redo"/>
-            <SeparatorMenuItem mnemonicParsing="false"/>
-            <MenuItem mnemonicParsing="false" text="Cut"/>
-            <MenuItem mnemonicParsing="false" text="Copy"/>
-            <MenuItem mnemonicParsing="false" text="Paste"/>
-            <MenuItem mnemonicParsing="false" text="Delete"/>
-            <SeparatorMenuItem mnemonicParsing="false"/>
-            <MenuItem mnemonicParsing="false" text="Select All"/>
-            <MenuItem mnemonicParsing="false" text="Unselect All"/>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp"/>
+        <Menu text="Help">
+            <MenuItem text="Guide" onAction="#openPDFGuide"/>
+            <MenuItem text="About Brique"/>
         </Menu>
     </MenuBar>
     <HBox fx:id="board_wrapper" VBox.vgrow="ALWAYS" alignment="CENTER">
