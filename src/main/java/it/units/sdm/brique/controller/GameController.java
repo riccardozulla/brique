@@ -5,6 +5,7 @@ import it.units.sdm.brique.model.PlayerHolder;
 import it.units.sdm.brique.model.Status;
 import it.units.sdm.brique.ui.GraphicBoard;
 import it.units.sdm.brique.ui.GraphicSquare;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -80,6 +82,7 @@ public class GameController implements Initializable, PropertyChangeListener {
         }
     }
 
+    @FXML
     private void initializeNewGame() {
         game = new Game(PlayerHolder.getInstance().getPlayer1(), PlayerHolder.getInstance().getPlayer2());
         game.addActivePlayerListener(this);
@@ -133,5 +136,21 @@ public class GameController implements Initializable, PropertyChangeListener {
         root.getStylesheets().add("/it/units/sdm/brique/endgame_style.css");
         popup.getContent().add(root);
         popup.show(stage);
+    }
+
+    @FXML
+    private void openPDFGuide() {
+        try {
+            Application application = new Application() {
+                @Override
+                public void start(Stage primaryStage) {
+                    File file = new File(getClass().getClassLoader().getResource("it/units/sdm/brique/doc/Brique.pdf").getFile());
+                    getHostServices().showDocument(file.getAbsolutePath());
+                }
+            };
+            application.start(new Stage());
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 }
