@@ -6,8 +6,10 @@ import it.units.sdm.brique.model.Status;
 import it.units.sdm.brique.ui.GraphicBoard;
 import it.units.sdm.brique.ui.GraphicSquare;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,6 +18,7 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -152,5 +155,11 @@ public class GameController implements Initializable, PropertyChangeListener {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
+    }
+
+    @FXML
+    private void quitGame() {
+        Stage s = (Stage) (game_wrapper.getScene().getWindow());
+        s.close();
     }
 }

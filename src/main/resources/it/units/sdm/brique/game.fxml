@@ -9,7 +9,7 @@
     <MenuBar VBox.vgrow="NEVER">
         <Menu text="File">
             <MenuItem text="New game" onAction="#initializeNewGame"/>
-            <MenuItem text="Quit"/>
+            <MenuItem text="Quit" onAction="#quitGame"/>
         </Menu>
         <Menu text="Help">
             <MenuItem text="Guide" onAction="#openPDFGuide"/>
