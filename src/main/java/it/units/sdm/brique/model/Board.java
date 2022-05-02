@@ -2,7 +2,6 @@ package it.units.sdm.brique.model;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class Board {
 
@@ -44,42 +43,33 @@ public class Board {
         return squares[i][j];
     }
 
-    private Optional<Square> getOptionalSquare(int i, int j) {
-        try {
-            return Optional.of(getSquare(i, j));
-        } catch (ArrayIndexOutOfBoundsException exception) {
-            return Optional.empty();
-        }
-    }
-
-    public Optional<Square> getUp(Square square) {
-        return getOptionalSquare(square.getRow() - 1, square.getColumn());
+    public Square getUp(Square square) {
+        return getSquare(square.getRow() - 1, square.getColumn());
 
     }
 
-    public Optional<Square> getDown(Square square) {
-        return getOptionalSquare(square.getRow() + 1, square.getColumn());
+    public Square getDown(Square square) {
+        return getSquare(square.getRow() + 1, square.getColumn());
 
     }
 
-    public Optional<Square> getLeft(Square square) {
-        return getOptionalSquare(square.getRow(), square.getColumn() - 1);
+    public Square getLeft(Square square) {
+        return getSquare(square.getRow(), square.getColumn() - 1);
 
     }
 
-    public Optional<Square> getRight(Square square) {
-        return getOptionalSquare(square.getRow(), square.getColumn() + 1);
+    public Square getRight(Square square) {
+        return getSquare(square.getRow(), square.getColumn() + 1);
 
     }
 
-    public Optional<Square> getUpRight(Square square) {
-        return getOptionalSquare(square.getRow() - 1, square.getColumn() + 1);
+    public Square getUpRight(Square square) {
+        return getSquare(square.getRow() - 1, square.getColumn() + 1);
 
     }
 
-    public Optional<Square> getDownLeft(Square square) {
-        return getOptionalSquare(square.getRow() + 1, square.getColumn() - 1);
-
+    public Square getDownLeft(Square square) {
+        return getSquare(square.getRow() + 1, square.getColumn() - 1);
     }
 
     public static boolean isCoordinatesOutOfBounds(int x, int y) { //todo: unused, to be handled
