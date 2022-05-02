@@ -5,10 +5,10 @@ import it.units.sdm.brique.model.Stone;
 import javafx.scene.shape.Ellipse;
 
 public class GraphicStone extends Ellipse {
-    final Stone stone;
+    private final Stone stone;
 
     public GraphicStone(Stone stone) {
-        super(GraphicSquare.SQUARE_SIZE / 2, GraphicSquare.SQUARE_SIZE / 2,
+        super(GraphicSquare.SQUARE_SIZE / 2.0, GraphicSquare.SQUARE_SIZE / 2.0,
                 GraphicSquare.SQUARE_SIZE * 0.31, GraphicSquare.SQUARE_SIZE * 0.26);
         this.stone = stone;
         this.setFill(stone.getColor() == Color.WHITE ? GraphicColor.WHITE_STONE.getColor()
