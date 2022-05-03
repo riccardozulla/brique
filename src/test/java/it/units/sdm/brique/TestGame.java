@@ -28,7 +28,7 @@ public class TestGame {
     void addStoneMakesSquareOccupied() {
         Square square = game.getGameBoard().getSquare(0, 0);
         game.addStone(square);
-        assert (square.getStone().isPresent());
+        assert (square.isOccupied());
     }
 
     @Test

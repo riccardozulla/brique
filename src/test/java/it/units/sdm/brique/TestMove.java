@@ -40,7 +40,7 @@ public class TestMove {
         Move move = new Move(player1);
         move.setChosenSquare(board.getSquare(i,j));
         move.make();
-        assertTrue(board.getSquare(i,j).getStone().isPresent());
+        assertTrue(board.getSquare(i,j).isOccupied());
     }
 
     @Test
@@ -78,7 +78,7 @@ public class TestMove {
     @Test
     void escortRuleNotAppliedWithEnemyStones(){
         setUpBoard(1,1, false);
-        assertFalse(board.getLeftSquare(board.getSquare(1,1)).getStone().isPresent());
+        assertFalse(board.getLeftSquare(board.getSquare(1,1)).isOccupied());
     }
 
 }

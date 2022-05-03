@@ -2,6 +2,7 @@ package it.units.sdm.brique;
 
 import it.units.sdm.brique.model.Board;
 import it.units.sdm.brique.model.Color;
+import it.units.sdm.brique.model.Square;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -27,7 +28,7 @@ public class TestBoard {
   @Test
   void resetBoard() {
     board.reset();
-    assertFalse(board.getSquaresStream().anyMatch(square -> square.getStone().isPresent()));
+    assertFalse(board.getSquaresStream().anyMatch(Square::isOccupied));
   }
 
   @ParameterizedTest

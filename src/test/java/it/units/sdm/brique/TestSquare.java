@@ -15,12 +15,12 @@ public class TestSquare {
     @Test
     void settingStoneOnSquareMakesGetStonePresent() {
         square.setStone(new Stone(Color.BLACK));
-        assert(square.getStone().isPresent());
+        assert(square.isOccupied());
     }
 
     @Test
     void emptySquareHasNotStoneOnIt() {
-        assertFalse(square.getStone().isPresent());
+        assertFalse(square.isOccupied());
     }
 
     @ParameterizedTest

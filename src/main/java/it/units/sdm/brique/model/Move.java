@@ -15,7 +15,7 @@ public class Move {
     }
 
     public void setChosenSquare(Square chosenSquare) {
-        if (chosenSquare.getStone().isPresent())
+        if (chosenSquare.isOccupied())
             throw new StoneAlreadyPresentException("Stone already present in the given square!");
         this.chosenSquare = chosenSquare;
     }
