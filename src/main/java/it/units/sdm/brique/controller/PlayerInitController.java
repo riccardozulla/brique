@@ -13,9 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -42,25 +41,22 @@ public class PlayerInitController implements Initializable {
         blackout.setBrightness(-0.8);
         player1StoneImageView.setEffect(blackout);
         welcomeView.getStylesheets().addAll("it/units/sdm/brique/style.css", "it/units/sdm/brique/playerInit_style.css");
-        }
+    }
 
-    @FXML protected void handleConfirmButtonAction(ActionEvent event) throws Exception {
-        if(isNicknameEmpty()) {
+    @FXML
+    protected void handleConfirmButtonAction(ActionEvent event) throws Exception {
+        if (isNicknameEmpty()) {
             displayNicknameErrorAlert("The nickname can't be empty." +
                     "\nPlease choose a nickname.");
-        }
-        else if(isSameNickname()) {
+        } else if (isSameNickname()) {
             displayNicknameErrorAlert("The two players can't have the same nickname." +
-                                        "\nPlease choose a different nickname.");
-        }
-        else if(isNicknameTooLong()) {
+                    "\nPlease choose a different nickname.");
+        } else if (isNicknameTooLong()) {
             displayNicknameErrorAlert("The nickname can't exceed 15 characters." +
-                                        "\nPlease choose a shorter nickname.");
-        }
-        else {
+                    "\nPlease choose a shorter nickname.");
+        } else {
             savePlayerData();
             Parent gameView = FXMLLoader.load(getClass().getResource("/it/units/sdm/brique/game.fxml"));
-            gameView.getStylesheets().add("/it/units/sdm/brique/stylesheet.css");
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Stage secondaryStage = new Stage();
             Scene newScene = new Scene(gameView);
@@ -72,7 +68,8 @@ public class PlayerInitController implements Initializable {
         }
     }
 
-    @FXML protected void handleToggleButtonAction(ActionEvent event) {
+    @FXML
+    protected void handleToggleButtonAction(ActionEvent event) {
         swapColor();
     }
 
@@ -94,11 +91,17 @@ public class PlayerInitController implements Initializable {
         playerHolder.setPlayer2(player2);
     }
 
-    private boolean isSameNickname() { return player1TextField.getText().equals(player2TextField.getText()); }
+    private boolean isSameNickname() {
+        return player1TextField.getText().equals(player2TextField.getText());
+    }
 
-    private boolean isNicknameEmpty() { return player1TextField.getText().isEmpty() || player2TextField.getText().isEmpty(); }
+    private boolean isNicknameEmpty() {
+        return player1TextField.getText().isEmpty() || player2TextField.getText().isEmpty();
+    }
 
-    private boolean isNicknameTooLong() { return player1TextField.getText().length() >= 15 || player2TextField.getText().length() >= 15; }
+    private boolean isNicknameTooLong() {
+        return player1TextField.getText().length() >= 15 || player2TextField.getText().length() >= 15;
+    }
 
     private void displayNicknameErrorAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
