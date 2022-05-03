@@ -30,9 +30,9 @@ public class GameController implements Initializable, PropertyChangeListener {
     @FXML
     private VBox player_two_wrapper;
     @FXML
-    private Text player_one_nickname;
+    private Label player_one_nickname;
     @FXML
-    private Text player_two_nickname;
+    private Label player_two_nickname;
 
     @FXML
     private Button pie_button;
