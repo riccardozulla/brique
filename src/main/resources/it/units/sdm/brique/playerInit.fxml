@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane fx:id="welcomeView"  styleClass="welcomeAnchor"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.units.sdm.brique.controller.PlayerInitController">
+<AnchorPane fx:id="welcomeView"  styleClass="welcome-anchor"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.units.sdm.brique.controller.PlayerInitController">
    <children>
       <HBox alignment="CENTER" prefHeight="58.0" prefWidth="600.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <children>
-            <Label text="Welcome to Brique!" styleClass="titleLabel">
+            <Label text="Welcome to Brique!" styleClass="title-label">
             </Label>
          </children>
       </HBox>
@@ -23,7 +23,7 @@
          <children>
             <VBox alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="200.0" spacing="20.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label text="Player 1" styleClass="playerLabel">
+                  <Label text="Player 1" styleClass="player-label">
                   </Label>
                   <ImageView fx:id="player1StoneImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="stone">
                   </ImageView>
@@ -35,13 +35,13 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="180.0" HBox.hgrow="ALWAYS">
                <children>
-                  <ToggleButton fx:id="swapButton" onAction="#handleToggleButtonAction" styleClass="swapButton">
+                  <ToggleButton fx:id="swapButton" onAction="#handleToggleButtonAction" styleClass="swap-button">
                   </ToggleButton>
                </children>
             </VBox>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" spacing="20.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label text="Player 2" styleClass="playerLabel">
+                  <Label text="Player 2" styleClass="player-label">
                   </Label>
                   <ImageView fx:id="player2StoneImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="stone">
                   </ImageView>
@@ -55,7 +55,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="20.0" prefWidth="600.0 " AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0">
          <children>
-            <Button fx:id="confirmButton" onAction="#handleConfirmButtonAction" text="Confirm" styleClass="confirmButton"/>
+            <Button fx:id="confirmButton" onAction="#handleConfirmButtonAction" text="Confirm"/>
          </children>
       </HBox>
    </children>
