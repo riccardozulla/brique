@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane fx:id="welcomeView"  styleClass="anchor"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.units.sdm.brique.controller.PlayerInitController">
+<AnchorPane fx:id="welcomeView"  styleClass="welcomeAnchor"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.units.sdm.brique.controller.PlayerInitController">
    <children>
       <HBox alignment="CENTER" prefHeight="58.0" prefWidth="600.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <children>

@@ -41,9 +41,6 @@ public class PlayerInitController implements Initializable {
         ColorAdjust blackout = new ColorAdjust();
         blackout.setBrightness(-0.8);
         player1StoneImageView.setEffect(blackout);
-        Image background = new Image("it/units/sdm/brique/images/boa3d_op.png");
-        BackgroundImage backgroundImage = new BackgroundImage(background, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(300, 300, false, false, true, false));
-        welcomeView.setBackground(new Background(backgroundImage));
         welcomeView.getStylesheets().addAll("it/units/sdm/brique/style.css", "it/units/sdm/brique/playerInit_style.css");
         }
 
