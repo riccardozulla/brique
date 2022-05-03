@@ -1,18 +1,18 @@
-#game-wrapper {
+#game_wrapper {
    -fx-background-image: url("../brique/images/game_carpet.jpg");
     -fx-background-repeat: repeat;
     -fx-background-size: 300 300;
     -fx-background-position: center;
 }
 
-#player-wrapper {
+#player_wrapper {
     -fx-padding: 20;
     -fx-spacing: 30;
     -fx-background-color: rgba(0,0,0,0.3);
 }
 
 
-#player-one-wrapper, #player-two-wrapper {
+#player_one_wrapper, #player_two_wrapper {
     -fx-spacing: 8;
 }
 
@@ -21,13 +21,13 @@ Label {
     -fx-underline: true;
 }
 
-#player-one-nickname, #player-two-nickname {
+#player_one_nickname, #player_two_nickname {
     -fx-font-weight: 500;
     -fx-underline: false;
     -fx-font-size: 15;
 }
 
-.active-player {
+.active_player {
     -fx-effect: dropshadow(one-pass-box, rgba(255, 255, 255, 0.4), 10, 1, 0, 0);
 }
 
