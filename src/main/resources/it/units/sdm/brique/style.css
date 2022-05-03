@@ -18,6 +18,8 @@ Button:hover {
 }
 
 Label {
+    -fx-text-alignment: center;
     -fx-font-size: 20 Verdana;
     -fx-text-fill: black;
+    -fx-padding: 5;
 }

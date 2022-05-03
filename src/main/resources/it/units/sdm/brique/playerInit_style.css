@@ -1,17 +1,14 @@
 .titleLabel {
-    -fx-text-alignment: center;
-    -fx-font-size: 40.0 Verdana;
+    -fx-font-size: 40.0;
     -fx-font-weight: bold;
 }
 
 .playerLabel {
-    -fx-font-size: 18.0 Verdana;
     -fx-border-width: 2;
     -fx-border-color: black;
     -fx-background-radius: 50;
     -fx-border-radius: 50;
     -fx-background-color: white;
-    -fx-padding: 5;
 }
 
 .swapButton {
@@ -21,37 +18,9 @@
     -fx-pref-width: 55;
     -fx-pref-height: 55;
     -fx-background-repeat: no-repeat;
-    -fx-effect: dropshadow(one-pass-box, #422800, 0, 0, 4, 4);
     -fx-background-color: white;
     -fx-background-radius: 30;
-    -fx-border-width: 2;
-    -fx-border-style: solid;
-    -fx-border-color: #422800;
     -fx-border-radius: 50;
-    -fx-font-weight: 600;
-    -fx-font-size: 18;
-    -fx-text-alignment: center;
-    -fx-padding: 0 18;
-}
-
-.confirmButton {
-    -fx-background-color: goldenrod;
-    -fx-background-radius: 50;
-    -fx-border-width: 2;
-    -fx-font-weight: bold;
-    -fx-border-style: solid;
-    -fx-border-color: #422800;
-    -fx-border-radius: 50;
-    -fx-font-weight: 600;
-    -fx-font-size: 18;
-    -fx-text-alignment: center;
-    -fx-padding: 0 18;
-    -fx-effect: dropshadow(one-pass-box, #422800, 0, 0, 4, 4);
-    -fx-pref-width: 200px;
-}
-
-.confirmButton:hover {
-    -fx-background-color: gold;
 }
 
 .swapButton:hover {
