@@ -6,10 +6,8 @@ import it.units.sdm.brique.model.Status;
 import it.units.sdm.brique.ui.GraphicBoard;
 import it.units.sdm.brique.ui.GraphicSquare;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,7 +16,6 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -56,7 +53,7 @@ public class GameController implements Initializable, PropertyChangeListener {
 
         initializeNewGame();
 
-        Image background = new Image("it/units/sdm/brique/game_carpet.jpg");
+        Image background = new Image("it/units/sdm/brique/images/game_carpet.jpg");
         BackgroundImage backgroundImage = new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, new BackgroundSize(300, 300, false, false, false, false));
         game_wrapper.setBackground(new Background(backgroundImage));
 
