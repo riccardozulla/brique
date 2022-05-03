@@ -43,37 +43,33 @@ public class Board {
         return squares[i][j];
     }
 
-    public Square getUp(Square square) {
+    public Square getUpSquare(Square square) {
         return getSquare(square.getRow() - 1, square.getColumn());
 
     }
 
-    public Square getDown(Square square) {
+    public Square getDownSquare(Square square) {
         return getSquare(square.getRow() + 1, square.getColumn());
 
     }
 
-    public Square getLeft(Square square) {
+    public Square getLeftSquare(Square square) {
         return getSquare(square.getRow(), square.getColumn() - 1);
 
     }
 
-    public Square getRight(Square square) {
+    public Square getRightSquare(Square square) {
         return getSquare(square.getRow(), square.getColumn() + 1);
 
     }
 
-    public Square getUpRight(Square square) {
+    public Square getUpRightSquare(Square square) {
         return getSquare(square.getRow() - 1, square.getColumn() + 1);
 
     }
 
-    public Square getDownLeft(Square square) {
+    public Square getDownLeftSquare(Square square) {
         return getSquare(square.getRow() + 1, square.getColumn() - 1);
-    }
-
-    public static boolean isCoordinatesOutOfBounds(int x, int y) { //todo: unused, to be handled
-        return x < FIRST_INDEX || y < FIRST_INDEX || x > LAST_INDEX || y > LAST_INDEX;
     }
 
 }

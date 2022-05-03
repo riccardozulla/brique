@@ -32,23 +32,23 @@ public class Move {
     private void applyEscortRule() {
         Board gameBoard = Board.getBoard();
         if (!chosenSquare.isBottomEdge() && !chosenSquare.isLeftEdge()) {
-            gameBoard.getDownLeft(chosenSquare).getStone().ifPresent(stone -> {
+            gameBoard.getDownLeftSquare(chosenSquare).getStone().ifPresent(stone -> {
                 if (stoneBelongsToPlayer(stone)) {
                     if (chosenSquare.getColor() == Color.WHITE) {
-                        placeStone(gameBoard.getLeft(chosenSquare)); //left square always exits
+                        placeStone(gameBoard.getLeftSquare(chosenSquare)); //left square always exits
                     } else {
-                        placeStone(gameBoard.getDown(chosenSquare));
+                        placeStone(gameBoard.getDownSquare(chosenSquare));
                     }
                 }
             });
         }
         if (!chosenSquare.isTopEdge() && !chosenSquare.isRightEdge()) {
-            gameBoard.getUpRight(chosenSquare).getStone().ifPresent(stone -> {
+            gameBoard.getUpRightSquare(chosenSquare).getStone().ifPresent(stone -> {
                 if (stoneBelongsToPlayer(stone)) {
                     if (chosenSquare.getColor() == Color.WHITE) {
-                        placeStone(gameBoard.getUp(chosenSquare));
+                        placeStone(gameBoard.getUpSquare(chosenSquare));
                     } else {
-                        placeStone(gameBoard.getRight(chosenSquare));
+                        placeStone(gameBoard.getRightSquare(chosenSquare));
                     }
                 }
             });
