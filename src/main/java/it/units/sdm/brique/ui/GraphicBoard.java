@@ -64,7 +64,7 @@ public class GraphicBoard extends Pane {
         leftBorder.setFill(GraphicColor.WHITE_STONE.getColor());
 
         Group borders = new Group(topBorder, rightBorder, bottomBorder, leftBorder);
-        borders.addEventFilter(MouseEvent.MOUSE_CLICKED, Event::consume);
+        borders.addEventFilter(MouseEvent.MOUSE_PRESSED, Event::consume);
 
         this.getChildren().addAll(borders);
     }
