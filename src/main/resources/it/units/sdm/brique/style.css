@@ -17,6 +17,13 @@ Button:hover {
     -fx-background-color: gold;
 }
 
+Button:disabled{
+    -fx-background-color: #fbeee0;
+    -fx-effect: dropshadow(one-pass-box, #422800, 0,0,1,1);
+    -fx-translate-x: 2;
+    -fx-translate-y: 2;
+}
+
 Label {
     -fx-text-alignment: center;
     -fx-font-size: 20 Verdana;
