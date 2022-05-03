@@ -44,7 +44,7 @@ public class PlayerInitController implements Initializable {
         Image background = new Image("it/units/sdm/brique/images/boa3d_op.png");
         BackgroundImage backgroundImage = new BackgroundImage(background, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(300, 300, false, false, true, false));
         welcomeView.setBackground(new Background(backgroundImage));
-        welcomeView.getStylesheets().add("it/units/sdm/brique/playerInit_style.css");
+        welcomeView.getStylesheets().addAll("it/units/sdm/brique/style.css", "it/units/sdm/brique/playerInit_style.css");
         }
 
     @FXML protected void handleConfirmButtonAction(ActionEvent event) throws Exception {

@@ -13,12 +13,14 @@
 
 .swapButton {
     -fx-background-image: url("../brique/images/swap.png");
-    -fx-background-size: 50 50;
+    -fx-background-size: 55 55;
     -fx-background-position: center;
-    -fx-pref-width: 55;
-    -fx-pref-height: 55;
+    -fx-pref-width: 60;
+    -fx-pref-height: 60;
     -fx-background-repeat: no-repeat;
     -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 3;
     -fx-background-radius: 30;
     -fx-border-radius: 50;
 }
