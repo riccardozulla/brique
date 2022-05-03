@@ -89,10 +89,10 @@ public class GameController implements Initializable, PropertyChangeListener {
     private void highlightActivePlayer() {
         if (game.getPlayer1().equals(game.getActivePlayer())) {
             player_one_wrapper.getStyleClass().add("activePlayer");
-            player_two_wrapper.getStyleClass().remove("activePlayer");
+            player_two_wrapper.getStyleClass().clear();
         } else {
             player_two_wrapper.getStyleClass().add("activePlayer");
-            player_one_wrapper.getStyleClass().remove("activePlayer");
+            player_one_wrapper.getStyleClass().clear();
         }
     }
 
