@@ -31,13 +31,13 @@ public class TestPlayer {
     }
 
     @Test
-    void blackPlayerStoneColorIsSetToWhite(){
+    void blackPlayerStoneColorIsChangedToWhite(){
         player1.setStoneColor(Color.WHITE);
         assertEquals(Color.WHITE, player1.getStoneColor());
     }
 
     @Test
-    void whitePlayerStoneColorIsSetToBlack(){
+    void whitePlayerStoneColorIsChangedToBlack(){
         player2.setStoneColor(Color.BLACK);
         assertEquals(Color.BLACK, player2.getStoneColor());
     }
