@@ -32,7 +32,7 @@ public class TestClusterSet {
 
     @ParameterizedTest
     @CsvSource({"0", "1","2","3","4","5","6","7","8","9","10","11","12","13","14"})
-    void whiteEdgeToEdgePathIsWinning(int row) {
+    void horizontalWhiteEdgeToEdgePathIsWinning(int row) {
         Set<Square> squareSet = IntStream.range(0, Board.BOARD_SIZE).mapToObj(i -> Board.getBoard().getSquare(row, i)).collect(Collectors.toSet());
         ClusterSet clusterSet = new ClusterSet(squareSet, Color.WHITE);
         clusterSet.composeClusters();
@@ -42,7 +42,7 @@ public class TestClusterSet {
 
     @ParameterizedTest
     @CsvSource({"0", "1","2","3","4","5","6","7","8","9","10","11","12","13","14"})
-    void blackEdgeToEdgePathIsWinning(int col) {
+    void verticalBlackEdgeToEdgePathIsWinning(int col) {
         Set<Square> squareSet = IntStream.range(0, Board.BOARD_SIZE).mapToObj(i -> Board.getBoard().getSquare(i, col)).collect(Collectors.toSet());
         ClusterSet clusterSet = new ClusterSet(squareSet, Color.BLACK);
         clusterSet.composeClusters();
