@@ -40,7 +40,7 @@ public class Board {
     }
 
     public List<Square> getOccupiedSquares() {
-        return getSquaresStream().filter(square -> square.getStone().isPresent()).toList();
+        return getSquaresStream().filter(Square::isOccupied).toList();
     }
 
     public Square getSquare(int i, int j) {

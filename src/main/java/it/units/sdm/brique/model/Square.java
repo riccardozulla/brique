@@ -50,6 +50,10 @@ public class Square {
     stone = null;
   }
 
+  public boolean isOccupied() {
+    return stone!=null;
+  }
+
   public static int manhattanSquareDistance(Square square1, Square square2) {
     return Math.abs(square1.getRow() - square2.getRow())
             + Math.abs(square1.getColumn() - square2.getColumn());
