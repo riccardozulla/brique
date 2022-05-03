@@ -5,17 +5,22 @@ import it.units.sdm.brique.model.exceptions.PieRuleNotApplicableException;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Game {
-    private Status status = Status.RUNNING;
     private final Player player1;
     private final Player player2;
     private final Board gameBoard;
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    private Status status = Status.RUNNING;
     private Player activePlayer;
+    private final Predicate<Set<Square>> winningCondition = (Set<Square> cluster) -> switch (activePlayer.getStoneColor()) {
+        case BLACK -> cluster.stream().anyMatch(Square::isTopEdge) && cluster.stream().anyMatch(Square::isBottomEdge);
+        case WHITE -> cluster.stream().anyMatch(Square::isLeftEdge) && cluster.stream().anyMatch(Square::isRightEdge);
+    };
     private boolean firstGameMoveDone;
     private boolean pieRuleApplicable;
-    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     public Game(Player player1, Player player2) {
         this.player1 = player1;
@@ -108,7 +113,7 @@ public class Game {
     public boolean activePlayerWins() {
         ClusterSet activeCluster = new ClusterSet(getActivePlayerPlacedStones(), activePlayer.getStoneColor());
         activeCluster.composeClusters();
-        return activeCluster.winningPath();
+        return activeCluster.anyClusterMatches(winningCondition);
     }
 
     private Set<Square> getActivePlayerPlacedStones() {

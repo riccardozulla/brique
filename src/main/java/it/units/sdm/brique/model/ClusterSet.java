@@ -3,8 +3,9 @@ package it.units.sdm.brique.model;
 import com.google.common.collect.Sets;
 import org.jgrapht.alg.util.UnionFind;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ClusterSet extends UnionFind<Square> {
@@ -23,15 +24,11 @@ public class ClusterSet extends UnionFind<Square> {
                 forEach(e -> union(e.get(0), e.get(1)));
     }
 
-    public boolean winningPath() {
-        var clusters = getParentMap().keySet().stream().collect(Collectors.groupingBy(this::find)).values();
-        return clusters.stream().anyMatch(this::isEdgeToEdge);
+    public Collection<Set<Square>> getClusters() {
+        return getParentMap().keySet().stream().collect(Collectors.groupingBy(this::find, Collectors.toSet())).values();
     }
 
-    private boolean isEdgeToEdge(List<Square> cluster) {
-        return switch (color) {
-            case BLACK -> cluster.stream().anyMatch(Square::isTopEdge) && cluster.stream().anyMatch(Square::isBottomEdge);
-            case WHITE -> cluster.stream().anyMatch(Square::isLeftEdge) && cluster.stream().anyMatch(Square::isRightEdge);
-        };
+    public boolean anyClusterMatches(Predicate<Set<Square>> evaluationFunction) {
+        return getClusters().stream().anyMatch(evaluationFunction);
     }
 }
