@@ -17,6 +17,5 @@ public class Stone {
 
   public void switchColor(){
     color = color == Color.BLACK ? Color.WHITE : Color.BLACK;
-    //todo add tests
   }
 }
