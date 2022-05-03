@@ -3,6 +3,12 @@ package it.units.sdm.brique;
 import it.units.sdm.brique.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -99,5 +105,22 @@ public class TestGame {
         game.pieRule();
         assertNotEquals(player1.getStoneColor(), oldPlayer1Color);
         assertNotEquals(player2.getStoneColor(), oldPlayer2Color);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"0", "1","2","3","4","5","6","7","8","9","10","11","12","13","14"})
+    void verticalBlackEdgeToEdgePathIsWinning(int col) {
+        Set<Square> squareSet = IntStream.range(0, Board.BOARD_SIZE).mapToObj(i -> Board.getBoard().getSquare(i, col)).collect(Collectors.toSet());
+        squareSet.forEach(s -> s.setStone(new Stone(Color.BLACK)));
+        assertTrue(game.activePlayerWins());
+    }
+
+    @ParameterizedTest
+    @CsvSource({"0", "1","2","3","4","5","6","7","8","9","10","11","12","13","14"})
+    void horizontalWhiteEdgeToEdgePathIsWinning(int row) {
+        game.switchActivePlayer();
+        Set<Square> squareSet = IntStream.range(0, Board.BOARD_SIZE).mapToObj(i -> Board.getBoard().getSquare(row, i)).collect(Collectors.toSet());
+        squareSet.forEach(s -> s.setStone(new Stone(Color.WHITE)));
+        assertTrue(game.activePlayerWins());
     }
 }
