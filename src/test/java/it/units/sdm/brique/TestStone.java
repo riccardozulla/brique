@@ -22,19 +22,19 @@ public class TestStone {
 
   @ParameterizedTest
   @EnumSource(value = Color.class)
-  void testSetColor(Color color) {
+  void setColorAssignsStoneColor(Color color) {
     stone.setColor(color);
     assertEquals(color, stone.getColor());
   }
 
   @Test
-  void testSwitchColorTurnsWhiteIntoBlack() {
+  void switchColorTurnsWhiteIntoBlack() {
     stone.switchColor();
     assertEquals(Color.BLACK, stone.getColor());
   }
 
   @Test
-  void testSwitchColorTurnsBlackIntoWhite() {
+  void switchColorTurnsBlackIntoWhite() {
     otherStone.switchColor();
     assertEquals(Color.WHITE, otherStone.getColor());
   }
