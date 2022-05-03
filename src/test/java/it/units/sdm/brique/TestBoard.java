@@ -27,7 +27,7 @@ public class TestBoard {
   @Test
   void resetBoard() {
     board.reset();
-    assertFalse(Arrays.stream(board.getSquares()).flatMap(Arrays::stream).anyMatch(square -> square.getStone().isPresent()));
+    assertFalse(board.getSquaresStream().anyMatch(square -> square.getStone().isPresent()));
   }
 
   @ParameterizedTest

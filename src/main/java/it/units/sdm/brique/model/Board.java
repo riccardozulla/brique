@@ -2,6 +2,7 @@ package it.units.sdm.brique.model;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Board {
 
@@ -27,16 +28,19 @@ public class Board {
     }
 
     public void reset() {
-        Arrays.stream(squares).flatMap(Arrays::stream).forEach(square -> square.setStone(null));
+        getSquaresStream().forEach(square -> square.setStone(null));
     }
 
     public Square[][] getSquares() {
         return squares;
     }
 
+    public Stream<Square> getSquaresStream() {
+        return Arrays.stream(squares).flatMap(Arrays::stream);
+    }
+
     public List<Square> getOccupiedSquares() {
-        return Arrays.stream(squares).flatMap(Arrays::stream).
-                filter(square -> square.getStone().isPresent()).toList();
+        return getSquaresStream().filter(square -> square.getStone().isPresent()).toList();
     }
 
     public Square getSquare(int i, int j) {
