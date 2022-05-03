@@ -28,7 +28,7 @@ public class Board {
     }
 
     public void reset() {
-        getSquaresStream().forEach(square -> square.setStone(null));
+        getSquaresStream().forEach(Square::removeStone);
     }
 
     public Square[][] getSquares() {
