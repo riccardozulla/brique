@@ -53,10 +53,6 @@ public class GameController implements Initializable, PropertyChangeListener {
 
         initializeNewGame();
 
-        Image background = new Image("it/units/sdm/brique/images/game_carpet.jpg");
-        BackgroundImage backgroundImage = new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, new BackgroundSize(300, 300, false, false, false, false));
-        game_wrapper.setBackground(new Background(backgroundImage));
-
         board_wrapper.layoutBoundsProperty().addListener(graphicBoard.fit);
 
         graphicBoard.setOnMousePressed(event -> game.addStone(((GraphicSquare) event.getTarget()).getSquare()));
