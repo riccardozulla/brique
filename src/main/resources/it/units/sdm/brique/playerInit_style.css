@@ -1,4 +1,4 @@
-.welcomeAnchor {
+.welcome-anchor {
     -fx-background-image: url("../brique/images/boa3d_op.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
@@ -6,12 +6,12 @@
     -fx-background-size: contain;
 }
 
-.titleLabel {
+.title-label {
     -fx-font-size: 40.0;
     -fx-font-weight: bold;
 }
 
-.playerLabel {
+.player-label {
     -fx-border-width: 2;
     -fx-border-color: black;
     -fx-background-radius: 50;
@@ -19,7 +19,7 @@
     -fx-background-color: white;
 }
 
-.swapButton {
+.swap-button {
     -fx-background-image: url("../brique/images/swap.png");
     -fx-background-size: 55 55;
     -fx-background-position: center;
@@ -33,7 +33,7 @@
     -fx-border-radius: 50;
 }
 
-.swapButton:hover {
+.swap-button:hover {
     -fx-background-color: lightgrey;
 }
 
