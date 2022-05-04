@@ -31,9 +31,13 @@ Label {
     -fx-effect: dropshadow(one-pass-box, rgba(255, 255, 255, 0.4), 10, 1, 0, 0);
 }
 
-GraphicBoard > * {
+Polygon {
     -fx-stroke: black;
     -fx-stroke-width: 0.2;
+    -fx-stroke-type: inside;
+}
+
+GraphicBoard > * {
     -fx-border-color: black;
     -fx-border-width: 0.2;
     -fx-border-style: solid;
