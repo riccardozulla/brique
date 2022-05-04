@@ -113,7 +113,7 @@ public class Game {
     }
 
     public boolean activePlayerWins() {
-        ClusterSet<Square> activeCluster = new ClusterSet<>(getActivePlayerPlacedStones(), activePlayer.getStoneColor());
+        ClusterSet<Square> activeCluster = new ClusterSet<>(getActivePlayerPlacedStones());
         activeCluster.composeClusters(squaresOccupiedByOrthogonalAndAdjacentStonesPredicate);
         return activeCluster.anyClusterMatches(winningCondition);
     }

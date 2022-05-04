@@ -11,11 +11,8 @@ import java.util.stream.Collectors;
 
 public class ClusterSet<T> extends UnionFind<T> {
 
-    final Color color;
-
-    public ClusterSet(Set<T> elements, Color stonesColor) {
+    public ClusterSet(Set<T> elements) {
         super(elements);
-        this.color = stonesColor;
     }
 
     public void composeClusters(BiPredicate<T, T> belongToSameClusterPredicate) {
