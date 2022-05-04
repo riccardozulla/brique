@@ -26,7 +26,7 @@ public class ClusterSet<T> extends UnionFind<T> {
         return getParentMap().keySet().stream().collect(Collectors.groupingBy(this::find, Collectors.toSet())).values();
     }
 
-    public boolean anyClusterMatches(Predicate<Set<T>> evaluationFunction) {
-        return getClusters().stream().anyMatch(evaluationFunction);
+    public boolean anyClusterMatches(Predicate<Set<T>> evaluationPredicate) {
+        return getClusters().stream().anyMatch(evaluationPredicate);
     }
 }
