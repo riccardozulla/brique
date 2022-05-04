@@ -101,13 +101,8 @@ public class Game {
         if (!pieRuleApplicable) {
             throw new PieRuleNotApplicableException("Pie rule not applicable");
         }
-        if (player1.equals(activePlayer)) {
-            player2.setStoneColor(Color.WHITE);
-            player1.setStoneColor(Color.BLACK);
-        } else if (player2.equals(activePlayer)) {
-            player1.setStoneColor(Color.WHITE);
-            player2.setStoneColor(Color.BLACK);
-        }
+        player1.switchStoneColor();
+        player2.switchStoneColor();
         pieRuleApplicable = false;
         switchActivePlayer();
     }

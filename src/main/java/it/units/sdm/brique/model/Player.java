@@ -21,6 +21,10 @@ public class Player {
         this.stoneColor = stoneColor;
     }
 
+    public void switchStoneColor() {
+        stoneColor = (stoneColor == Color.BLACK) ? Color.WHITE : Color.BLACK;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
