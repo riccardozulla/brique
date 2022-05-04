@@ -30,29 +30,13 @@ public class Move {
     }
 
     private void applyEscortRule() {
-        Board gameBoard = Board.getBoard();
-        if (!chosenSquare.isBottomEdge() && !chosenSquare.isLeftEdge()) {
-            gameBoard.getDownLeftSquare(chosenSquare).getStone().ifPresent(stone -> {
-                if (stoneBelongsToPlayer(stone)) {
-                    if (chosenSquare.getColor() == Color.WHITE) {
-                        placeStone(gameBoard.getLeftSquare(chosenSquare)); //left square always exits
-                    } else {
-                        placeStone(gameBoard.getDownSquare(chosenSquare));
-                    }
-                }
-            });
-        }
-        if (!chosenSquare.isTopEdge() && !chosenSquare.isRightEdge()) {
-            gameBoard.getUpRightSquare(chosenSquare).getStone().ifPresent(stone -> {
-                if (stoneBelongsToPlayer(stone)) {
-                    if (chosenSquare.getColor() == Color.WHITE) {
-                        placeStone(gameBoard.getUpSquare(chosenSquare));
-                    } else {
-                        placeStone(gameBoard.getRightSquare(chosenSquare));
-                    }
-                }
-            });
-        }
+        chosenSquare.getEscorts().forEach(square -> {
+            if (square.getEscorts().stream().allMatch(escort ->
+                    escort.getStone().isPresent() && escort.getStone().get().getColor() == player.getStoneColor()
+            ) && square.getEscorts().size() == 2) {
+                placeStone(square);
+            }
+        });
     }
 
     private boolean stoneBelongsToPlayer(Stone stone) {
