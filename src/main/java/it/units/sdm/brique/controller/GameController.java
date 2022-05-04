@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 
 public class GameController implements Initializable, PropertyChangeListener {
 
+    Game game;
     @FXML
     private VBox player_one_wrapper;
     @FXML
@@ -33,20 +34,14 @@ public class GameController implements Initializable, PropertyChangeListener {
     private Label player_one_nickname;
     @FXML
     private Label player_two_nickname;
-
     @FXML
     private Button pie_button;
-
     @FXML
     private VBox game_wrapper;
-
     @FXML
     private HBox board_wrapper;
-
     @FXML
     private GraphicBoard graphicBoard;
-
-    Game game;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -126,7 +121,7 @@ public class GameController implements Initializable, PropertyChangeListener {
         HBox buttonsBox = new HBox(playAgainButton, closeButton);
         Parent root = new VBox(headerBox, contentBox, buttonsBox);
         VBox.setVgrow(contentBox, Priority.ALWAYS);
-        root.getStylesheets().add("/it/units/sdm/brique/endgame_style.css");
+        root.getStylesheets().addAll("/it/units/sdm/brique/style.css", "/it/units/sdm/brique/endgame_style.css");
         popup.getContent().add(root);
         popup.show(stage);
     }
