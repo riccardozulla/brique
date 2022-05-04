@@ -5,16 +5,16 @@ import it.units.sdm.brique.model.ClusterSet;
 import it.units.sdm.brique.model.Color;
 import it.units.sdm.brique.model.Square;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Set;
+import java.util.function.BiPredicate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestClusterSet {
 
-    ClusterSet clusterSet = new ClusterSet(Set.of(Board.getBoard().getSquare(1,1), Board.getBoard().getSquare(1,2)), Color.BLACK);
+    private static final BiPredicate<Square, Square> alwaysTrue = (square1, square2) -> true;
+    ClusterSet clusterSet = new ClusterSet(Set.of(Board.getBoard().getSquare(1, 1), Board.getBoard().getSquare(1, 2)), Color.BLACK);
 
     @Test
     void initializeSingleSquareClusters() {
@@ -23,7 +23,7 @@ public class TestClusterSet {
 
     @Test
     void composeClustersCreatesOneClusterOnlyIfTwoOrthogonalAndAdjacentSquaresAreInvolved() {
-        clusterSet.composeClusters();
+        clusterSet.composeClusters(alwaysTrue);
         assertEquals(1, clusterSet.numberOfSets());
     }
 }

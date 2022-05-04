@@ -5,6 +5,7 @@ import it.units.sdm.brique.model.exceptions.PieRuleNotApplicableException;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Set;
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,7 @@ public class Game {
     private final Player player2;
     private final Board gameBoard;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    private final BiPredicate<Square, Square> squaresOccupiedByOrthogonalAndAdjacentStonesPredicate = (Square square1, Square square2) -> Square.manhattanSquareDistance(square1, square2) == 1;
     private Status status = Status.RUNNING;
     private Player activePlayer;
     private final Predicate<Set<Square>> winningCondition = (Set<Square> cluster) -> switch (activePlayer.getStoneColor()) {
@@ -112,7 +114,7 @@ public class Game {
 
     public boolean activePlayerWins() {
         ClusterSet activeCluster = new ClusterSet(getActivePlayerPlacedStones(), activePlayer.getStoneColor());
-        activeCluster.composeClusters();
+        activeCluster.composeClusters(squaresOccupiedByOrthogonalAndAdjacentStonesPredicate);
         return activeCluster.anyClusterMatches(winningCondition);
     }
 
