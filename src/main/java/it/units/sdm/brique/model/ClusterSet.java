@@ -9,27 +9,27 @@ import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class ClusterSet extends UnionFind<Square> {
+public class ClusterSet<T> extends UnionFind<T> {
 
     final Color color;
 
-    public ClusterSet(Set<Square> elements, Color stonesColor) {
+    public ClusterSet(Set<T> elements, Color stonesColor) {
         super(elements);
         this.color = stonesColor;
     }
 
-    public void composeClusters(BiPredicate<Square, Square> belongToSameClusterPredicate) {
+    public void composeClusters(BiPredicate<T, T> belongToSameClusterPredicate) {
         var elements = getParentMap().keySet();
         Sets.cartesianProduct(elements, elements).stream().
                 filter(pair -> belongToSameClusterPredicate.test(pair.get(0), pair.get(1))).
                 forEach(pair -> union(pair.get(0), pair.get(1)));
     }
 
-    public Collection<Set<Square>> getClusters() {
+    public Collection<Set<T>> getClusters() {
         return getParentMap().keySet().stream().collect(Collectors.groupingBy(this::find, Collectors.toSet())).values();
     }
 
-    public boolean anyClusterMatches(Predicate<Set<Square>> evaluationFunction) {
+    public boolean anyClusterMatches(Predicate<Set<T>> evaluationFunction) {
         return getClusters().stream().anyMatch(evaluationFunction);
     }
 }
