@@ -32,4 +32,12 @@ public class TestWhiteSquare {
         Square square = board.getSquare(0,0);
         assertEquals(Collections.emptyList(), square.getEscorts());
     }
+
+    @Test
+    void hasOnlyOneEscortWhenSquareOnTopEdges() {
+        Board board = Board.getBoard();
+        Square square = board.getSquare(0,6);
+        List<Square> expectedEscortList = List.of(board.getLeftSquare(square));
+        assertEquals(expectedEscortList, square.getEscorts());
+    }
 }
