@@ -50,22 +50,6 @@ public class Board {
         return squares[i][j];
     }
 
-    public Square getUpSquare(Square square) {
-        return getSquare(square.getRow() - 1, square.getColumn());
-    }
-
-    public Square getDownSquare(Square square) {
-        return getSquare(square.getRow() + 1, square.getColumn());
-    }
-
-    public Square getLeftSquare(Square square) {
-        return getSquare(square.getRow(), square.getColumn() - 1);
-    }
-
-    public Square getRightSquare(Square square) {
-        return getSquare(square.getRow(), square.getColumn() + 1);
-    }
-
     public Square getUpRightSquare(Square square) {
         return getSquare(square.getRow() - 1, square.getColumn() + 1);
     }

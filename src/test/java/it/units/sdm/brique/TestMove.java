@@ -55,7 +55,7 @@ public class TestMove {
     void escortRuleCorrectlyAppliedOnBlackSquares(int i, int j) {
         //Precondition: The square near the occupied escort is free. The specified coordinates are on a white square.
         setUpBoard(i, j, true);
-        assertEquals(board.getLeftSquare(board.getSquare(i, j)).getStone().get().getColor(), Color.BLACK);
+        assertEquals(board.getSquare(i, j).getLeftSquare().getStone().get().getColor(), Color.BLACK);
     }
 
     @ParameterizedTest
@@ -63,22 +63,22 @@ public class TestMove {
     void escortRuleCorrectlyAppliedOnWhiteSquares(int i, int j) {
         //Precondition: The square near the occupied escort is free. The specified coordinates are on a black square.
         setUpBoard(i, j, true);
-        assertEquals(Color.BLACK, board.getDownSquare(board.getSquare(i, j)).getStone().get().getColor());
+        assertEquals(Color.BLACK, board.getSquare(i, j).getDownSquare().getStone().get().getColor());
     }
 
     @Test
     void escortRuleCorrectlyReplacesEnemyStone(){
         Move whiteMove = new Move(player2);
-        whiteMove.setChosenSquare(board.getLeftSquare(board.getSquare(1,1)));
+        whiteMove.setChosenSquare(board.getSquare(1,1).getLeftSquare());
         whiteMove.make();
         setUpBoard(1,1, true);
-        assertNotEquals(Color.WHITE, board.getLeftSquare(board.getSquare(1, 1)).getStone().get().getColor());
+        assertNotEquals(Color.WHITE, board.getSquare(1, 1).getLeftSquare().getStone().get().getColor());
     }
 
     @Test
     void escortRuleNotAppliedWithEnemyStones(){
         setUpBoard(1,1, false);
-        assertFalse(board.getLeftSquare(board.getSquare(1,1)).isOccupied());
+        assertFalse(board.getSquare(1,1).getLeftSquare().isOccupied());
     }
 
 }

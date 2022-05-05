@@ -39,6 +39,8 @@ public abstract class Square {
         stone = null;
     }
 
+    public abstract List<Square> getEscorts();
+
     public boolean isOccupied() {
         return stone != null;
     }
@@ -59,6 +61,20 @@ public abstract class Square {
         return column == Board.LAST_INDEX;
     }
 
-    public abstract List<Square> getEscorts();
+    public Square getUpSquare() {
+        return Board.getBoard().getSquare(getRow() - 1, getColumn());
+    }
+
+    public Square getDownSquare() {
+        return Board.getBoard().getSquare(getRow() + 1, getColumn());
+    }
+
+    public Square getLeftSquare() {
+        return Board.getBoard().getSquare(getRow(), getColumn() - 1);
+    }
+
+    public Square getRightSquare() {
+        return Board.getBoard().getSquare(getRow(), getColumn() + 1);
+    }
 }
 

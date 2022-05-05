@@ -16,8 +16,8 @@ public class BlackSquare extends Square {
     @Override
     public List<Square> getEscorts() {
         List<Square> escorts = new ArrayList<>(2);
-        if (!this.isBottomEdge()) escorts.add(Board.getBoard().getDownSquare(this));
-        if (!this.isRightEdge()) escorts.add(Board.getBoard().getRightSquare(this));
+        if (!this.isBottomEdge()) escorts.add(getDownSquare());
+        if (!this.isRightEdge()) escorts.add(getRightSquare());
         return escorts;
     }
 }

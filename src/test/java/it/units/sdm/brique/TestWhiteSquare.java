@@ -26,7 +26,7 @@ public class TestWhiteSquare {
     @CsvSource({"1,1", "4,4,", "10,10", "14,14", "12,2", "4,10"})
     void hasExpectedEscortListWhenSquareNotOnEdges(int row, int col) {
         Square square = board.getSquare(row, col);
-        List<Square> expectedEscortList = List.of(board.getUpSquare(square), board.getLeftSquare(square));
+        List<Square> expectedEscortList = List.of(square.getUpSquare(), square.getLeftSquare());
         assertEquals(expectedEscortList, square.getEscorts());
     }
 
@@ -40,7 +40,7 @@ public class TestWhiteSquare {
     @CsvSource({"0,2", "0,6", "0,10", "0,14"})
     void hasOnlyOneEscortWhenSquareOnTopEdge(int row, int col) {
         Square square = board.getSquare(row, col);
-        List<Square> expectedEscortList = List.of(board.getLeftSquare(square));
+        List<Square> expectedEscortList = List.of(square.getLeftSquare());
         assertEquals(expectedEscortList, square.getEscorts());
     }
 
@@ -48,7 +48,7 @@ public class TestWhiteSquare {
     @CsvSource({"2,0", "6,0", "10,0", "14,0"})
     void hasOnlyOneEscortWhenSquareOnLeftEdge(int row, int col) {
         Square square = board.getSquare(row, col);
-        List<Square> expectedEscortList = List.of(board.getUpSquare(square));
+        List<Square> expectedEscortList = List.of(square.getUpSquare());
         assertEquals(expectedEscortList, square.getEscorts());
     }
 }
