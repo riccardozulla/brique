@@ -21,7 +21,7 @@ public class TestWhiteSquare {
     }
 
     @ParameterizedTest
-    @CsvSource({"1,1"})
+    @CsvSource({"1,1", "4,4,", "10,10", "14,14", "12,2", "4,10"})
     void hasExpectedEscortListWhenSquareNotOnEdges(int row, int col) {
         Board board = Board.getBoard();
         Square square = board.getSquare(row,col);
@@ -37,7 +37,7 @@ public class TestWhiteSquare {
     }
 
     @ParameterizedTest
-    @CsvSource({"0,6"})
+    @CsvSource({"0,2", "0,6", "0,10", "0,14"})
     void hasOnlyOneEscortWhenSquareOnTopEdges(int row, int col) {
         Board board = Board.getBoard();
         Square square = board.getSquare(row,col);
@@ -46,7 +46,7 @@ public class TestWhiteSquare {
     }
 
     @ParameterizedTest
-    @CsvSource({"6,0"})
+    @CsvSource({"2,0", "6,0", "10,0", "14,0"})
     void hasOnlyOneEscortWhenSquareOnLeftEdge(int row, int col) {
         Board board = Board.getBoard();
         Square square = board.getSquare(row,col);
