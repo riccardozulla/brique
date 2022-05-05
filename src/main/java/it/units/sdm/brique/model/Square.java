@@ -6,13 +6,11 @@ import java.util.Optional;
 public abstract class Square {
     private final int row;
     private final int column;
-    private final Color color;
     private Stone stone;
 
     public Square(int row, int column) {
         this.row = row;
         this.column = column;
-        this.color = (row + column) % 2 == 0 ? Color.WHITE : Color.BLACK;
     }
 
     public static int manhattanSquareDistance(Square square1, Square square2) {
@@ -27,9 +25,7 @@ public abstract class Square {
         return column;
     }
 
-    public Color getColor() {
-        return color;
-    }
+    public abstract Color getColor();
 
     public Optional<Stone> getStone() {
         return Optional.ofNullable(stone);

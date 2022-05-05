@@ -10,7 +10,7 @@ public class BlackSquare extends Square {
 
     @Override
     public Color getColor() {
-        return null;
+        return Color.BLACK;
     }
 
     @Override
