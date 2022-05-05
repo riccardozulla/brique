@@ -36,7 +36,7 @@ public class TestSquare {
     }
 
     @Test
-    void emptySquareHasNotStoneOnIt() {
+    void isEmptyByDefault() {
         assertFalse(defaultSquare.isOccupied());
     }
 
