@@ -36,18 +36,20 @@ public class TestWhiteSquare {
         assertEquals(Collections.emptyList(), square.getEscorts());
     }
 
-    @Test
-    void hasOnlyOneEscortWhenSquareOnTopEdges() {
+    @ParameterizedTest
+    @CsvSource({"0,6"})
+    void hasOnlyOneEscortWhenSquareOnTopEdges(int row, int col) {
         Board board = Board.getBoard();
-        Square square = board.getSquare(0,6);
+        Square square = board.getSquare(row,col);
         List<Square> expectedEscortList = List.of(board.getLeftSquare(square));
         assertEquals(expectedEscortList, square.getEscorts());
     }
 
-    @Test
-    void hasOnlyOneEscortWhenSquareOnLeftEdge() {
+    @ParameterizedTest
+    @CsvSource({"6,0"})
+    void hasOnlyOneEscortWhenSquareOnLeftEdge(int row, int col) {
         Board board = Board.getBoard();
-        Square square = board.getSquare(6,0);
+        Square square = board.getSquare(row,col);
         List<Square> expectedEscortList = List.of(board.getUpSquare(square));
         assertEquals(expectedEscortList, square.getEscorts());
     }
