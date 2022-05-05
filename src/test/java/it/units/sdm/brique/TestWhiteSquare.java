@@ -6,6 +6,7 @@ import it.units.sdm.brique.model.Square;
 import it.units.sdm.brique.model.WhiteSquare;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,5 +24,12 @@ public class TestWhiteSquare {
         Square square = board.getSquare(1,1);
         List<Square> expectedEscortList = List.of(board.getUpSquare(square), board.getLeftSquare(square));
         assertEquals(expectedEscortList, square.getEscorts());
+    }
+
+    @Test
+    void hasEmptyEscortListWhenSquareOnTopLeftCorner() {
+        Board board = Board.getBoard();
+        Square square = board.getSquare(0,0);
+        assertEquals(Collections.emptyList(), square.getEscorts());
     }
 }
