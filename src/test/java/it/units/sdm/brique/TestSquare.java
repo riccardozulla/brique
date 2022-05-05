@@ -30,7 +30,7 @@ public class TestSquare {
     }
 
     @Test
-    void settingStoneOnSquareMakesGetStonePresent() {
+    void isOccupiedAfterStonePlacement() {
         defaultSquare.setStone(new Stone(Color.BLACK));
         assert (defaultSquare.isOccupied());
     }
