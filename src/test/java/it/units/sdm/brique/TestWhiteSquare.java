@@ -5,6 +5,8 @@ import it.units.sdm.brique.model.Color;
 import it.units.sdm.brique.model.Square;
 import it.units.sdm.brique.model.WhiteSquare;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Collections;
 import java.util.List;
@@ -18,10 +20,11 @@ public class TestWhiteSquare {
         assertEquals(Color.WHITE, new WhiteSquare(0,0).getColor());
     }
 
-    @Test
-    void hasExpectedEscortListWhenSquareNotOnEdges() {
+    @ParameterizedTest
+    @CsvSource({"1,1"})
+    void hasExpectedEscortListWhenSquareNotOnEdges(int row, int col) {
         Board board = Board.getBoard();
-        Square square = board.getSquare(1,1);
+        Square square = board.getSquare(row,col);
         List<Square> expectedEscortList = List.of(board.getUpSquare(square), board.getLeftSquare(square));
         assertEquals(expectedEscortList, square.getEscorts());
     }
