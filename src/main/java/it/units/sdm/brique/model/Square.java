@@ -1,10 +1,9 @@
 package it.units.sdm.brique.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Square {
+public abstract class Square {
     private final int row;
     private final int column;
     private final Color color;
@@ -64,21 +63,6 @@ public class Square {
         return column == Board.LAST_INDEX;
     }
 
-    public List<Square> getEscorts() {
-        List<Square> escorts = new ArrayList<>();
-        if(this.color == Color.WHITE) {
-            if(!this.isTopEdge())
-                escorts.add(Board.getBoard().getUpSquare(this));
-            if(!this.isLeftEdge())
-                escorts.add(Board.getBoard().getLeftSquare(this));
-        }
-        else {
-            if(!this.isBottomEdge())
-                escorts.add(Board.getBoard().getDownSquare(this));
-            if(!this.isRightEdge())
-                escorts.add(Board.getBoard().getRightSquare(this));
-        }
-        return escorts;
-    }
+    public abstract List<Square> getEscorts();
 }
 
