@@ -38,7 +38,7 @@ public class TestWhiteSquare {
 
     @ParameterizedTest
     @CsvSource({"0,2", "0,6", "0,10", "0,14"})
-    void hasOnlyOneEscortWhenSquareOnTopEdges(int row, int col) {
+    void hasOnlyOneEscortWhenSquareOnTopEdge(int row, int col) {
         Board board = Board.getBoard();
         Square square = board.getSquare(row,col);
         List<Square> expectedEscortList = List.of(board.getLeftSquare(square));
