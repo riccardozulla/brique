@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestBlackSquare {
 
+    Board board = Board.getBoard();
+
     @Test
     void color() {
         assertEquals(Color.BLACK, new BlackSquare(0, 0).getColor());
@@ -22,7 +24,6 @@ public class TestBlackSquare {
     @ParameterizedTest
     @CsvSource({"0,1", "4,5", "7,8", "12,13",})
     void hasExpectedEscortListWhenSquareNotOnEdges(int row, int col) {
-        Board board = Board.getBoard();
         Square square = board.getSquare(row, col);
         List<Square> expectedEscortList = List.of(board.getDownSquare(square), board.getRightSquare(square));
         assertEquals(expectedEscortList, square.getEscorts());
@@ -31,7 +32,6 @@ public class TestBlackSquare {
     @ParameterizedTest
     @CsvSource({"14,1", "14,5", "14,9", "14,13"})
     void hasOnlyOneEscortWhenSquareOnBottomEdge(int row, int col) {
-        Board board = Board.getBoard();
         Square square = board.getSquare(row, col);
         List<Square> expectedEscortList = List.of(board.getRightSquare(square));
         assertEquals(expectedEscortList, square.getEscorts());
@@ -40,7 +40,6 @@ public class TestBlackSquare {
     @ParameterizedTest
     @CsvSource({"1,14", "5,14", "9,14", "13,14"})
     void hasOnlyOneEscortWhenSquareOnLeftEdge(int row, int col) {
-        Board board = Board.getBoard();
         Square square = board.getSquare(row, col);
         List<Square> expectedEscortList = List.of(board.getDownSquare(square));
         assertEquals(expectedEscortList, square.getEscorts());
