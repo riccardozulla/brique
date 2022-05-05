@@ -16,7 +16,7 @@ public class Board {
         this.squares = new Square[BOARD_SIZE][BOARD_SIZE];
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
-                squares[i][j] = new Square(i, j);
+                squares[i][j] = (i + j) % 2 == 0 ? new WhiteSquare(i, j) : new BlackSquare(i, j);
             }
         }
     }
