@@ -4,7 +4,7 @@ public class Player {
     private final String nickname;
     private Color stoneColor;
 
-    public Player (String nickname, Color stoneColor){
+    public Player(String nickname, Color stoneColor) {
         this.nickname = nickname;
         this.stoneColor = stoneColor;
     }
