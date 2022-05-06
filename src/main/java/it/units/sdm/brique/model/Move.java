@@ -30,11 +30,11 @@ public class Move {
     }
 
     private void applyEscortRule() {
-        chosenSquare.getEscorts().forEach(square -> {
-            if (square.getEscorts().stream().allMatch(escort ->
-                    escort.getStone().isPresent() && escort.getStone().get().getColor() == player.getStoneColor()
-            ) && square.getEscorts().size() == 2) {
-                placeStone(square);
+        chosenSquare.getEscorts().forEach(escortSquare -> {
+            if (escortSquare.getEscorts().stream().allMatch(diagonalSquare ->
+                    diagonalSquare.getStone().isPresent() && diagonalSquare.getStone().get().getColor() == player.getStoneColor()
+            ) && escortSquare.getEscorts().size() == 2) {
+                placeStone(escortSquare);
             }
         });
     }
