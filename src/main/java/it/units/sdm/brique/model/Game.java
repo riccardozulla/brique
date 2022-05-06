@@ -21,7 +21,7 @@ public class Game {
         case BLACK -> cluster.stream().anyMatch(Square::isTopEdge) && cluster.stream().anyMatch(Square::isBottomEdge);
         case WHITE -> cluster.stream().anyMatch(Square::isLeftEdge) && cluster.stream().anyMatch(Square::isRightEdge);
     };
-    private boolean firstGameMoveDone;
+    private boolean firstGameTurnDone;
     private boolean pieRuleApplicable;
 
     public Game(Player player1, Player player2) {
@@ -85,8 +85,8 @@ public class Game {
     }
 
     private void togglePieRule() {
-        if (!firstGameMoveDone) {
-            firstGameMoveDone = true;
+        if (!firstGameTurnDone) {
+            firstGameTurnDone = true;
             pieRuleApplicable = true;
         } else if (pieRuleApplicable) {
             pieRuleApplicable = false;
