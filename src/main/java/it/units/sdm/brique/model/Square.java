@@ -7,7 +7,6 @@ public abstract class Square {
     private final int row;
     private final int column;
     private Stone stone;
-    private static final Board board = Board.getBoard();
 
     public Square(int row, int column) {
         this.row = row;
