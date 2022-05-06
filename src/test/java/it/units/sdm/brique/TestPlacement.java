@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestMove {
+public class TestPlacement {
 
     private final Board board = Board.getBoard();
     private final Player player1 = new Player("defaultName1", Color.BLACK);
@@ -23,31 +23,31 @@ public class TestMove {
 
     void setUpBoard(int i, int j, boolean samePlayer) {
         Square square = board.getSquare(i, j);
-        Move firstMove = new Move(player1);
-        firstMove.setChosenSquare(board.getDownLeftSquare(square));
-        firstMove.make();
-        Move secondMove;
-        if (samePlayer) secondMove = new Move(player1);
-        else secondMove = new Move(player2);
-        secondMove.setChosenSquare(board.getSquare(i, j));
-        secondMove.make();
+        Placement firstPlacement = new Placement(player1);
+        firstPlacement.setChosenSquare(board.getDownLeftSquare(square));
+        firstPlacement.make();
+        Placement secondPlacement;
+        if (samePlayer) secondPlacement = new Placement(player1);
+        else secondPlacement = new Placement(player2);
+        secondPlacement.setChosenSquare(board.getSquare(i, j));
+        secondPlacement.make();
     }
 
     @ParameterizedTest
     @CsvSource({"0,0","2,2","4,4","6,6","8,8","10,10","12,12","14,14"})
     void makeMoveAddsStoneOnTheChosenSquare(int i, int j)
     {
-        Move move = new Move(player1);
-        move.setChosenSquare(board.getSquare(i,j));
-        move.make();
+        Placement placement = new Placement(player1);
+        placement.setChosenSquare(board.getSquare(i,j));
+        placement.make();
         assertTrue(board.getSquare(i,j).isOccupied());
     }
 
     @Test
     void placeStoneInOccupiedSquare() {
         board.getSquare(0, 0).setStone(new Stone(Color.BLACK));
-        Move move = new Move(new Player("Player", Color.BLACK));
-        assertThrowsExactly(StoneAlreadyPresentException.class, () -> move.setChosenSquare(Board.getBoard().getSquare(0, 0)));
+        Placement placement = new Placement(new Player("Player", Color.BLACK));
+        assertThrowsExactly(StoneAlreadyPresentException.class, () -> placement.setChosenSquare(Board.getBoard().getSquare(0, 0)));
     }
 
     @ParameterizedTest
@@ -68,9 +68,9 @@ public class TestMove {
 
     @Test
     void escortRuleCorrectlyReplacesEnemyStone(){
-        Move whiteMove = new Move(player2);
-        whiteMove.setChosenSquare(board.getSquare(1,1).getLeftSquare());
-        whiteMove.make();
+        Placement whitePlacement = new Placement(player2);
+        whitePlacement.setChosenSquare(board.getSquare(1,1).getLeftSquare());
+        whitePlacement.make();
         setUpBoard(1,1, true);
         assertNotEquals(Color.WHITE, board.getSquare(1, 1).getLeftSquare().getStone().get().getColor());
     }

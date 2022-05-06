@@ -73,9 +73,9 @@ public class Game {
     }
 
     public void addStone(Square square) {
-        Move move = new Move(activePlayer);
-        move.setChosenSquare(square);
-        move.make();
+        Placement placement = new Placement(activePlayer);
+        placement.setChosenSquare(square);
+        placement.make();
         if (activePlayerWins()) {
             stateWinningStatus();
             return;

@@ -4,11 +4,11 @@ import it.units.sdm.brique.model.exceptions.StoneAlreadyPresentException;
 
 import java.util.List;
 
-public class Move {
+public class Placement {
     private final Player player;
     private Square chosenSquare;
 
-    public Move(Player player) {
+    public Placement(Player player) {
         this.player = player;
     }
 
@@ -41,7 +41,7 @@ public class Move {
 
     private boolean areBothEscortsOccupiedByFriendlyStones(Square square) {
         List<Square> escortList = square.getEscorts();
-        if (escortList.size() != 2 ) return false;
+        if (escortList.size() != 2) return false;
         return escortList.stream().allMatch(escort -> escort.getStone().isPresent() && stoneBelongsToPlayer(escort.getStone().get()));
     }
 
