@@ -2,6 +2,8 @@ package it.units.sdm.brique.model;
 
 import it.units.sdm.brique.model.exceptions.StoneAlreadyPresentException;
 
+import java.util.List;
+
 public class Move {
     private final Player player;
     private Square chosenSquare;
@@ -31,12 +33,16 @@ public class Move {
 
     private void applyEscortRule() {
         chosenSquare.getEscorts().forEach(escortSquare -> {
-            if (escortSquare.getEscorts().stream().allMatch(diagonalSquare ->
-                    diagonalSquare.getStone().isPresent() && diagonalSquare.getStone().get().getColor() == player.getStoneColor()
-            ) && escortSquare.getEscorts().size() == 2) {
+            if (areBothEscortsOccupiedByFriendlyStones(escortSquare)) {
                 placeStone(escortSquare);
             }
         });
+    }
+
+    private boolean areBothEscortsOccupiedByFriendlyStones(Square square) {
+        List<Square> escortList = square.getEscorts();
+        if (escortList.size() != 2 ) return false;
+        return escortList.stream().allMatch(escort -> escort.getStone().isPresent() && stoneBelongsToPlayer(escort.getStone().get()));
     }
 
     private boolean stoneBelongsToPlayer(Stone stone) {
