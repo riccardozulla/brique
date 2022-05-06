@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class Game {
     private final Player player1;
     private final Player player2;
-    private final Board gameBoard;
+    private final Board gameBoard = Board.getBoard();
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private final BiPredicate<Square, Square> squaresOccupiedByOrthogonalAndAdjacentStonesPredicate = (Square square1, Square square2) -> Square.manhattanSquareDistance(square1, square2) == 1;
     private Status status = Status.RUNNING;
@@ -27,7 +27,6 @@ public class Game {
     public Game(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
-        this.gameBoard = Board.getBoard();
         this.gameBoard.reset();
         if (player1.getStoneColor() == Color.BLACK) {
             activePlayer = player1;
@@ -50,10 +49,6 @@ public class Game {
 
     public Player getPlayer2() {
         return player2;
-    }
-
-    public Board getGameBoard() {
-        return gameBoard;
     }
 
     public void switchActivePlayer() {
@@ -114,9 +109,7 @@ public class Game {
     }
 
     private Set<Square> getActivePlayerPlacedStones() {
-        return gameBoard.getOccupiedSquares().stream().
-                filter(square -> square.getStone().get().getColor() == activePlayer.getStoneColor()).
-                collect(Collectors.toSet());
+        return gameBoard.getOccupiedSquares().stream().filter(square -> square.getStone().get().getColor() == activePlayer.getStoneColor()).collect(Collectors.toSet());
     }
 
     public void addActivePlayerListener(PropertyChangeListener listener) {

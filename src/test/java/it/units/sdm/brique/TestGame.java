@@ -16,7 +16,7 @@ public class TestGame {
     private final Player player1 = new Player("Player1", Color.BLACK);
     private final Player player2 = new Player("Player2", Color.WHITE);
     private final Game game = new Game(player1, player2);
-    private final Board board = game.getGameBoard();
+    private final Board board = Board.getBoard();
 
     @BeforeEach
     void resetBoard() {
@@ -30,7 +30,7 @@ public class TestGame {
 
     @Test
     void addStoneMakesSquareOccupied() {
-        Square square = game.getGameBoard().getSquare(0, 0);
+        Square square = board.getSquare(0, 0);
         game.addStone(square);
         assert (square.isOccupied());
     }
