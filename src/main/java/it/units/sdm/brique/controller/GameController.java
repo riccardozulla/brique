@@ -1,7 +1,7 @@
 package it.units.sdm.brique.controller;
 
 import it.units.sdm.brique.model.Game;
-import it.units.sdm.brique.model.PlayerHolder;
+import it.units.sdm.brique.utility.PlayerHolder;
 import it.units.sdm.brique.model.Status;
 import it.units.sdm.brique.ui.GraphicBoard;
 import it.units.sdm.brique.ui.GraphicSquare;

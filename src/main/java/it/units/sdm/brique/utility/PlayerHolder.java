@@ -1,4 +1,6 @@
-package it.units.sdm.brique.model;
+package it.units.sdm.brique.utility;
+
+import it.units.sdm.brique.model.Player;
 
 public final class PlayerHolder {
     private Player player1;

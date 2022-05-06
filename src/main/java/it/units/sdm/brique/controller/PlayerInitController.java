@@ -2,7 +2,7 @@ package it.units.sdm.brique.controller;
 
 import it.units.sdm.brique.model.Color;
 import it.units.sdm.brique.model.Player;
-import it.units.sdm.brique.model.PlayerHolder;
+import it.units.sdm.brique.utility.PlayerHolder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
