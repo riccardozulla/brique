@@ -9,7 +9,7 @@ public class Board {
     public static final int BOARD_SIZE = 15;
     public static final int FIRST_INDEX = 0;
     public static final int LAST_INDEX = BOARD_SIZE - 1;
-    private static Board boardInstance;
+    private static Board boardInstance = new Board();
     private final Square[][] squares;
 
     private Board() {
@@ -26,7 +26,6 @@ public class Board {
     }
 
     public static Board getBoard() {
-        if (boardInstance == null) boardInstance = new Board();
         return boardInstance;
     }
 
