@@ -12,8 +12,6 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//TODO: Test when a stone is in a corner
-
 public class TestGame {
     private final Player player1 = new Player("Player1", Color.BLACK);
     private final Player player2 = new Player("Player2", Color.WHITE);
