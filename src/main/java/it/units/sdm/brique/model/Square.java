@@ -1,17 +1,17 @@
 package it.units.sdm.brique.model;
 
+import java.util.List;
 import java.util.Optional;
 
-public class Square {
+public abstract class Square {
     private final int row;
     private final int column;
-    private final Color color;
     private Stone stone;
+    private static final Board board = Board.getBoard();
 
     public Square(int row, int column) {
         this.row = row;
         this.column = column;
-        this.color = (row + column) % 2 == 0 ? Color.WHITE : Color.BLACK;
     }
 
     public static int manhattanSquareDistance(Square square1, Square square2) {
@@ -26,9 +26,7 @@ public class Square {
         return column;
     }
 
-    public Color getColor() {
-        return color;
-    }
+    public abstract Color getColor();
 
     public Optional<Stone> getStone() {
         return Optional.ofNullable(stone);
@@ -41,6 +39,8 @@ public class Square {
     public void removeStone() {
         stone = null;
     }
+
+    public abstract List<Square> getEscorts();
 
     public boolean isOccupied() {
         return stone != null;
@@ -60,6 +60,22 @@ public class Square {
 
     public boolean isRightEdge() {
         return column == Board.LAST_INDEX;
+    }
+
+    public Square getUpSquare() {
+        return Board.getBoard().getSquare(getRow() - 1, getColumn());
+    }
+
+    public Square getDownSquare() {
+        return Board.getBoard().getSquare(getRow() + 1, getColumn());
+    }
+
+    public Square getLeftSquare() {
+        return Board.getBoard().getSquare(getRow(), getColumn() - 1);
+    }
+
+    public Square getRightSquare() {
+        return Board.getBoard().getSquare(getRow(), getColumn() + 1);
     }
 }
 
