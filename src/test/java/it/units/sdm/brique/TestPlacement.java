@@ -52,7 +52,7 @@ public class TestPlacement {
 
     @ParameterizedTest
     @CsvSource({"8, 12", "1, 1", "5, 7", "5, 6", "6, 9", "10, 11"})
-    void escortRuleCorrectlyAppliedOnBlackSquares(int i, int j) {
+    void escortRuleCorrectlyApplied(int i, int j) {
         Square square = board.getSquare(i,j);
         square.getEscorts().forEach(escortSquare -> makePlacement(escortSquare, player1));
         assertEquals(Color.BLACK, square.getStone().get().getColor());
