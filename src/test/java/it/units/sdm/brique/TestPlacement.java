@@ -21,8 +21,8 @@ public class TestPlacement {
         board.reset();
     }
 
-    void setUpBoard(int i, int j, Color color) {
-        board.getSquare(i, j).setStone(new Stone(color));
+    void setUpBoard(Square square, Color color) {
+        square.setStone(new Stone(color));
     }
 
     Square getDownLeft(Square square) {
@@ -33,56 +33,64 @@ public class TestPlacement {
     @CsvSource({"0,0","2,2","4,4","6,6","8,8","10,10","12,12","14,14"})
     void makeMoveAddsStoneOnTheChosenSquare(int i, int j)
     {
+        Square chosenSquare = board.getSquare(i,j);
         Placement placement = new Placement(player1);
-        placement.setChosenSquare(board.getSquare(i,j));
+        placement.setChosenSquare(chosenSquare);
         placement.make();
-        assertTrue(board.getSquare(i,j).isOccupied());
+        assertTrue(chosenSquare.isOccupied());
     }
 
     @Test
     void placeStoneInOccupiedSquare() {
-        setUpBoard(0,0, player1.getStoneColor());
+        Square chosenSquare = board.getSquare(0,0);
+        setUpBoard(chosenSquare, player1.getStoneColor());
         Placement placement = new Placement(player1);
-        assertThrowsExactly(StoneAlreadyPresentException.class, () -> placement.setChosenSquare(Board.getBoard().getSquare(0, 0)));
+        assertThrowsExactly(StoneAlreadyPresentException.class, () -> placement.setChosenSquare(chosenSquare));
     }
 
     @ParameterizedTest
     @CsvSource({"8, 12", "1, 1", "5, 7"})
     void escortRuleCorrectlyAppliedOnBlackSquares(int i, int j) {
         //Precondition: The square near the occupied escort is free. The specified coordinates are on a white square.
-        setUpBoard(i+1, j-1, player1.getStoneColor());
+        Square chosenSquare = board.getSquare(i,j);
+        setUpBoard(getDownLeft(chosenSquare), player1.getStoneColor());
         Placement placement = new Placement(player1);
-        placement.setChosenSquare(board.getSquare(i, j));
+        placement.setChosenSquare(chosenSquare);
         placement.make();
-        assertEquals(board.getSquare(i, j).getLeftSquare().getStone().get().getColor(), Color.BLACK);
+        assertEquals(Color.BLACK, chosenSquare.getLeftSquare().getStone().get().getColor());
     }
 
     @ParameterizedTest
     @CsvSource({"5, 6", "6, 9", "10, 11"})
     void escortRuleCorrectlyAppliedOnWhiteSquares(int i, int j) {
         //Precondition: The square near the occupied escort is free. The specified coordinates are on a black square.
-        setUpBoard(i+1, j-1, player1.getStoneColor());
+        Square chosenSquare = board.getSquare(i,j);
+        setUpBoard(getDownLeft(chosenSquare), player1.getStoneColor());
         Placement placement = new Placement(player1);
-        placement.setChosenSquare(board.getSquare(i, j));
+        placement.setChosenSquare(chosenSquare);
         placement.make();
-        assertEquals(Color.BLACK, board.getSquare(i, j).getDownSquare().getStone().get().getColor());
+        assertEquals(Color.BLACK, chosenSquare.getDownSquare().getStone().get().getColor());
     }
 
     @Test
     void escortRuleCorrectlyReplacesEnemyStone(){
-        setUpBoard(1, 0, player2.getStoneColor());
-        setUpBoard(2, 0, player1.getStoneColor());
+        Square chosenSquare = board.getSquare(1,1);
+        setUpBoard(chosenSquare.getLeftSquare(), player2.getStoneColor());
+        setUpBoard(getDownLeft(chosenSquare), player1.getStoneColor());
         Placement placement = new Placement(player1);
-        placement.setChosenSquare(board.getSquare(1, 1));
+        placement.setChosenSquare(chosenSquare);
         placement.make();
-        assertNotEquals(Color.WHITE, board.getSquare(1, 1).getLeftSquare().getStone().get().getColor());
+        assertNotEquals(Color.WHITE, chosenSquare.getLeftSquare().getStone().get().getColor());
     }
 
     @Test
     void escortRuleNotAppliedWithEnemyStones(){
-        setUpBoard(2, 0, player1.getStoneColor());
+        Square chosenSquare = board.getSquare(1,1);
+        setUpBoard(getDownLeft(chosenSquare), player1.getStoneColor());
         Placement placement = new Placement(player2);
-        assertFalse(board.getSquare(1,1).getLeftSquare().isOccupied());
+        placement.setChosenSquare(chosenSquare);
+        placement.make();
+        assertFalse(chosenSquare.getLeftSquare().isOccupied());
     }
 
 }
