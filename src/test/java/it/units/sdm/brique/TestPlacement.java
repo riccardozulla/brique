@@ -32,9 +32,7 @@ public class TestPlacement {
     @CsvSource({"0,0", "2,2", "4,4", "6,6", "8,8", "10,10", "12,12", "14,14"})
     void makeMoveAddsStoneOnTheChosenSquare(int i, int j) {
         Square chosenSquare = board.getSquare(i, j);
-        Placement placement = new Placement(player1);
-        placement.setChosenSquare(chosenSquare);
-        placement.make();
+        makePlacement(chosenSquare, player1);
         assertTrue(chosenSquare.isOccupied());
     }
 
