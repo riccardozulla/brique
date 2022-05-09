@@ -1,12 +1,11 @@
 package it.units.sdm.brique;
 
 import it.units.sdm.brique.model.*;
+import it.units.sdm.brique.model.exceptions.StoneAlreadyPresentException;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import it.units.sdm.brique.model.exceptions.StoneAlreadyPresentException;
-import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -23,10 +22,6 @@ public class TestPlacement {
         board.reset();
     }
 
-    private Square getDownLeft(Square square) {
-        return square.getDownSquare().getLeftSquare();
-    }
-
     private void makePlacement(Square square, Player player) {
         Placement placement = new Placement(player);
         placement.setChosenSquare(square);
@@ -34,10 +29,9 @@ public class TestPlacement {
     }
 
     @ParameterizedTest
-    @CsvSource({"0,0","2,2","4,4","6,6","8,8","10,10","12,12","14,14"})
-    void makeMoveAddsStoneOnTheChosenSquare(int i, int j)
-    {
-        Square chosenSquare = board.getSquare(i,j);
+    @CsvSource({"0,0", "2,2", "4,4", "6,6", "8,8", "10,10", "12,12", "14,14"})
+    void makeMoveAddsStoneOnTheChosenSquare(int i, int j) {
+        Square chosenSquare = board.getSquare(i, j);
         Placement placement = new Placement(player1);
         placement.setChosenSquare(chosenSquare);
         placement.make();
@@ -46,7 +40,7 @@ public class TestPlacement {
 
     @Test
     void placeStoneInOccupiedSquare() {
-        Square chosenSquare = board.getSquare(0,0);
+        Square chosenSquare = board.getSquare(0, 0);
         chosenSquare.setStone(new Stone(player1.getStoneColor()));
         Placement placement = new Placement(player1);
         assertThrowsExactly(StoneAlreadyPresentException.class, () -> placement.setChosenSquare(chosenSquare));
@@ -55,26 +49,25 @@ public class TestPlacement {
     @ParameterizedTest
     @CsvSource({"8, 12", "1, 1", "5, 7", "5, 6", "6, 9", "10, 11"})
     void escortRuleCorrectlyApplied(int i, int j) {
-        Square square = board.getSquare(i,j);
+        Square square = board.getSquare(i, j);
         square.getEscorts().forEach(escortSquare -> makePlacement(escortSquare, player1));
         assertEquals(Color.BLACK, square.getStone().get().getColor());
     }
 
     @Test
-    void escortRuleCorrectlyReplacesEnemyStone(){
-        Square square = board.getSquare(1,1);
+    void escortRuleCorrectlyReplacesEnemyStone() {
+        Square square = board.getSquare(1, 1);
         makePlacement(square, player2);
         square.getEscorts().forEach(escortSquare -> makePlacement(escortSquare, player1));
         assertNotEquals(Color.WHITE, square.getStone().get().getColor());
     }
 
     @Test
-    void escortRuleNotAppliedWithEnemyStones(){
-        Square square = board.getSquare(1,1);
+    void escortRuleNotAppliedWithEnemyStones() {
+        Square square = board.getSquare(1, 1);
         List<Square> escorts = square.getEscorts();
         makePlacement(escorts.get(0), player1);
         makePlacement(escorts.get(1), player2);
         assertFalse(square.isOccupied());
     }
-
 }
