@@ -21,16 +21,12 @@ public class TestPlacement {
         board.reset();
     }
 
-    void setUpBoard(int i, int j, boolean samePlayer) {
-        Square square = board.getSquare(i, j);
-        Placement firstPlacement = new Placement(player1);
-        firstPlacement.setChosenSquare(board.getDownLeftSquare(square));
-        firstPlacement.make();
-        Placement secondPlacement;
-        if (samePlayer) secondPlacement = new Placement(player1);
-        else secondPlacement = new Placement(player2);
-        secondPlacement.setChosenSquare(board.getSquare(i, j));
-        secondPlacement.make();
+    void addStone(Square square, Color color) {
+        square.setStone(new Stone(color));
+    }
+
+    void setUpBoard(int i, int j, Color color) {
+        addStone(board.getSquare(i, j), color);
     }
 
     @ParameterizedTest
@@ -45,8 +41,8 @@ public class TestPlacement {
 
     @Test
     void placeStoneInOccupiedSquare() {
-        board.getSquare(0, 0).setStone(new Stone(Color.BLACK));
-        Placement placement = new Placement(new Player("Player", Color.BLACK));
+        setUpBoard(0,0, player1.getStoneColor());
+        Placement placement = new Placement(player1);
         assertThrowsExactly(StoneAlreadyPresentException.class, () -> placement.setChosenSquare(Board.getBoard().getSquare(0, 0)));
     }
 
@@ -54,7 +50,10 @@ public class TestPlacement {
     @CsvSource({"8, 12", "1, 1", "5, 7"})
     void escortRuleCorrectlyAppliedOnBlackSquares(int i, int j) {
         //Precondition: The square near the occupied escort is free. The specified coordinates are on a white square.
-        setUpBoard(i, j, true);
+        setUpBoard(i+1, j-1, player1.getStoneColor());
+        Placement placement = new Placement(player1);
+        placement.setChosenSquare(board.getSquare(i, j));
+        placement.make();
         assertEquals(board.getSquare(i, j).getLeftSquare().getStone().get().getColor(), Color.BLACK);
     }
 
@@ -62,22 +61,27 @@ public class TestPlacement {
     @CsvSource({"5, 6", "6, 9", "10, 11"})
     void escortRuleCorrectlyAppliedOnWhiteSquares(int i, int j) {
         //Precondition: The square near the occupied escort is free. The specified coordinates are on a black square.
-        setUpBoard(i, j, true);
+        setUpBoard(i+1, j-1, player1.getStoneColor());
+        Placement placement = new Placement(player1);
+        placement.setChosenSquare(board.getSquare(i, j));
+        placement.make();
         assertEquals(Color.BLACK, board.getSquare(i, j).getDownSquare().getStone().get().getColor());
     }
 
     @Test
     void escortRuleCorrectlyReplacesEnemyStone(){
-        Placement whitePlacement = new Placement(player2);
-        whitePlacement.setChosenSquare(board.getSquare(1,1).getLeftSquare());
-        whitePlacement.make();
-        setUpBoard(1,1, true);
+        setUpBoard(1, 0, player2.getStoneColor());
+        setUpBoard(2, 0, player1.getStoneColor());
+        Placement placement = new Placement(player1);
+        placement.setChosenSquare(board.getSquare(1, 1));
+        placement.make();
         assertNotEquals(Color.WHITE, board.getSquare(1, 1).getLeftSquare().getStone().get().getColor());
     }
 
     @Test
     void escortRuleNotAppliedWithEnemyStones(){
-        setUpBoard(1,1, false);
+        setUpBoard(2, 0, player1.getStoneColor());
+        Placement placement = new Placement(player2);
         assertFalse(board.getSquare(1,1).getLeftSquare().isOccupied());
     }
 
