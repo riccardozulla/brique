@@ -57,7 +57,7 @@ public class Game {
         pcs.firePropertyChange("activePlayer", oldValue, activePlayer);
     }
 
-    public void stateWinningStatus() {
+    private void stateWinningStatus() {
         Status oldValue = this.status;
         if (activePlayer.getStoneColor() == Color.BLACK) {
             status = Status.BLACK_WINS;
