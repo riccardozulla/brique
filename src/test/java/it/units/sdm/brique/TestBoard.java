@@ -4,18 +4,12 @@ import it.units.sdm.brique.model.Board;
 import it.units.sdm.brique.model.Color;
 import it.units.sdm.brique.model.Square;
 import it.units.sdm.brique.model.Stone;
-import org.checkerframework.framework.qual.DefaultQualifier;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +18,8 @@ public class TestBoard {
 
     @Test
     void numberOfSquaresIsTheExpectedOne() {
-        assertEquals(Board.BOARD_SIZE * Board.BOARD_SIZE, board.getSquaresStream().count());
+        int expectedNumberOfSquares = Board.BOARD_SIZE * Board.BOARD_SIZE;
+        assertEquals(expectedNumberOfSquares, board.getSquaresStream().count());
     }
 
     @ParameterizedTest
