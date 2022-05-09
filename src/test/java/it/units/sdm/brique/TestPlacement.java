@@ -25,6 +25,10 @@ public class TestPlacement {
         board.getSquare(i, j).setStone(new Stone(color));
     }
 
+    Square getDownLeft(Square square) {
+        return square.getDownSquare().getLeftSquare();
+    }
+
     @ParameterizedTest
     @CsvSource({"0,0","2,2","4,4","6,6","8,8","10,10","12,12","14,14"})
     void makeMoveAddsStoneOnTheChosenSquare(int i, int j)
