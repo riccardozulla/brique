@@ -58,17 +58,6 @@ public class TestPlacement {
         assertEquals(Color.BLACK, square.getStone().get().getColor());
     }
 
-    @ParameterizedTest
-    @CsvSource({"5, 6", "6, 9", "10, 11"})
-    void escortRuleCorrectlyAppliedOnWhiteSquares(int i, int j) {
-        Square chosenSquare = board.getSquare(i,j);
-        getDownLeft(chosenSquare).setStone(new Stone(player1.getStoneColor()));
-        Placement placement = new Placement(player1);
-        placement.setChosenSquare(chosenSquare);
-        placement.make();
-        assertEquals(Color.BLACK, chosenSquare.getDownSquare().getStone().get().getColor());
-    }
-
     @Test
     void escortRuleCorrectlyReplacesEnemyStone(){
         Square chosenSquare = board.getSquare(1,1);
