@@ -94,21 +94,21 @@ public class TestSquare {
     @CsvSource({"0,0", "1,0", "2,0", "3,0", "4,0", "5,0", "6,0", "7,0", "8,0", "9,0", "10,0", "11,0", "12,0", "13,0", "14,0"})
     void getColumnOnLeftEdgeSquareReturnsExpectedValue(int i, int j) {
         Square firstColSquare = generateMockSquare(i, j);
-        assertEquals(0, firstColSquare.getColumn());
+        assertEquals(Board.FIRST_INDEX, firstColSquare.getColumn());
     }
 
     @ParameterizedTest
     @CsvSource({"0,0", "0,1", "0,2", "0,3", "0,4", "0,5", "0,6", "0,7", "0,8", "0,9", "0,10", "0,11", "0,12", "0,13", "0,14"})
     void getRowOnTopEdgeSquareReturnsExpectedValue(int i, int j) {
         Square firstRowSquare = generateMockSquare(i, j);
-        assertEquals(0, firstRowSquare.getRow());
+        assertEquals(Board.FIRST_INDEX, firstRowSquare.getRow());
     }
 
     @ParameterizedTest
     @CsvSource({"14,0", "14,1", "14,2", "14,3", "14,4", "14,5", "14,6", "14,7", "14,8", "14,9", "14,10", "14,11", "14,12", "14,13", "14,14"})
     void getRowOnBottomEdgeSquareReturnsExpectedValue(int i, int j) {
         Square lastRowSquare = generateMockSquare(i, j);
-        assertEquals(14, lastRowSquare.getRow());
+        assertEquals(Board.LAST_INDEX, lastRowSquare.getRow());
     }
 
     @ParameterizedTest
