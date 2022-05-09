@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import it.units.sdm.brique.model.exceptions.StoneAlreadyPresentException;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPlacement {
@@ -60,23 +62,19 @@ public class TestPlacement {
 
     @Test
     void escortRuleCorrectlyReplacesEnemyStone(){
-        Square chosenSquare = board.getSquare(1,1);
-        chosenSquare.getLeftSquare().setStone(new Stone(player2.getStoneColor()));
-        getDownLeft(chosenSquare).setStone(new Stone(player1.getStoneColor()));
-        Placement placement = new Placement(player1);
-        placement.setChosenSquare(chosenSquare);
-        placement.make();
-        assertNotEquals(Color.WHITE, chosenSquare.getLeftSquare().getStone().get().getColor());
+        Square square = board.getSquare(1,1);
+        makePlacement(square, player2);
+        square.getEscorts().forEach(escortSquare -> makePlacement(escortSquare, player1));
+        assertNotEquals(Color.WHITE, square.getStone().get().getColor());
     }
 
     @Test
     void escortRuleNotAppliedWithEnemyStones(){
-        Square chosenSquare = board.getSquare(1,1);
-        getDownLeft(chosenSquare).setStone(new Stone(player1.getStoneColor()));
-        Placement placement = new Placement(player2);
-        placement.setChosenSquare(chosenSquare);
-        placement.make();
-        assertFalse(chosenSquare.getLeftSquare().isOccupied());
+        Square square = board.getSquare(1,1);
+        List<Square> escorts = square.getEscorts();
+        makePlacement(escorts.get(0), player1);
+        makePlacement(escorts.get(1), player2);
+        assertFalse(square.isOccupied());
     }
 
 }
