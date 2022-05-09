@@ -3,6 +3,7 @@ package it.units.sdm.brique;
 import it.units.sdm.brique.model.Color;
 import it.units.sdm.brique.model.Player;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestPlayer {
@@ -11,12 +12,12 @@ public class TestPlayer {
     Player player2 = new Player("Player2", Color.WHITE);
 
     @Test
-    void player1NicknameCorrectlyAssigned(){
+    void player1NicknameCorrectlyAssigned() {
         assertEquals("Player1", player1.getNickname());
     }
 
     @Test
-    void player2NicknameCorrectlyAssigned(){
+    void player2NicknameCorrectlyAssigned() {
         assertEquals("Player2", player2.getNickname());
     }
 
@@ -31,13 +32,13 @@ public class TestPlayer {
     }
 
     @Test
-    void blackPlayerStoneColorIsChangedToWhite(){
+    void blackPlayerStoneColorIsChangedToWhite() {
         player1.setStoneColor(Color.WHITE);
         assertEquals(Color.WHITE, player1.getStoneColor());
     }
 
     @Test
-    void whitePlayerStoneColorIsChangedToBlack(){
+    void whitePlayerStoneColorIsChangedToBlack() {
         player2.setStoneColor(Color.BLACK);
         assertEquals(Color.BLACK, player2.getStoneColor());
     }
