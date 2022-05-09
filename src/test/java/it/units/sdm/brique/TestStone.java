@@ -10,32 +10,32 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestStone {
 
-  Stone stone = new Stone(Color.WHITE);
-  Stone otherStone = new Stone(Color.BLACK);
+    Stone stone = new Stone(Color.WHITE);
+    Stone otherStone = new Stone(Color.BLACK);
 
-  @ParameterizedTest
-  @EnumSource(value = Color.class)
-  void testNewStoneColor(Color color) {
-    Stone stone = new Stone(color);
-    assertEquals(color, stone.getColor());
-  }
+    @ParameterizedTest
+    @EnumSource(value = Color.class)
+    void testNewStoneColor(Color color) {
+        Stone stone = new Stone(color);
+        assertEquals(color, stone.getColor());
+    }
 
-  @ParameterizedTest
-  @EnumSource(value = Color.class)
-  void setColorAssignsStoneColor(Color color) {
-    stone.setColor(color);
-    assertEquals(color, stone.getColor());
-  }
+    @ParameterizedTest
+    @EnumSource(value = Color.class)
+    void setColorAssignsStoneColor(Color color) {
+        stone.setColor(color);
+        assertEquals(color, stone.getColor());
+    }
 
-  @Test
-  void switchColorTurnsWhiteIntoBlack() {
-    stone.switchColor();
-    assertEquals(Color.BLACK, stone.getColor());
-  }
+    @Test
+    void switchColorTurnsWhiteIntoBlack() {
+        stone.switchColor();
+        assertEquals(Color.BLACK, stone.getColor());
+    }
 
-  @Test
-  void switchColorTurnsBlackIntoWhite() {
-    otherStone.switchColor();
-    assertEquals(Color.WHITE, otherStone.getColor());
-  }
+    @Test
+    void switchColorTurnsBlackIntoWhite() {
+        otherStone.switchColor();
+        assertEquals(Color.WHITE, otherStone.getColor());
+    }
 }
