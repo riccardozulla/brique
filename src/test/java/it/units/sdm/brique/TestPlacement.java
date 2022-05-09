@@ -21,8 +21,14 @@ public class TestPlacement {
         board.reset();
     }
 
-    Square getDownLeft(Square square) {
+    private Square getDownLeft(Square square) {
         return square.getDownSquare().getLeftSquare();
+    }
+
+    private void makePlacement(Square square, Player player) {
+        Placement placement = new Placement(player);
+        placement.setChosenSquare(square);
+        placement.make();
     }
 
     @ParameterizedTest
@@ -45,14 +51,11 @@ public class TestPlacement {
     }
 
     @ParameterizedTest
-    @CsvSource({"8, 12", "1, 1", "5, 7"})
+    @CsvSource({"8, 12", "1, 1", "5, 7", "5, 6", "6, 9", "10, 11"})
     void escortRuleCorrectlyAppliedOnBlackSquares(int i, int j) {
-        Square chosenSquare = board.getSquare(i,j);
-        getDownLeft(chosenSquare).setStone(new Stone(player1.getStoneColor()));
-        Placement placement = new Placement(player1);
-        placement.setChosenSquare(chosenSquare);
-        placement.make();
-        assertEquals(Color.BLACK, chosenSquare.getLeftSquare().getStone().get().getColor());
+        Square square = board.getSquare(i,j);
+        square.getEscorts().forEach(escortSquare -> makePlacement(escortSquare, player1));
+        assertEquals(Color.BLACK, square.getStone().get().getColor());
     }
 
     @ParameterizedTest
