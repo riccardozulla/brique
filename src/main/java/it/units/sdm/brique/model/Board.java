@@ -48,12 +48,4 @@ public class Board {
     public Square getSquare(int i, int j) {
         return squares[i][j];
     }
-
-    public Square getUpRightSquare(Square square) {
-        return getSquare(square.getRow() - 1, square.getColumn() + 1);
-    }
-
-    public Square getDownLeftSquare(Square square) {
-        return getSquare(square.getRow() + 1, square.getColumn() - 1);
-    }
 }
