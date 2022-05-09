@@ -21,12 +21,8 @@ public class TestPlacement {
         board.reset();
     }
 
-    void addStone(Square square, Color color) {
-        square.setStone(new Stone(color));
-    }
-
     void setUpBoard(int i, int j, Color color) {
-        addStone(board.getSquare(i, j), color);
+        board.getSquare(i, j).setStone(new Stone(color));
     }
 
     @ParameterizedTest
