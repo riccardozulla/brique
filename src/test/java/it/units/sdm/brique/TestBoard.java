@@ -18,7 +18,7 @@ public class TestBoard {
 
   @ParameterizedTest
   @CsvSource({"0,0,WHITE", "1,1,WHITE", "2,0,WHITE", "1,0,BLACK", "0,1,BLACK", "3,0,BLACK", "14,14,WHITE"})
-  void testSquareColor(int x, int y, Color color) {
+  void squareColorIsTheExpectedOne(int x, int y, Color color) {
     assertEquals(color, board.getSquare(x, y).getColor());
   }
 
