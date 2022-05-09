@@ -4,14 +4,20 @@ import it.units.sdm.brique.model.Board;
 import it.units.sdm.brique.model.Color;
 import it.units.sdm.brique.model.Square;
 import it.units.sdm.brique.model.Stone;
+import org.checkerframework.framework.qual.DefaultQualifier;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestBoard {
     private final Board board = Board.getBoard();
@@ -34,11 +40,18 @@ public class TestBoard {
     }
 
     @ParameterizedTest
-    @CsvSource({"1,1", "4,7", "9, 2", "11,13"})
-    void singleSquareWithStoneOnItIsOccupiedAsExpected(int i, int j) {
+      @CsvSource({"1,1", "4,7", "9, 2", "11,13"})
+      void singleSquareWithStoneOnItIsOccupiedAsExpected(int i, int j) {
         board.reset();
         Square square = board.getSquare(i, j);
         square.setStone(new Stone(Color.BLACK));
         assertEquals(List.of(square), board.getOccupiedSquares());
+    }
+
+    @Test
+    void squaresOccupiedWithStonesOnThemAreOccupiedAsExpected(){
+        Set<Square> allBoardSquares = board.getSquaresStream().collect(Collectors.toSet());
+        allBoardSquares.forEach(s -> s.setStone(new Stone(Color.BLACK)));
+        assertEquals(allBoardSquares, board.getOccupiedSquares().stream().collect(Collectors.toSet()));
     }
 }
