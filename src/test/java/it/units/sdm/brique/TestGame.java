@@ -71,7 +71,7 @@ public class TestGame {
     }
 
     @Test
-    void pieRuleDisabledAtBoardReset(){
+    void pieRuleDisabledAtGameInitialization(){
         assertFalse(game.isPieRuleApplicable());
     }
 
