@@ -24,7 +24,7 @@ public class TestGame {
     }
 
     @Test
-    void statusIsRunningAtBoardReset() {
+    void statusIsRunningAtGameInitialization() {
         assertEquals(Status.RUNNING, game.getStatus());
     }
 
