@@ -71,13 +71,6 @@ public class TestGame {
     }
 
     @Test
-    void switchActivePlayerWorksProperly(){
-        Player oldActivePlayer = game.getActivePlayer();
-        game.switchActivePlayer();
-        assertNotEquals(oldActivePlayer, game.getActivePlayer());
-    }
-
-    @Test
     void pieRuleDisabledAtBoardReset(){
         assertFalse(game.isPieRuleApplicable());
     }
