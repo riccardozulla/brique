@@ -1,8 +1,11 @@
 package it.units.sdm.brique;
 
 import it.units.sdm.brique.model.*;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,9 +25,10 @@ public class TestGame {
         assertEquals(Status.RUNNING, game.getStatus());
     }
 
-    @Test
-    void addStoneMakesSquareOccupied() {
-        Square square = board.getSquare(0, 0);
+    @ParameterizedTest
+    @CsvSource({"0,0", "2,4", "3,3", "6,8", "1,9", "10,12", "11,12", "14,14"})
+    void addStoneMakesSquareOccupied(int row, int col) {
+        Square square = board.getSquare(row, col);
         game.addStone(square);
         assert (square.isOccupied());
     }
