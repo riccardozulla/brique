@@ -89,13 +89,13 @@ public class TestGame {
     }
 
     @Test
-    void afterPieRulePlayerColorsAreSwapped(){
+    void pieRuleSwapsPlayerColors(){
         Color oldPlayer1Color = player1.getStoneColor();
         Color oldPlayer2Color = player2.getStoneColor();
         game.addStone(Board.getBoard().getSquare(0,0));
         game.pieRule();
-        assertNotEquals(player1.getStoneColor(), oldPlayer1Color);
-        assertNotEquals(player2.getStoneColor(), oldPlayer2Color);
+        assertNotEquals(oldPlayer1Color, player1.getStoneColor());
+        assertNotEquals(oldPlayer2Color, player2.getStoneColor());
     }
 
     @ParameterizedTest
