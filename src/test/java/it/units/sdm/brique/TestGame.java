@@ -36,7 +36,7 @@ public class TestGame {
     }
 
     @Test
-    void statusBecomesWHITE_WINSWhenWhiteWins() {
+    void statusBecomesWHITE_WINSWhenWhiteWins() { //TODO
         game.switchActivePlayer();
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
             game.addStone(board.getSquare(1, i));
@@ -46,7 +46,7 @@ public class TestGame {
     }
 
     @Test
-    void statusBecomesBLACK_WINSWhenBlackWins() {
+    void statusBecomesBLACK_WINSWhenBlackWins() { //TODO
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
             game.addStone(board.getSquare(i, 2));
             game.switchActivePlayer();
@@ -60,8 +60,8 @@ public class TestGame {
     }
 
     @Test
-    void whiteMovesAfterBlack(){
-        game.switchActivePlayer();
+    void whitePlayerMovesAfterBlackPlayer(){
+        game.addStone(board.getSquare(0,0));
         assertEquals(Color.WHITE,game.getActivePlayer().getStoneColor());
     }
 
