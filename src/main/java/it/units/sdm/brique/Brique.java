@@ -7,14 +7,17 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.util.Objects;
+
 public class Brique extends Application {
 
     public static final double PRIMARY_STAGE_HEIGHT = 600.0;
     public static final double PRIMARY_STAGE_WIDTH = 700.0;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent playerInitView = FXMLLoader.load(getClass().getResource("playerInit.fxml"));
+    public void start(Stage primaryStage) throws IOException {
+        Parent playerInitView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("playerInit.fxml")));
         Scene scene = new Scene(playerInitView);
 
         primaryStage.setTitle("Brique");
