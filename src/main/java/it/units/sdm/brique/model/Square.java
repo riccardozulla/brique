@@ -62,19 +62,19 @@ public abstract class Square {
     }
 
     public Square getUpSquare() {
-        return Board.getBoard().getSquare(getRow() - 1, getColumn());
+        return Board.getInstance().getSquare(getRow() - 1, getColumn());
     }
 
     public Square getDownSquare() {
-        return Board.getBoard().getSquare(getRow() + 1, getColumn());
+        return Board.getInstance().getSquare(getRow() + 1, getColumn());
     }
 
     public Square getLeftSquare() {
-        return Board.getBoard().getSquare(getRow(), getColumn() - 1);
+        return Board.getInstance().getSquare(getRow(), getColumn() - 1);
     }
 
     public Square getRightSquare() {
-        return Board.getBoard().getSquare(getRow(), getColumn() + 1);
+        return Board.getInstance().getSquare(getRow(), getColumn() + 1);
     }
 }
 

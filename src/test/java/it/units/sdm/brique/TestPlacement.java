@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPlacement {
 
-    private final Board board = Board.getBoard();
+    private final Board board = Board.getInstance();
     private final Player player1 = new Player("defaultName1", Color.BLACK);
     private final Player player2 = new Player("defaultName2", Color.WHITE);
 

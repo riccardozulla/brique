@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class Game {
     private final Player player1;
     private final Player player2;
-    private final Board gameBoard = Board.getBoard();
+    private final Board gameBoard = Board.getInstance();
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private final BiPredicate<Square, Square> squaresOccupiedByOrthogonalAndAdjacentStonesPredicate = (Square square1, Square square2) -> Square.manhattanSquareDistance(square1, square2) == 1;
     private Status status = Status.RUNNING;

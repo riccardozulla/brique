@@ -12,7 +12,7 @@ public class TestGame {
     private final Player player1 = new Player("Player1", Color.BLACK);
     private final Player player2 = new Player("Player2", Color.WHITE);
     private final Game game = new Game(player1, player2);
-    private final Board board = Board.getBoard();
+    private final Board board = Board.getInstance();
 
     @BeforeEach
     void resetBoard() {
@@ -76,7 +76,7 @@ public class TestGame {
 
     @Test
     void pieRuleApplicableDuringSecondTurnAfterBlackMoved() {
-        game.playTurn(Board.getBoard().getSquare(0, 0));
+        game.playTurn(Board.getInstance().getSquare(0, 0));
         assertTrue(game.isPieRuleApplicable());
     }
 
@@ -91,7 +91,7 @@ public class TestGame {
     void pieRuleSwapsPlayerColors() {
         Color oldPlayer1Color = player1.getStoneColor();
         Color oldPlayer2Color = player2.getStoneColor();
-        game.playTurn(Board.getBoard().getSquare(0, 0));
+        game.playTurn(Board.getInstance().getSquare(0, 0));
         game.pieRule();
         assertNotEquals(oldPlayer1Color, player1.getStoneColor());
         assertNotEquals(oldPlayer2Color, player2.getStoneColor());

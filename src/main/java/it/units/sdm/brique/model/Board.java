@@ -25,7 +25,7 @@ public class Board {
         return (row + column) % 2 == 0 ? new WhiteSquare(row, column) : new BlackSquare(row, column);
     }
 
-    public static Board getBoard() {
+    public static Board getInstance() {
         return boardInstance;
     }
 

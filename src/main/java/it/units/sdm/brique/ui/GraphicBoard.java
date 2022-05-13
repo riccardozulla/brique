@@ -24,7 +24,7 @@ public class GraphicBoard extends Pane {
     Board board;
 
     public GraphicBoard() {
-        this.board = Board.getBoard();
+        this.board = Board.getInstance();
         for (int row = 0; row < Board.BOARD_SIZE; row++) {
             for (int col = 0; col < Board.BOARD_SIZE; col++) {
                 GraphicSquare graphicSquare = new GraphicSquare(board.getSquare(row, col));

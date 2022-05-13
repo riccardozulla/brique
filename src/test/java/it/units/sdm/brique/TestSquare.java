@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestSquare {
 
-    private final Board board = Board.getBoard();
+    private final Board board = Board.getInstance();
     private final Square defaultSquare = generateMockSquare(0, 0);
 
     private Square generateMockSquare(int row, int column) {
