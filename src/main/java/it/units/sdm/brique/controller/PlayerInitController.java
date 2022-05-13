@@ -45,16 +45,7 @@ public class PlayerInitController implements Initializable {
 
     @FXML
     protected void handleConfirmButtonAction(ActionEvent event) throws Exception {
-        if (isNicknameEmpty()) {
-            displayNicknameErrorAlert("The nickname can't be empty." +
-                    "\nPlease choose a nickname.");
-        } else if (isSameNickname()) {
-            displayNicknameErrorAlert("The two players can't have the same nickname." +
-                    "\nPlease choose a different nickname.");
-        } else if (isNicknameTooLong()) {
-            displayNicknameErrorAlert("The nickname can't exceed 15 characters." +
-                    "\nPlease choose a shorter nickname.");
-        } else {
+        if (isUserInputValid()) {
             savePlayerData();
             Parent gameView = FXMLLoader.load(getClass().getResource("/it/units/sdm/brique/game.fxml"));
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -67,6 +58,22 @@ public class PlayerInitController implements Initializable {
             secondaryStage.show();
             currentStage.close();
         }
+    }
+
+    private boolean isUserInputValid() {
+        if (isNicknameEmpty()) {
+            displayNicknameErrorAlert("The nickname can't be empty." + "\nPlease choose a nickname.");
+            return false;
+        }
+        if (isSameNickname()) {
+            displayNicknameErrorAlert("The two players can't have the same nickname." + "\nPlease choose a different nickname.");
+            return false;
+        }
+        if (isNicknameTooLong()) {
+            displayNicknameErrorAlert("The nickname can't exceed 15 characters." + "\nPlease choose a shorter nickname.");
+            return false;
+        }
+        return true;
     }
 
     @FXML
