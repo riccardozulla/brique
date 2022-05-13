@@ -47,6 +47,6 @@ public class Placement {
     }
 
     private boolean stoneBelongsToPlayer(Stone stone) {
-        return stone.getColor() == player.getStoneColor();
+        return stone.getColor().equals(player.getStoneColor());
     }
 }
