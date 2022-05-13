@@ -143,7 +143,7 @@ public class GameController implements Initializable, PropertyChangeListener {
     }
 
     @FXML
-    private void quitGame() {
+    private void closeApplication() {
         Stage s = (Stage) (gameWrapper.getScene().getWindow());
         s.close();
     }
