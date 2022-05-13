@@ -50,7 +50,7 @@ public class GameController implements Initializable, PropertyChangeListener {
         graphicBoard.setOnMousePressed(event -> game.playTurn(((GraphicSquare) event.getTarget()).getSquare()));
         player_one_nickname.setText(game.getPlayer1().getNickname());
         player_two_nickname.setText(game.getPlayer2().getNickname());
-        game_wrapper.getStylesheets().addAll("it/units/sdm/brique/styles/style.css", "it/units/sdm/brique/styles/stylesheet.css");
+        game_wrapper.getStylesheets().addAll("it/units/sdm/brique/styles/style.css", "it/units/sdm/brique/styles/game_style.css");
 
     }
 
