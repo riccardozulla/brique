@@ -35,20 +35,20 @@ public class TestGame {
 
     @Test
     void statusBecomesWHITE_WINSWhenWhiteWins() { //TODO
-        game.switchActivePlayer();
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
             game.addStone(board.getSquare(1, i));
-            game.switchActivePlayer();
+            game.addStone(board.getSquare(2, i));
         }
         assertEquals(Status.WHITE_WINS, game.getStatus());
     }
 
     @Test
     void statusBecomesBLACK_WINSWhenBlackWins() { //TODO
-        for (int i = 0; i < Board.BOARD_SIZE; i++) {
+        for (int i = 0; i < Board.BOARD_SIZE-1; i++) {
             game.addStone(board.getSquare(i, 2));
-            game.switchActivePlayer();
+            game.addStone(board.getSquare(i, 3));
         }
+        game.addStone(board.getSquare(14, 2));
         assertEquals(Status.BLACK_WINS, game.getStatus());
     }
 
