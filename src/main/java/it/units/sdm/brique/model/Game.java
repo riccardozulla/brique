@@ -52,7 +52,7 @@ public class Game {
         return player2;
     }
 
-    public void switchActivePlayer() {
+    private void switchActivePlayer() {
         Player oldValue = this.activePlayer;
         activePlayer = activePlayer.equals(player1) ? player2 : player1;
         pcs.firePropertyChange("activePlayer", oldValue, activePlayer);
