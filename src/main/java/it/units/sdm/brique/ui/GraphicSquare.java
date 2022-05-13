@@ -37,7 +37,7 @@ public class GraphicSquare extends StackPane {
         toggleMouseClick();
     }
 
-    public void toggleMouseClick() {
+    private void toggleMouseClick() {
         EventHandler<MouseEvent> handler = MouseEvent::consume;
         if (square.isOccupied()) {
             this.addEventFilter(MouseEvent.MOUSE_PRESSED, handler);
