@@ -21,6 +21,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable, PropertyChangeListener {
@@ -131,7 +132,7 @@ public class GameController implements Initializable, PropertyChangeListener {
             Application application = new Application() {
                 @Override
                 public void start(Stage primaryStage) {
-                    File file = new File(getClass().getClassLoader().getResource("it/units/sdm/brique/docs/Brique.pdf").getFile());
+                    File file = new File(Objects.requireNonNull(getClass().getClassLoader().getResource("it/units/sdm/brique/docs/Brique.pdf")).getFile());
                     getHostServices().showDocument(file.getAbsolutePath());
                 }
             };
