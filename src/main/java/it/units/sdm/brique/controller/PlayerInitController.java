@@ -40,7 +40,7 @@ public class PlayerInitController implements Initializable {
         ColorAdjust blackout = new ColorAdjust();
         blackout.setBrightness(-0.8);
         player1StoneImageView.setEffect(blackout);
-        welcomeView.getStylesheets().addAll("it/units/sdm/brique/style.css", "it/units/sdm/brique/playerInit_style.css");
+        welcomeView.getStylesheets().addAll("it/units/sdm/brique/styles/style.css", "it/units/sdm/brique/styles/playerInit_style.css");
     }
 
     @FXML

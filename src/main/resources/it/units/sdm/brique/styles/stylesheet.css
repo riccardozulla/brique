@@ -1,5 +1,5 @@
 #game_wrapper {
-   -fx-background-image: url("../brique/images/game_carpet.jpg");
+   -fx-background-image: url('../images/game_carpet.jpg');
     -fx-background-repeat: repeat;
     -fx-background-size: 300 300;
     -fx-background-position: center;
