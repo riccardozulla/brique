@@ -47,7 +47,7 @@ public class GameController implements Initializable, PropertyChangeListener {
     public void initialize(URL location, ResourceBundle resources) {
         initializeNewGame();
         board_wrapper.layoutBoundsProperty().addListener(graphicBoard.fit);
-        graphicBoard.setOnMousePressed(event -> game.addStone(((GraphicSquare) event.getTarget()).getSquare()));
+        graphicBoard.setOnMousePressed(event -> game.playTurn(((GraphicSquare) event.getTarget()).getSquare()));
         player_one_nickname.setText(game.getPlayer1().getNickname());
         player_two_nickname.setText(game.getPlayer2().getNickname());
         game_wrapper.getStylesheets().addAll("it/units/sdm/brique/style.css", "it/units/sdm/brique/stylesheet.css");

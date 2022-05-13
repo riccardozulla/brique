@@ -1,7 +1,6 @@
 package it.units.sdm.brique;
 
 import it.units.sdm.brique.model.*;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,15 +28,15 @@ public class TestGame {
     @CsvSource({"0,0", "2,4", "3,3", "6,8", "1,9", "10,12", "11,12", "14,14"})
     void addStoneMakesSquareOccupied(int row, int col) {
         Square square = board.getSquare(row, col);
-        game.addStone(square);
+        game.playTurn(square);
         assert (square.isOccupied());
     }
 
     @Test
     void statusBecomesWHITE_WINSWhenWhiteWins() { //TODO
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
-            game.addStone(board.getSquare(1, i));
-            game.addStone(board.getSquare(2, i));
+            game.playTurn(board.getSquare(1, i));
+            game.playTurn(board.getSquare(2, i));
         }
         assertEquals(Status.WHITE_WINS, game.getStatus());
     }
@@ -45,10 +44,10 @@ public class TestGame {
     @Test
     void statusBecomesBLACK_WINSWhenBlackWins() { //TODO
         for (int i = 0; i < Board.BOARD_SIZE-1; i++) {
-            game.addStone(board.getSquare(i, 2));
-            game.addStone(board.getSquare(i, 3));
+            game.playTurn(board.getSquare(i, 2));
+            game.playTurn(board.getSquare(i, 3));
         }
-        game.addStone(board.getSquare(14, 2));
+        game.playTurn(board.getSquare(14, 2));
         assertEquals(Status.BLACK_WINS, game.getStatus());
     }
 
@@ -59,7 +58,7 @@ public class TestGame {
 
     @Test
     void whitePlayerMovesAfterBlackPlayer() {
-        game.addStone(board.getSquare(0, 0));
+        game.playTurn(board.getSquare(0, 0));
         assertEquals(Color.WHITE, game.getActivePlayer().getStoneColor());
     }
 
@@ -75,14 +74,14 @@ public class TestGame {
 
     @Test
     void pieRuleApplicableDuringSecondTurnAfterBlackMoved() {
-        game.addStone(Board.getBoard().getSquare(0, 0));
+        game.playTurn(Board.getBoard().getSquare(0, 0));
         assertTrue(game.isPieRuleApplicable());
     }
 
     @Test
     void pieRuleDisabledAfterSecondTurn() {
-        game.addStone(board.getSquare(0, 0));
-        game.addStone(board.getSquare(0, 1));
+        game.playTurn(board.getSquare(0, 0));
+        game.playTurn(board.getSquare(0, 1));
         assertFalse(game.isPieRuleApplicable());
     }
 
@@ -90,7 +89,7 @@ public class TestGame {
     void pieRuleSwapsPlayerColors() {
         Color oldPlayer1Color = player1.getStoneColor();
         Color oldPlayer2Color = player2.getStoneColor();
-        game.addStone(Board.getBoard().getSquare(0, 0));
+        game.playTurn(Board.getBoard().getSquare(0, 0));
         game.pieRule();
         assertNotEquals(oldPlayer1Color, player1.getStoneColor());
         assertNotEquals(oldPlayer2Color, player2.getStoneColor());

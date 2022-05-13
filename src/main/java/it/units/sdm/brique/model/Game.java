@@ -64,7 +64,7 @@ public class Game {
         pcs.firePropertyChange("status", oldValue, status);
     }
 
-    public void addStone(Square square) {
+    public void playTurn(Square square) {
         if (status != Status.RUNNING) throw new StonePlacementWhenGameIsOverException("Game is over");
         makePlacement(square);
         if (activePlayerWins()) {
