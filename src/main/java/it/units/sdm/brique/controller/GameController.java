@@ -1,10 +1,10 @@
 package it.units.sdm.brique.controller;
 
 import it.units.sdm.brique.model.Game;
-import it.units.sdm.brique.utility.PlayerHolder;
 import it.units.sdm.brique.model.Status;
 import it.units.sdm.brique.ui.GraphicBoard;
 import it.units.sdm.brique.ui.GraphicSquare;
+import it.units.sdm.brique.utility.PlayerHolder;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -51,7 +51,6 @@ public class GameController implements Initializable, PropertyChangeListener {
         playerOneNickname.setText(game.getPlayer1().getNickname());
         playerTwoNickname.setText(game.getPlayer2().getNickname());
         gameWrapper.getStylesheets().addAll("it/units/sdm/brique/styles/style.css", "it/units/sdm/brique/styles/game_style.css");
-
     }
 
     @Override
