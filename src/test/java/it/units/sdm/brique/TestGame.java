@@ -33,21 +33,23 @@ public class TestGame {
     }
 
     @Test
-    void statusBecomesWHITE_WINSWhenWhiteWins() { //TODO
-        for (int i = 0; i < Board.BOARD_SIZE; i++) {
-            game.playTurn(board.getSquare(1, i));
-            game.playTurn(board.getSquare(2, i));
+    void statusBecomesWHITE_WINSWhenWhitePlayerConnectsWhiteBoardEdges() {
+        for (int i = 0; i < Board.BOARD_SIZE - 1; i++) {
+            game.playTurn(board.getSquare(1, i)); //black plays
+            game.playTurn(board.getSquare(2, i)); //white plays
         }
+        game.playTurn(board.getSquare(1, Board.LAST_INDEX)); //last black move
+        game.playTurn(board.getSquare(2, Board.LAST_INDEX)); //last white (winning) move
         assertEquals(Status.WHITE_WINS, game.getStatus());
     }
 
     @Test
-    void statusBecomesBLACK_WINSWhenBlackWins() { //TODO
-        for (int i = 0; i < Board.BOARD_SIZE-1; i++) {
-            game.playTurn(board.getSquare(i, 2));
-            game.playTurn(board.getSquare(i, 3));
+    void statusBecomesBLACK_WINSWhenBlackPlayerConnectsBlackBoardEdges() {
+        for (int i = 0; i < Board.BOARD_SIZE - 1; i++) {
+            game.playTurn(board.getSquare(i, 2)); //black plays
+            game.playTurn(board.getSquare(i, 3)); //white plays
         }
-        game.playTurn(board.getSquare(14, 2));
+        game.playTurn(board.getSquare(Board.LAST_INDEX, 2)); //last black (winning) move
         assertEquals(Status.BLACK_WINS, game.getStatus());
     }
 
