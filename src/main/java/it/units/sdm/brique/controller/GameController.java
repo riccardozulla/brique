@@ -132,7 +132,7 @@ public class GameController implements Initializable, PropertyChangeListener {
             Application application = new Application() {
                 @Override
                 public void start(Stage primaryStage) {
-                    File file = new File(getClass().getClassLoader().getResource("it/units/sdm/brique/doc/Brique.pdf").getFile());
+                    File file = new File(getClass().getClassLoader().getResource("it/units/sdm/brique/docs/Brique.pdf").getFile());
                     getHostServices().showDocument(file.getAbsolutePath());
                 }
             };
