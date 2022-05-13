@@ -38,9 +38,7 @@ public class PlayerInitController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ColorAdjust blackout = new ColorAdjust();
-        blackout.setBrightness(-0.8);
-        player1StoneImageView.setEffect(blackout);
+        makeBlackEffect(player1StoneImageView);
         welcomeView.getStylesheets().addAll("it/units/sdm/brique/styles/style.css", "it/units/sdm/brique/styles/playerInit_style.css");
     }
 
@@ -79,9 +77,7 @@ public class PlayerInitController implements Initializable {
         ImageView img1 = swapHappened ? player2StoneImageView : player1StoneImageView;
         ImageView img2 = swapHappened ? player1StoneImageView : player2StoneImageView;
         img1.setEffect(null);
-        ColorAdjust blackout = new ColorAdjust();
-        blackout.setBrightness(-0.8);
-        img2.setEffect(blackout);
+        makeBlackEffect(img2);
         swapHappened = !swapHappened;
     }
 
@@ -91,6 +87,12 @@ public class PlayerInitController implements Initializable {
         PlayerHolder playerHolder = PlayerHolder.getInstance();
         playerHolder.setPlayer1(player1);
         playerHolder.setPlayer2(player2);
+    }
+
+    private void makeBlackEffect(ImageView img) {
+        ColorAdjust blackout = new ColorAdjust();
+        blackout.setBrightness(-0.8);
+        img.setEffect(blackout);
     }
 
     private boolean isSameNickname() {
