@@ -121,7 +121,7 @@ public class GameController implements Initializable, PropertyChangeListener {
         HBox buttonsBox = new HBox(playAgainButton, closeButton);
         Parent root = new VBox(headerBox, contentBox, buttonsBox);
         VBox.setVgrow(contentBox, Priority.ALWAYS);
-        root.getStylesheets().addAll("/it/units/sdm/brique/style.css", "/it/units/sdm/brique/endgame_style.css");
+        root.getStylesheets().addAll("/it/units/sdm/brique/styles/style.css", "/it/units/sdm/brique/styles/endgame_style.css");
         popup.getContent().add(root);
         popup.show(stage);
     }
