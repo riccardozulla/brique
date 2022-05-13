@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -63,6 +64,7 @@ public class PlayerInitController implements Initializable {
             secondaryStage.setScene(newScene);
             secondaryStage.setMinWidth(400);
             secondaryStage.setMinHeight(500);
+            secondaryStage.getIcons().add(new Image("/it/units/sdm/brique/images/icon.png"));
             secondaryStage.show();
             currentStage.close();
         }

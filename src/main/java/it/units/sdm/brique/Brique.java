@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Brique extends Application {
@@ -20,6 +21,7 @@ public class Brique extends Application {
         primaryStage.setScene(scene);
         primaryStage.setHeight(PRIMARY_STAGE_HEIGHT);
         primaryStage.setWidth(PRIMARY_STAGE_WIDTH);
+        primaryStage.getIcons().add(new Image("/it/units/sdm/brique/images/icon.png"));
         primaryStage.show();
     }
 
