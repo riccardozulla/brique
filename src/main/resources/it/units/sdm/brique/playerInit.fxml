@@ -1,62 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
+<VBox fx:id="welcomeView" styleClass="welcome-anchor" xmlns="http://javafx.com/javafx/18"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="it.units.sdm.brique.controller.PlayerInitController">
 
-
-<AnchorPane fx:id="welcomeView"  styleClass="welcome-anchor"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.units.sdm.brique.controller.PlayerInitController">
-   <children>
-      <HBox alignment="CENTER" prefHeight="58.0" prefWidth="600.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
-         <children>
-            <Label text="Welcome to Brique!" styleClass="title-label">
-            </Label>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="350.0" prefWidth="300.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="10" AnchorPane.topAnchor="20">
-         <children>
-            <VBox alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="200.0" spacing="20.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <Label text="Player 1" styleClass="player-label">
-                  </Label>
-                  <ImageView fx:id="player1StoneImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="stone">
-                  </ImageView>
-                  <TextField fx:id="player1TextField" promptText="Nickname" text="Player1"/>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="180.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <ToggleButton fx:id="swapButton" onAction="#handleToggleButtonAction" styleClass="swap-button">
-                  </ToggleButton>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" spacing="20.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <Label text="Player 2" styleClass="player-label">
-                  </Label>
-                  <ImageView fx:id="player2StoneImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="stone">
-                  </ImageView>
-                  <TextField fx:id="player2TextField" promptText="Nickname" text="Player2" />
-               </children>
-            </VBox>
-         </children>
-         <padding>
-            <Insets top="40.0" />
-         </padding>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="20.0" prefWidth="600.0 " AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0">
-         <children>
-            <Button fx:id="confirmButton" onAction="#handleConfirmButtonAction" text="Confirm"/>
-         </children>
-      </HBox>
-   </children>
-</AnchorPane>
+    <HBox alignment="CENTER" VBox.vgrow="NEVER">
+        <Label text="Welcome to Brique!" styleClass="title-label">
+        </Label>
+    </HBox>
+    <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+        <VBox.margin>
+            <Insets topRightBottomLeft="30"/>
+        </VBox.margin>
+        <VBox alignment="CENTER_LEFT" spacing="20.0" HBox.hgrow="ALWAYS">
+            <Label text="Player 1" styleClass="player-label"/>
+            <ImageView fx:id="player1StoneImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true"
+                       preserveRatio="true" styleClass="stone"/>
+            <TextField fx:id="player1TextField" promptText="Nickname" text="Player1"/>
+        </VBox>
+        <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+            <ToggleButton fx:id="swapButton" onAction="#handleToggleButtonAction" styleClass="swap-button"/>
+        </VBox>
+        <VBox alignment="CENTER_LEFT" spacing="20.0" HBox.hgrow="ALWAYS">
+            <Label text="Player 2" styleClass="player-label"/>
+            <ImageView fx:id="player2StoneImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true"
+                       preserveRatio="true" styleClass="stone">
+            </ImageView>
+            <TextField fx:id="player2TextField" promptText="Nickname" text="Player2"/>
+        </VBox>
+    </HBox>
+    <HBox alignment="CENTER" VBox.vgrow="NEVER">
+        <VBox.margin>
+            <Insets topRightBottomLeft="10"/>
+        </VBox.margin>
+        <Button fx:id="confirmButton" onAction="#handleConfirmButtonAction" text="Confirm"/>
+    </HBox>
+</VBox>

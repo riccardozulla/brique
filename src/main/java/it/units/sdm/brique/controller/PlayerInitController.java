@@ -16,6 +16,7 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class PlayerInitController implements Initializable {
     @FXML
     private ImageView player2StoneImageView;
     @FXML
-    private AnchorPane welcomeView;
+    private VBox welcomeView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
