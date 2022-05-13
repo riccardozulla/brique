@@ -22,7 +22,7 @@ public class Player {
     }
 
     public void switchStoneColor() {
-        stoneColor = (stoneColor == Color.BLACK) ? Color.WHITE : Color.BLACK;
+        stoneColor = (stoneColor.equals(Color.BLACK)) ? Color.WHITE : Color.BLACK;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Player {
         Player player = (Player) o;
 
         if (!nickname.equals(player.nickname)) return false;
-        return stoneColor == player.stoneColor;
+        return stoneColor.equals(player.stoneColor);
     }
 
     @Override
