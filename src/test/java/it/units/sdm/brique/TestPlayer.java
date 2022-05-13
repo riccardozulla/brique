@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestPlayer {
 
-    private Player player1 = new Player("Player1", Color.BLACK);
-    private Player player2 = new Player("Player2", Color.WHITE);
+    private final Player player1 = new Player("Player1", Color.BLACK);
+    private final Player player2 = new Player("Player2", Color.WHITE);
 
     @Test
     void player1NicknameCorrectlyAssigned() {
