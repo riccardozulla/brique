@@ -3,14 +3,13 @@ package it.units.sdm.brique.utility;
 import it.units.sdm.brique.model.Player;
 
 public final class PlayerHolder {
-    private static PlayerHolder playerHolderInstance = new PlayerHolder();
+    private static final PlayerHolder playerHolderInstance = new PlayerHolder();
     private Player player1;
     private Player player2;
 
     private PlayerHolder() {}
 
     public static PlayerHolder getInstance() {
-        if (playerHolderInstance == null) playerHolderInstance = new PlayerHolder();
         return playerHolderInstance;
     }
 
