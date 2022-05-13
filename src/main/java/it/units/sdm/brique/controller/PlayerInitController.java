@@ -22,7 +22,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PlayerInitController implements Initializable {
-
+    public static final int GAME_VIEW_MIN_HEIGHT = 500;
+    public static final int GAME_VIEW_MIN_WIDTH = 400;
     public static final int MAX_NICKNAME_SIZE = 15;
     private boolean swapHappened = false;
 
@@ -52,8 +53,9 @@ public class PlayerInitController implements Initializable {
             Stage secondaryStage = new Stage();
             Scene newScene = new Scene(gameView);
             secondaryStage.setScene(newScene);
-            secondaryStage.setMinWidth(400);
-            secondaryStage.setMinHeight(500);
+            secondaryStage.setMinWidth(GAME_VIEW_MIN_WIDTH);
+            secondaryStage.setMinHeight(GAME_VIEW_MIN_HEIGHT);
+            secondaryStage.setMaximized(true);
             secondaryStage.getIcons().add(new Image("/it/units/sdm/brique/images/icon.png"));
             secondaryStage.show();
             currentStage.close();
