@@ -29,7 +29,7 @@ public class Game {
         this.player1 = player1;
         this.player2 = player2;
         this.gameBoard.reset();
-        if (player1.getStoneColor() == Color.BLACK) {
+        if (player1.getStoneColor().equals(Color.BLACK)) {
             activePlayer = player1;
         } else {
             activePlayer = player2;
@@ -60,25 +60,21 @@ public class Game {
 
     private void stateWinningStatus() {
         Status oldValue = this.status;
-        status = activePlayer.getStoneColor() == Color.BLACK ? Status.BLACK_WINS : Status.WHITE_WINS;
+        status = activePlayer.getStoneColor().equals(Color.BLACK) ? Status.BLACK_WINS : Status.WHITE_WINS;
         pcs.firePropertyChange("status", oldValue, status);
     }
 
     public void addStone(Square square) {
         if (status != Status.RUNNING) throw new StonePlacementWhenGameIsOverException("Game is over");
-        makePlacement(square);
+        Placement placement = new Placement(activePlayer);
+        placement.setChosenSquare(square);
+        placement.make();
         if (activePlayerWins()) {
             stateWinningStatus();
             return;
         }
         togglePieRule();
         switchActivePlayer();
-    }
-
-    private void makePlacement(Square square) {
-        Placement placement = new Placement(activePlayer);
-        placement.setChosenSquare(square);
-        placement.make();
     }
 
     private void togglePieRule() {
@@ -111,7 +107,7 @@ public class Game {
     }
 
     private Set<Square> getActivePlayerPlacedStones() {
-        return gameBoard.getOccupiedSquares().stream().filter(square -> square.getStone().get().getColor() == activePlayer.getStoneColor()).collect(Collectors.toSet());
+        return gameBoard.getOccupiedSquares().stream().filter(square -> square.getStone().get().getColor().equals(activePlayer.getStoneColor())).collect(Collectors.toSet());
     }
 
     public void addActivePlayerListener(PropertyChangeListener listener) {
