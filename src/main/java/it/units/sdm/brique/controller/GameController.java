@@ -27,30 +27,30 @@ public class GameController implements Initializable, PropertyChangeListener {
 
     Game game;
     @FXML
-    private VBox player_one_wrapper;
+    private VBox playerOneWrapper;
     @FXML
-    private VBox player_two_wrapper;
+    private VBox playerTwoWrapper;
     @FXML
-    private Label player_one_nickname;
+    private Label playerOneNickname;
     @FXML
-    private Label player_two_nickname;
+    private Label playerTwoNickname;
     @FXML
-    private Button pie_button;
+    private Button pieButton;
     @FXML
-    private VBox game_wrapper;
+    private VBox gameWrapper;
     @FXML
-    private HBox board_wrapper;
+    private HBox boardWrapper;
     @FXML
     private GraphicBoard graphicBoard;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeNewGame();
-        board_wrapper.layoutBoundsProperty().addListener(graphicBoard.fit);
+        boardWrapper.layoutBoundsProperty().addListener(graphicBoard.fit);
         graphicBoard.setOnMousePressed(event -> game.playTurn(((GraphicSquare) event.getTarget()).getSquare()));
-        player_one_nickname.setText(game.getPlayer1().getNickname());
-        player_two_nickname.setText(game.getPlayer2().getNickname());
-        game_wrapper.getStylesheets().addAll("it/units/sdm/brique/styles/style.css", "it/units/sdm/brique/styles/game_style.css");
+        playerOneNickname.setText(game.getPlayer1().getNickname());
+        playerTwoNickname.setText(game.getPlayer2().getNickname());
+        gameWrapper.getStylesheets().addAll("it/units/sdm/brique/styles/style.css", "it/units/sdm/brique/styles/game_style.css");
 
     }
 
@@ -83,11 +83,11 @@ public class GameController implements Initializable, PropertyChangeListener {
 
     private void highlightActivePlayer() {
         if (game.getPlayer1().equals(game.getActivePlayer())) {
-            player_one_wrapper.getStyleClass().add("active_player");
-            player_two_wrapper.getStyleClass().clear();
+            playerOneWrapper.getStyleClass().add("active-player");
+            playerTwoWrapper.getStyleClass().clear();
         } else {
-            player_two_wrapper.getStyleClass().add("active_player");
-            player_one_wrapper.getStyleClass().clear();
+            playerTwoWrapper.getStyleClass().add("active-player");
+            playerOneWrapper.getStyleClass().clear();
         }
     }
 
@@ -97,11 +97,11 @@ public class GameController implements Initializable, PropertyChangeListener {
     }
 
     private void updatePieButton() {
-        pie_button.setDisable(!game.isPieRuleApplicable());
+        pieButton.setDisable(!game.isPieRuleApplicable());
     }
 
     private void winningPopup(Status status) {
-        Stage stage = (Stage) game_wrapper.getScene().getWindow();
+        Stage stage = (Stage) gameWrapper.getScene().getWindow();
         Popup popup = new Popup();
         HBox headerBox = new HBox(new Label("CONGRATULATIONS"));
         headerBox.prefHeight(100);
@@ -144,7 +144,7 @@ public class GameController implements Initializable, PropertyChangeListener {
 
     @FXML
     private void quitGame() {
-        Stage s = (Stage) (game_wrapper.getScene().getWindow());
+        Stage s = (Stage) (gameWrapper.getScene().getWindow());
         s.close();
     }
 }

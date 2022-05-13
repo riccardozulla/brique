@@ -3,7 +3,7 @@
 <?import it.units.sdm.brique.ui.GraphicBoard?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox fx:id="game_wrapper" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18"
+<VBox fx:id="gameWrapper" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.units.sdm.brique.controller.GameController">
     <MenuBar VBox.vgrow="NEVER">
         <Menu text="File">
@@ -14,20 +14,20 @@
             <MenuItem text="Guide" onAction="#openPDFGuide"/>
         </Menu>
     </MenuBar>
-    <HBox fx:id="board_wrapper" VBox.vgrow="ALWAYS" alignment="CENTER">
+    <HBox fx:id="boardWrapper" VBox.vgrow="ALWAYS" alignment="CENTER">
         <GraphicBoard fx:id="graphicBoard" maxHeight="-Infinity" maxWidth="-Infinity"/>
     </HBox>
-    <HBox fx:id="player_wrapper" alignment="CENTER" VBox.vgrow="NEVER">
-        <VBox fx:id="player_one_wrapper" alignment="CENTER" styleClass="">
+    <HBox fx:id="playerWrapper" alignment="CENTER" VBox.vgrow="NEVER">
+        <VBox fx:id="playerOneWrapper" alignment="CENTER" styleClass="">
             <Label text="PLAYER 1"/>
-            <Label fx:id="player_one_nickname" text="Nickname 1"/>
+            <Label fx:id="playerOneNickname" text="Nickname 1"/>
         </VBox>
         <VBox alignment="CENTER">
-            <Button fx:id="pie_button" text="PIE" onAction="#handlePieButtonAction"/>
+            <Button fx:id="pieButton" text="PIE" onAction="#handlePieButtonAction"/>
         </VBox>
-        <VBox fx:id="player_two_wrapper" alignment="CENTER">
+        <VBox fx:id="playerTwoWrapper" alignment="CENTER">
             <Label text="PLAYER 2"/>
-            <Label fx:id="player_two_nickname" text="Nickname 2"/>
+            <Label fx:id="playerTwoNickname" text="Nickname 2"/>
         </VBox>
     </HBox>
 
