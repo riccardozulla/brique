@@ -12,3 +12,8 @@ HBox {
     -fx-alignment: center;
     -fx-spacing: 20;
 }
+
+Label {
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+}
