@@ -117,7 +117,7 @@ public class GameController implements Initializable, PropertyChangeListener {
             popup.hide();
         });
         Button closeButton = new Button("Close");
-        closeButton.setOnMouseClicked(event -> stage.close());
+        closeButton.setOnMouseClicked(event -> popup.hide());
         HBox buttonsBox = new HBox(playAgainButton, closeButton);
         Parent root = new VBox(headerBox, contentBox, buttonsBox);
         VBox.setVgrow(contentBox, Priority.ALWAYS);
