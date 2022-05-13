@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 
 public class GameController implements Initializable, PropertyChangeListener {
 
-    Game game;
+    private Game game;
     @FXML
     private VBox playerOneWrapper;
     @FXML
