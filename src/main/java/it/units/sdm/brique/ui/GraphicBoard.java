@@ -21,7 +21,7 @@ public class GraphicBoard extends Pane {
         this.setScaleY(ratio);
     };
 
-    Board board;
+    private final Board board;
 
     public GraphicBoard() {
         this.board = Board.getInstance();

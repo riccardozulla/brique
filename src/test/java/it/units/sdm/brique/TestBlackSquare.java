@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestBlackSquare {
 
-    Board board = Board.getInstance();
+    private final Board board = Board.getInstance();
 
     @Test
     void color() {
