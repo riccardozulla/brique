@@ -32,7 +32,7 @@ Label {
 }
 
 Button {
-    -fx-pref-width: initial;
+    -fx-pref-width: 70;
 }
 
 Polygon {
