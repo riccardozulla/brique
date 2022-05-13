@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestClusterSet {
 
     private static final BiPredicate<Square, Square> alwaysTrue = (square1, square2) -> true;
-    ClusterSet<Square> clusterSet = new ClusterSet<>(Set.of(Board.getInstance().getSquare(1, 1), Board.getInstance().getSquare(1, 2)));
+    private final ClusterSet<Square> clusterSet = new ClusterSet<>(Set.of(Board.getInstance().getSquare(1, 1), Board.getInstance().getSquare(1, 2)));
 
     @Test
     void initializeSingleSquareClusters() {
