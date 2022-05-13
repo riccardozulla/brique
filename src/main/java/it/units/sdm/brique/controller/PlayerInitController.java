@@ -77,7 +77,7 @@ public class PlayerInitController implements Initializable {
     }
 
     @FXML
-    protected void handleToggleButtonAction(ActionEvent event) {
+    protected void handleToggleButtonAction() {
         swapColor();
     }
 
