@@ -18,7 +18,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class PlayerInitController implements Initializable {
@@ -45,10 +47,10 @@ public class PlayerInitController implements Initializable {
     }
 
     @FXML
-    protected void handleConfirmButtonAction(ActionEvent event) throws Exception {
+    protected void handleConfirmButtonAction(ActionEvent event) throws IOException {
         if (isUserInputValid()) {
             savePlayerData();
-            Parent gameView = FXMLLoader.load(getClass().getResource("/it/units/sdm/brique/game.fxml"));
+            Parent gameView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/it/units/sdm/brique/game.fxml")));
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Stage secondaryStage = new Stage();
             Scene newScene = new Scene(gameView);
