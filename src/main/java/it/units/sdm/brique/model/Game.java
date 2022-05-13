@@ -69,10 +69,10 @@ public class Game {
         makePlacement(square);
         if (activePlayerWins()) {
             stateWinningStatus();
-            return;
+        } else {
+            togglePieRule();
+            switchActivePlayer();
         }
-        togglePieRule();
-        switchActivePlayer();
     }
 
     private void makePlacement(Square square) {
