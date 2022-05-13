@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestStone {
 
-    Stone stone = new Stone(Color.WHITE);
-    Stone otherStone = new Stone(Color.BLACK);
+    private final Stone stone = new Stone(Color.WHITE);
+    private final Stone otherStone = new Stone(Color.BLACK);
 
     @ParameterizedTest
     @EnumSource(value = Color.class)
