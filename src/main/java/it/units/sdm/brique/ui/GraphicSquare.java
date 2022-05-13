@@ -15,7 +15,7 @@ public class GraphicSquare extends StackPane {
         super();
         this.square = square;
         this.setPrefSize(SQUARE_SIZE, SQUARE_SIZE);
-        this.setStyle("-fx-background-color:" + (square.getColor() == Color.BLACK ? GraphicColor.BLACK_SQUARE.getHexColor() : GraphicColor.WHITE_SQUARE.getHexColor()));
+        this.setStyle("-fx-background-color:" + (square.getColor().equals(Color.BLACK) ? GraphicColor.BLACK_SQUARE.getHexColor() : GraphicColor.WHITE_SQUARE.getHexColor()));
     }
 
     public Square getSquare() {
