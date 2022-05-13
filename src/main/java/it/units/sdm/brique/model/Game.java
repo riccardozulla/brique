@@ -66,19 +66,15 @@ public class Game {
 
     public void addStone(Square square) {
         if (status != Status.RUNNING) throw new StonePlacementWhenGameIsOverException("Game is over");
-        makePlacement(square);
+        Placement placement = new Placement(activePlayer);
+        placement.setChosenSquare(square);
+        placement.make();
         if (activePlayerWins()) {
             stateWinningStatus();
             return;
         }
         togglePieRule();
         switchActivePlayer();
-    }
-
-    private void makePlacement(Square square) {
-        Placement placement = new Placement(activePlayer);
-        placement.setChosenSquare(square);
-        placement.make();
     }
 
     private void togglePieRule() {
