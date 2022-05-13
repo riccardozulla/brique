@@ -104,7 +104,7 @@ public class Game {
         switchActivePlayer();
     }
 
-    public boolean activePlayerWins() {
+    private boolean activePlayerWins() {
         ClusterSet<Square> activeCluster = new ClusterSet<>(getActivePlayerPlacedStones());
         activeCluster.composeClusters(squaresOccupiedByOrthogonalAndAdjacentStonesPredicate);
         return activeCluster.anyClusterMatches(winningCondition);
