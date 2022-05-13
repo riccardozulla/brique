@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 
 public class PlayerInitController implements Initializable {
 
+    public static final int MAX_NICKNAME_SIZE = 15;
     private boolean swapHappened = false;
 
     @FXML
@@ -104,7 +105,7 @@ public class PlayerInitController implements Initializable {
     }
 
     private boolean isNicknameTooLong() {
-        return player1TextField.getText().length() >= 15 || player2TextField.getText().length() >= 15;
+        return player1TextField.getText().length() >= MAX_NICKNAME_SIZE || player2TextField.getText().length() >= MAX_NICKNAME_SIZE;
     }
 
     private void displayNicknameErrorAlert(String message) {
