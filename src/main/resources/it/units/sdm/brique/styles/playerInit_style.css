@@ -1,4 +1,6 @@
 .welcome-anchor {
+    -fx-pref-width: 700;
+    -fx-pref-height: 500;
     -fx-background-image: url("../images/boa3d_op.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
