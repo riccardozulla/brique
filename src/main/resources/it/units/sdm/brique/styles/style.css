@@ -2,6 +2,7 @@ Button {
     -fx-pref-width: 200;
     -fx-background-color: goldenrod;
     -fx-background-radius: 50;
+    -fx-background-insets: 0;
     -fx-border-width: 2;
     -fx-border-style: solid;
     -fx-border-color: #422800;
