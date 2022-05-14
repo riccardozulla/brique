@@ -12,9 +12,6 @@ import java.util.Objects;
 
 public class Brique extends Application {
 
-    public static final double PRIMARY_STAGE_HEIGHT = 600.0;
-    public static final double PRIMARY_STAGE_WIDTH = 700.0;
-
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent playerInitView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("playerInit.fxml")));
@@ -22,8 +19,7 @@ public class Brique extends Application {
 
         primaryStage.setTitle("Brique");
         primaryStage.setScene(scene);
-        primaryStage.setHeight(PRIMARY_STAGE_HEIGHT);
-        primaryStage.setWidth(PRIMARY_STAGE_WIDTH);
+        primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image("/it/units/sdm/brique/images/icon.png"));
         primaryStage.show();
     }
