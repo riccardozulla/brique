@@ -15,7 +15,7 @@ public class WhiteSquare extends Square {
 
     @Override
     public List<Square> getEscorts() {
-        List<Square> escorts = new ArrayList<>(2);
+        List<Square> escorts = new ArrayList<>(MAX_ESCORTS_NUMBER);
         if (!this.isTopEdge()) escorts.add(getUpSquare());
         if (!this.isLeftEdge()) escorts.add(getLeftSquare());
         return escorts;
