@@ -70,11 +70,11 @@ public class PlayerInitController implements Initializable {
             return false;
         }
         if (isSameNickname()) {
-            displayNicknameErrorAlert("The two players can't have the same nickname." + "\nPlease choose a different nickname.");
+            displayNicknameErrorAlert("The two players can't have the same nickname." + "\nPlease choose a different one.");
             return false;
         }
         if (isNicknameTooLong()) {
-            displayNicknameErrorAlert("The nickname can't exceed 15 characters." + "\nPlease choose a shorter nickname.");
+            displayNicknameErrorAlert("The nickname can't exceed 15 characters." + "\nPlease choose a shorter one.");
             return false;
         }
         return true;
