@@ -5,9 +5,12 @@ import it.units.sdm.brique.model.Board;
 import it.units.sdm.brique.model.ClusterSet;
 import it.units.sdm.brique.model.Square;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Set;
 import java.util.function.BiPredicate;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,21 +20,31 @@ public class TestClusterSet {
     private static final BiPredicate<Square, Square> alwaysFalse = (square1, square2) -> false;
     private final ClusterSet<Square> twoElementsClusterSet = new ClusterSet<>(Set.of(Board.getInstance().getSquare(1, 1), Board.getInstance().getSquare(1, 2)));
 
-    @Test
-    void initializeSingleSquareClusters() {
-        assertEquals(2, twoElementsClusterSet.numberOfSets());
+    @ParameterizedTest
+    @CsvSource({"1,", "3", "5"})
+    void initializeSingleSquareClusters(int size) {
+        ClusterSet<Square> givenClusterSet = new ClusterSet<>(generateElementsSet(size));
+        assertEquals(size, givenClusterSet.numberOfSets());
     }
 
-    @Test
-    void composeClustersCreatesOneSingleClusterSetWithAlwaysTrueBiPredicate() {
-        twoElementsClusterSet.composeClusters(alwaysTrue);
-        assertEquals(1, twoElementsClusterSet.numberOfSets());
+    private Set<Square> generateElementsSet(int elementsNumber) {
+        return Board.getInstance().getSquaresStream().limit(elementsNumber).collect(Collectors.toSet());
     }
 
-    @Test
-    void composeClustersCreatesTwoDisjointClusterSetsWithAlwaysFalseBiPredicate() {
-        twoElementsClusterSet.composeClusters(alwaysFalse);
-        assertEquals(2, twoElementsClusterSet.numberOfSets());
+    @ParameterizedTest
+    @CsvSource({"1,", "3", "5"})
+    void composeClustersCreatesOneSingleClusterSetWithAlwaysTrueBiPredicate(int elementsNumber) {
+        ClusterSet<Square> givenClusterSet = new ClusterSet<>(generateElementsSet(elementsNumber));
+        givenClusterSet.composeClusters(alwaysTrue);
+        assertEquals(1, givenClusterSet.numberOfSets());
+    }
+
+    @ParameterizedTest
+    @CsvSource({"1,", "3", "5"})
+    void composeClustersCreatesTwoDisjointClusterSetsWithAlwaysFalseBiPredicate(int elementsNumber) {
+        ClusterSet<Square> givenClusterSet = new ClusterSet<>(generateElementsSet(elementsNumber));
+        givenClusterSet.composeClusters(alwaysFalse);
+        assertEquals(elementsNumber, givenClusterSet.numberOfSets());
     }
 
     @Test
