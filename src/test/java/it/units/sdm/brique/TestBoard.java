@@ -47,6 +47,6 @@ public class TestBoard {
     void occupiedSquaresListContainsTheOccupiedSquares(){
         Set<Square> allBoardSquares = board.getSquaresStream().collect(Collectors.toSet());
         allBoardSquares.forEach(s -> s.setStone(new Stone(Color.BLACK)));
-        assertEquals(allBoardSquares, board.getOccupiedSquares().stream().collect(Collectors.toSet()));
+        assertEquals(allBoardSquares, new HashSet<>(board.getOccupiedSquares()));
     }
 }
