@@ -1,30 +1,28 @@
 package it.units.sdm.brique.model;
 
-import java.util.Objects;
-
 public class Stone {
-  private Color color;
+    private Color color;
 
-  public Stone(Color color) {
-    this.color = color;
-  }
+    public Stone(Color color) {
+        this.color = color;
+    }
 
-  public void setColor(Color color) {
-    this.color = color;
-  }
+    public Color getColor() {
+        return color;
+    }
 
-  public Color getColor() {
-    return color;
-  }
+    public void setColor(Color color) {
+        this.color = color;
+    }
 
-  public void switchColor(){
-    color = color == Color.BLACK ? Color.WHITE : Color.BLACK;
-  }
+    public void switchColor() {
+        color = color == Color.BLACK ? Color.WHITE : Color.BLACK;
+    }
 
-  @Override
-  public String toString() {
-    return "Stone{" +
-            "color=" + color +
-            '}';
-  }
+    @Override
+    public String toString() {
+        return "Stone{" +
+                "color=" + color +
+                '}';
+    }
 }

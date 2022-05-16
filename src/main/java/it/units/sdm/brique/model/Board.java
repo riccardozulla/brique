@@ -21,12 +21,12 @@ public class Board {
         }
     }
 
-    private Square generateNewSquare(int row, int column) {
-        return (row + column) % 2 == 0 ? new WhiteSquare(row, column) : new BlackSquare(row, column);
-    }
-
     public static Board getInstance() {
         return boardInstance;
+    }
+
+    private Square generateNewSquare(int row, int column) {
+        return (row + column) % 2 == 0 ? new WhiteSquare(row, column) : new BlackSquare(row, column);
     }
 
     public void reset() {

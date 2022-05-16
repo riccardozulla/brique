@@ -12,6 +12,10 @@ import java.util.Objects;
 
 public class Brique extends Application {
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent playerInitView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("playerInit.fxml")));
@@ -22,9 +26,5 @@ public class Brique extends Application {
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image("/it/units/sdm/brique/images/icon.png"));
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

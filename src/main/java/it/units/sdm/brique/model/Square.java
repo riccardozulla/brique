@@ -5,10 +5,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 public abstract class Square {
+    public static final int MAX_ESCORTS_NUMBER = 2;
     private final int row;
     private final int column;
     private Stone stone;
-    public static final int MAX_ESCORTS_NUMBER = 2;
 
     public Square(int row, int column) {
         this.row = row;
