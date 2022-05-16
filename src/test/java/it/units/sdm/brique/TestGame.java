@@ -26,10 +26,10 @@ public class TestGame {
 
     @ParameterizedTest
     @CsvSource({"0,0", "2,4", "3,3", "6,8", "1,9", "10,12", "11,12", "14,14"})
-    void addStoneMakesSquareOccupied(int row, int col) {
-        Square square = board.getSquare(row, col);
-        game.playTurn(square);
-        assert (square.isOccupied());
+    void afterPlayingTurnTheChosenSquareIsOccupied(int row, int col) {
+        Square chosenSquare = board.getSquare(row, col);
+        game.playTurn(chosenSquare);
+        assert (chosenSquare.isOccupied());
     }
 
     @Test

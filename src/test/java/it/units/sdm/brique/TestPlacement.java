@@ -30,14 +30,14 @@ public class TestPlacement {
 
     @ParameterizedTest
     @CsvSource({"0,0", "2,2", "4,4", "6,6", "8,8", "10,10", "12,12", "14,14"})
-    void makeMoveAddsStoneOnTheChosenSquare(int i, int j) {
+    void makePlacementAddsStoneOnTheChosenSquare(int i, int j) {
         Square chosenSquare = board.getSquare(i, j);
         makePlacement(chosenSquare, player1);
         assertTrue(chosenSquare.isOccupied());
     }
 
     @Test
-    void placeStoneInOccupiedSquare() {
+    void placeStoneInOccupiedSquareThrowsException() {
         Square chosenSquare = board.getSquare(0, 0);
         chosenSquare.setStone(new Stone(player1.getStoneColor()));
         Placement placement = new Placement(player1);
