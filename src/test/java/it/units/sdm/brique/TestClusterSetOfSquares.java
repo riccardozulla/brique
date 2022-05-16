@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 public class TestClusterSetOfSquares extends TestClusterSet<Square> {
 
     @Override
-    protected Set<Square> generateElementsSet(int elementsNumber) {
-        return Board.getInstance().getSquaresStream().limit(elementsNumber).collect(Collectors.toSet());
+    protected Set<Square> generateElementsSet(int size) {
+        return Board.getInstance().getSquaresStream().limit(size).collect(Collectors.toSet());
     }
 }
 
