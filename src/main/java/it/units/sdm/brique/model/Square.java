@@ -1,6 +1,7 @@
 package it.units.sdm.brique.model;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public abstract class Square {
@@ -76,6 +77,28 @@ public abstract class Square {
 
     public Square getRightSquare() {
         return Board.getInstance().getSquare(getRow(), getColumn() + 1);
+    }
+
+    @Override
+    public String toString() {
+        return "Square{" +
+                "row=" + row +
+                ", column=" + column +
+                ", stone=" + stone +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Square square = (Square) o;
+        return row == square.row && column == square.column;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, column);
     }
 }
 
