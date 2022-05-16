@@ -35,8 +35,8 @@ public class TestBoard {
     }
 
     @ParameterizedTest
-      @CsvSource({"1,1", "4,7", "9, 2", "11,13"})
-      void occupiedSquaresListContainsTheOnlyOccupiedSquare(int i, int j) {
+    @CsvSource({"1,1", "4,7", "9, 2", "11,13"})
+    void occupiedSquaresListContainsTheOnlyOccupiedSquare(int i, int j) {
         board.reset();
         Square square = board.getSquare(i, j);
         square.setStone(new Stone(Color.BLACK));
@@ -44,7 +44,7 @@ public class TestBoard {
     }
 
     @Test
-    void occupiedSquaresListContainsTheOccupiedSquares(){
+    void occupiedSquaresListContainsTheOccupiedSquares() {
         Set<Square> allBoardSquares = board.getSquaresStream().collect(Collectors.toSet());
         allBoardSquares.forEach(s -> s.setStone(new Stone(Color.BLACK)));
         assertEquals(allBoardSquares, new HashSet<>(board.getOccupiedSquares()));
