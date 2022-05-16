@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestClusterSet {
 
     private static final BiPredicate<Square, Square> alwaysTrue = (square1, square2) -> true;
+    private static final BiPredicate<Square, Square> alwaysFalse = (square1, square2) -> false;
     private final ClusterSet<Square> clusterSet = new ClusterSet<>(Set.of(Board.getInstance().getSquare(1, 1), Board.getInstance().getSquare(1, 2)));
 
     @Test
@@ -21,8 +22,14 @@ public class TestClusterSet {
     }
 
     @Test
-    void composeClustersCreatesOneClusterOnlyIfTwoOrthogonalAndAdjacentSquaresAreInvolved() {
+    void composeClusterCreatesOneSingleClusterSet() {
         clusterSet.composeClusters(alwaysTrue);
         assertEquals(1, clusterSet.numberOfSets());
+    }
+
+    @Test
+    void composeClusterCreatesTwoDifferentClusterSets(){
+        clusterSet.composeClusters(alwaysFalse);
+        assertEquals(2, clusterSet.numberOfSets());
     }
 }
