@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Set;
 import java.util.function.BiPredicate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestClusterSet {
 
@@ -31,5 +31,15 @@ public class TestClusterSet {
     void composeClustersCreatesTwoDisjointClusterSetsWithAlwaysFalseBiPredicate() {
         clusterSet.composeClusters(alwaysFalse);
         assertEquals(2, clusterSet.numberOfSets());
+    }
+
+    @Test
+    void anyClusterMatchesReturnsTrueWithAlwaysTruePredicate() {
+        assertTrue(clusterSet.anyClusterMatches((cluster) -> true));
+    }
+
+    @Test
+    void anyClusterMatchesReturnsFalseWithAlwaysFalsePredicate() {
+        assertFalse(clusterSet.anyClusterMatches((cluster) -> false));
     }
 }
