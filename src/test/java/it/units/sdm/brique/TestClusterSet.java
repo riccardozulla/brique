@@ -22,13 +22,13 @@ public class TestClusterSet {
     }
 
     @Test
-    void composeClusterCreatesOneSingleClusterSet() {
+    void composeClustersCreatesOneSingleClusterSetWithAlwaysTrueBiPredicate() {
         clusterSet.composeClusters(alwaysTrue);
         assertEquals(1, clusterSet.numberOfSets());
     }
 
     @Test
-    void composeClusterCreatesTwoDifferentClusterSets(){
+    void composeClustersCreatesTwoDisjointClusterSetsWithAlwaysFalseBiPredicate() {
         clusterSet.composeClusters(alwaysFalse);
         assertEquals(2, clusterSet.numberOfSets());
     }
