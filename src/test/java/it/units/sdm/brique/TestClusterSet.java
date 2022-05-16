@@ -1,6 +1,5 @@
 package it.units.sdm.brique;
 
-import com.google.common.base.Predicates;
 import it.units.sdm.brique.model.ClusterSet;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -44,11 +43,11 @@ public abstract class TestClusterSet<T> {
 
     @Test
     void anyClusterMatchesReturnsTrueWithAlwaysTruePredicate() {
-        assertTrue(clusterSet.anyClusterMatches(Predicates.alwaysTrue()));
+        assertTrue(clusterSet.anyClusterMatches(cluster -> true));
     }
 
     @Test
     void anyClusterMatchesReturnsFalseWithAlwaysFalsePredicate() {
-        assertFalse(clusterSet.anyClusterMatches(Predicates.alwaysFalse()));
+        assertFalse(clusterSet.anyClusterMatches(cluster -> false));
     }
 }
