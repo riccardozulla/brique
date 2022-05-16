@@ -1,5 +1,6 @@
 package it.units.sdm.brique;
 
+import com.google.common.base.Predicates;
 import it.units.sdm.brique.model.Board;
 import it.units.sdm.brique.model.ClusterSet;
 import it.units.sdm.brique.model.Square;
@@ -14,32 +15,32 @@ public class TestClusterSet {
 
     private static final BiPredicate<Square, Square> alwaysTrue = (square1, square2) -> true;
     private static final BiPredicate<Square, Square> alwaysFalse = (square1, square2) -> false;
-    private final ClusterSet<Square> clusterSet = new ClusterSet<>(Set.of(Board.getInstance().getSquare(1, 1), Board.getInstance().getSquare(1, 2)));
+    private final ClusterSet<Square> twoElementsClusterSet = new ClusterSet<>(Set.of(Board.getInstance().getSquare(1, 1), Board.getInstance().getSquare(1, 2)));
 
     @Test
     void initializeSingleSquareClusters() {
-        assertEquals(2, clusterSet.numberOfSets());
+        assertEquals(2, twoElementsClusterSet.numberOfSets());
     }
 
     @Test
     void composeClustersCreatesOneSingleClusterSetWithAlwaysTrueBiPredicate() {
-        clusterSet.composeClusters(alwaysTrue);
-        assertEquals(1, clusterSet.numberOfSets());
+        twoElementsClusterSet.composeClusters(alwaysTrue);
+        assertEquals(1, twoElementsClusterSet.numberOfSets());
     }
 
     @Test
     void composeClustersCreatesTwoDisjointClusterSetsWithAlwaysFalseBiPredicate() {
-        clusterSet.composeClusters(alwaysFalse);
-        assertEquals(2, clusterSet.numberOfSets());
+        twoElementsClusterSet.composeClusters(alwaysFalse);
+        assertEquals(2, twoElementsClusterSet.numberOfSets());
     }
 
     @Test
     void anyClusterMatchesReturnsTrueWithAlwaysTruePredicate() {
-        assertTrue(clusterSet.anyClusterMatches((cluster) -> true));
+        assertTrue(twoElementsClusterSet.anyClusterMatches(Predicates.alwaysTrue()));
     }
 
     @Test
     void anyClusterMatchesReturnsFalseWithAlwaysFalsePredicate() {
-        assertFalse(clusterSet.anyClusterMatches((cluster) -> false));
+        assertFalse(twoElementsClusterSet.anyClusterMatches(Predicates.alwaysFalse()));
     }
 }
