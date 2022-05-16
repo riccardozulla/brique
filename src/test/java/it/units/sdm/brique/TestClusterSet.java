@@ -16,7 +16,7 @@ public abstract class TestClusterSet<T> {
     private final BiPredicate<T, T> alwaysFalse = (element1, element2) -> false;
     private final ClusterSet<T> clusterSet = new ClusterSet<>(generateElementsSet(3));
 
-    protected abstract Set<T> generateElementsSet(int elementsNumber);
+    protected abstract Set<T> generateElementsSet(int size);
 
     @ParameterizedTest
     @CsvSource({"1,", "3", "5"})
