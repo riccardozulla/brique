@@ -16,6 +16,8 @@ public abstract class TestClusterSet<T> {
     private final BiPredicate<T, T> alwaysFalse = (element1, element2) -> false;
     private final ClusterSet<T> clusterSet = new ClusterSet<>(generateElementsSet(3));
 
+    protected abstract Set<T> generateElementsSet(int elementsNumber);
+
     @ParameterizedTest
     @CsvSource({"1,", "3", "5"})
     void initializeSingleSquareClusters(int size) {
@@ -23,22 +25,20 @@ public abstract class TestClusterSet<T> {
         assertEquals(size, givenClusterSet.numberOfSets());
     }
 
-    protected abstract Set<T> generateElementsSet(int elementsNumber);
-
     @ParameterizedTest
     @CsvSource({"1,", "3", "5"})
-    void composeClustersCreatesOneSingleClusterSetWithAlwaysTrueBiPredicate(int elementsNumber) {
-        ClusterSet<T> givenClusterSet = new ClusterSet<>(generateElementsSet(elementsNumber));
+    void composeClustersCreatesOneSingleClusterSetWithAlwaysTrueBiPredicate(int size) {
+        ClusterSet<T> givenClusterSet = new ClusterSet<>(generateElementsSet(size));
         givenClusterSet.composeClusters(alwaysTrue);
         assertEquals(1, givenClusterSet.numberOfSets());
     }
 
     @ParameterizedTest
     @CsvSource({"1,", "3", "5"})
-    void composeClustersCreatesTwoDisjointClusterSetsWithAlwaysFalseBiPredicate(int elementsNumber) {
-        ClusterSet<T> givenClusterSet = new ClusterSet<>(generateElementsSet(elementsNumber));
+    void composeClustersCreatesTwoDisjointClusterSetsWithAlwaysFalseBiPredicate(int size) {
+        ClusterSet<T> givenClusterSet = new ClusterSet<>(generateElementsSet(size));
         givenClusterSet.composeClusters(alwaysFalse);
-        assertEquals(elementsNumber, givenClusterSet.numberOfSets());
+        assertEquals(size, givenClusterSet.numberOfSets());
     }
 
     @Test
