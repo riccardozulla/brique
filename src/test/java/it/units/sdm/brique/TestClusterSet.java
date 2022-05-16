@@ -18,7 +18,7 @@ public class TestClusterSet {
 
     private static final BiPredicate<Square, Square> alwaysTrue = (square1, square2) -> true;
     private static final BiPredicate<Square, Square> alwaysFalse = (square1, square2) -> false;
-    private final ClusterSet<Square> twoElementsClusterSet = new ClusterSet<>(Set.of(Board.getInstance().getSquare(1, 1), Board.getInstance().getSquare(1, 2)));
+    private final ClusterSet<Square> clusterSet = new ClusterSet<>(generateElementsSet(3));
 
     @ParameterizedTest
     @CsvSource({"1,", "3", "5"})
@@ -49,11 +49,11 @@ public class TestClusterSet {
 
     @Test
     void anyClusterMatchesReturnsTrueWithAlwaysTruePredicate() {
-        assertTrue(twoElementsClusterSet.anyClusterMatches(Predicates.alwaysTrue()));
+        assertTrue(clusterSet.anyClusterMatches(Predicates.alwaysTrue()));
     }
 
     @Test
     void anyClusterMatchesReturnsFalseWithAlwaysFalsePredicate() {
-        assertFalse(twoElementsClusterSet.anyClusterMatches(Predicates.alwaysFalse()));
+        assertFalse(clusterSet.anyClusterMatches(Predicates.alwaysFalse()));
     }
 }
