@@ -42,4 +42,12 @@ public class Player {
         result = 31 * result + stoneColor.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "nickname='" + nickname + '\'' +
+                ", stoneColor=" + stoneColor +
+                '}';
+    }
 }
