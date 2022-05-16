@@ -37,7 +37,7 @@ public class TestPlacement {
     }
 
     @Test
-    void placeStoneInOccupiedSquareThrowsException() {
+    void placeStoneInOccupiedSquareThrowsExpectedException() {
         Square chosenSquare = board.getSquare(0, 0);
         chosenSquare.setStone(new Stone(player1.getStoneColor()));
         Placement placement = new Placement(player1);
