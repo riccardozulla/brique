@@ -20,7 +20,7 @@ public abstract class TestClusterSet<T> {
 
     @ParameterizedTest
     @CsvSource({"1,", "3", "5"})
-    void initializeSingleElementsClusters(int size) {
+    void initializeSingleElementClusters(int size) {
         ClusterSet<T> givenClusterSet = new ClusterSet<>(generateElementsSet(size));
         assertEquals(size, givenClusterSet.numberOfSets());
     }
