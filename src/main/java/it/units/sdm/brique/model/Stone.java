@@ -1,5 +1,7 @@
 package it.units.sdm.brique.model;
 
+import java.util.Objects;
+
 public class Stone {
   private Color color;
 
@@ -17,5 +19,12 @@ public class Stone {
 
   public void switchColor(){
     color = color == Color.BLACK ? Color.WHITE : Color.BLACK;
+  }
+
+  @Override
+  public String toString() {
+    return "Stone{" +
+            "color=" + color +
+            '}';
   }
 }
