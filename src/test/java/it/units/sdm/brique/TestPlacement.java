@@ -37,11 +37,10 @@ public class TestPlacement {
     }
 
     @Test
-    void placeStoneInOccupiedSquareThrowsExpectedException() {
+    void tryingToPlaceStoneInOccupiedSquareThrowsExpectedException() {
         Square chosenSquare = board.getSquare(0, 0);
-        chosenSquare.setStone(new Stone(player1.getStoneColor()));
-        Placement placement = new Placement(player1);
-        assertThrowsExactly(StoneAlreadyPresentException.class, () -> placement.setChosenSquare(chosenSquare));
+        makePlacement(chosenSquare, player1);
+        assertThrowsExactly(StoneAlreadyPresentException.class, () -> makePlacement(chosenSquare, player1));
     }
 
     @ParameterizedTest
