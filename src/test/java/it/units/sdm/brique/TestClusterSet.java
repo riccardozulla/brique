@@ -18,9 +18,9 @@ public abstract class TestClusterSet<T> {
 
     @ParameterizedTest
     @CsvSource({"1,", "3", "5"})
-    void initializeSingleElementClusters(int size) {
+    void isComposedOfSingleElementClustersBeforeComposition(int size) {
         ClusterSet<T> givenClusterSet = new ClusterSet<>(generateElementsSet(size));
-        assertEquals(size, givenClusterSet.numberOfSets());
+        assertTrue(givenClusterSet.getClusters().stream().mapToInt(Set::size).allMatch(clusterSize -> clusterSize == 1));
     }
 
     @ParameterizedTest
