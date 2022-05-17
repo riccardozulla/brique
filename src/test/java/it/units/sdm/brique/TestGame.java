@@ -93,7 +93,9 @@ public class TestGame {
         Color oldPlayer2Color = player2.getStoneColor();
         game.playTurn(Board.getInstance().getSquare(0, 0));
         game.pieRule();
-        assertNotEquals(oldPlayer1Color, player1.getStoneColor());
-        assertNotEquals(oldPlayer2Color, player2.getStoneColor());
+        assertAll(
+                () -> assertEquals(oldPlayer2Color, player1.getStoneColor()),
+                () -> assertEquals(oldPlayer1Color, player2.getStoneColor())
+        );
     }
 }
