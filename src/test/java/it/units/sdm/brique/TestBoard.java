@@ -32,7 +32,7 @@ public class TestBoard {
     }
 
     @Test
-    void resetBoard() {
+    void resetMakesBoardEmpty() {
         board.reset();
         assertFalse(board.getSquaresStream().anyMatch(Square::isOccupied));
     }
