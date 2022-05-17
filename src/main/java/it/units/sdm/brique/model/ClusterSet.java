@@ -15,10 +15,10 @@ public class ClusterSet<T> extends UnionFind<T> {
         super(elements);
     }
 
-    public void composeClusters(BiPredicate<T, T> belongToSameClusterPredicate) {
+    public void composeClusters(BiPredicate<T, T> belongToSameCluster) {
         var elements = getParentMap().keySet();
         Sets.cartesianProduct(elements, elements).stream().
-                filter(pair -> belongToSameClusterPredicate.test(pair.get(0), pair.get(1))).
+                filter(pair -> belongToSameCluster.test(pair.get(0), pair.get(1))).
                 forEach(pair -> union(pair.get(0), pair.get(1)));
     }
 
