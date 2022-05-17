@@ -49,7 +49,7 @@ public class TestBoard {
     @Test
     void occupiedSquaresListContainsTheOccupiedSquares() {
         Set<Square> allBoardSquares = board.getSquaresStream().collect(Collectors.toSet());
-        allBoardSquares.forEach(s -> s.setStone(new Stone(Color.BLACK)));
+        allBoardSquares.forEach(square -> square.setStone(new Stone(Color.BLACK)));
         assertEquals(allBoardSquares, new HashSet<>(board.getOccupiedSquares()));
     }
 }
