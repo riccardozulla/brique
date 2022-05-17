@@ -15,7 +15,7 @@ public class Game {
     private final Player player2;
     private final Board gameBoard = Board.getInstance();
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-    private final BiPredicate<Square, Square> squaresOccupiedByOrthogonalAndAdjacentStonesPredicate = (Square square1, Square square2) -> Square.manhattanSquareDistance(square1, square2) == 1;
+    private final BiPredicate<Square, Square> squaresOccupiedByOrthogonalAndAdjacentStones = (Square square1, Square square2) -> Square.manhattanSquareDistance(square1, square2) == 1;
     private Status status = Status.RUNNING;
     private Player activePlayer;
     private final Predicate<Set<Square>> winningCondition = (Set<Square> cluster) -> switch (activePlayer.getStoneColor()) {
@@ -106,7 +106,7 @@ public class Game {
 
     private boolean activePlayerWins() {
         ClusterSet<Square> activeCluster = new ClusterSet<>(getActivePlayerPlacedStones());
-        activeCluster.composeClusters(squaresOccupiedByOrthogonalAndAdjacentStonesPredicate);
+        activeCluster.composeClusters(squaresOccupiedByOrthogonalAndAdjacentStones);
         return activeCluster.anyClusterMatches(winningCondition);
     }
 
