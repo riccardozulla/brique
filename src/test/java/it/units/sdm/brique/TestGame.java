@@ -70,7 +70,7 @@ public class TestGame {
     }
 
     @Test
-    void pieRuleDisabledAtGameInitialization() {
+    void pieRuleNotApplicableAtGameInitialization() {
         assertFalse(game.isPieRuleApplicable());
     }
 
@@ -81,7 +81,7 @@ public class TestGame {
     }
 
     @Test
-    void pieRuleDisabledAfterSecondTurn() {
+    void pieRuleNotApplicableAfterSecondTurn() {
         game.playTurn(board.getSquare(0, 0));
         game.playTurn(board.getSquare(0, 1));
         assertFalse(game.isPieRuleApplicable());
