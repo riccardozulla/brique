@@ -34,7 +34,7 @@ public abstract class TestClusterSet<T> {
 
     @ParameterizedTest
     @CsvSource({"1,", "3", "5"})
-    void composeClustersCreatesTwoDisjointClusterSetsWithAlwaysFalseBiPredicate(int size) {
+    void composeClustersCreatesDisjointClusterSetsWithAlwaysFalseBiPredicate(int size) {
         BiPredicate<T, T> alwaysFalse = (element1, element2) -> false;
         ClusterSet<T> givenClusterSet = new ClusterSet<>(generateElementsSet(size));
         givenClusterSet.composeClusters(alwaysFalse);
