@@ -12,8 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class TestClusterSet<T> {
 
-    private final BiPredicate<T, T> alwaysTrue = (element1, element2) -> true;
-    private final BiPredicate<T, T> alwaysFalse = (element1, element2) -> false;
     private final ClusterSet<T> clusterSet = new ClusterSet<>(generateElementsSet(3));
 
     protected abstract Set<T> generateElementsSet(int size);
@@ -28,6 +26,7 @@ public abstract class TestClusterSet<T> {
     @ParameterizedTest
     @CsvSource({"1,", "3", "5"})
     void composeClustersCreatesOneSingleClusterSetWithAlwaysTrueBiPredicate(int size) {
+        BiPredicate<T, T> alwaysTrue = (element1, element2) -> true;
         ClusterSet<T> givenClusterSet = new ClusterSet<>(generateElementsSet(size));
         givenClusterSet.composeClusters(alwaysTrue);
         assertEquals(1, givenClusterSet.numberOfSets());
@@ -36,6 +35,7 @@ public abstract class TestClusterSet<T> {
     @ParameterizedTest
     @CsvSource({"1,", "3", "5"})
     void composeClustersCreatesTwoDisjointClusterSetsWithAlwaysFalseBiPredicate(int size) {
+        BiPredicate<T, T> alwaysFalse = (element1, element2) -> false;
         ClusterSet<T> givenClusterSet = new ClusterSet<>(generateElementsSet(size));
         givenClusterSet.composeClusters(alwaysFalse);
         assertEquals(size, givenClusterSet.numberOfSets());
