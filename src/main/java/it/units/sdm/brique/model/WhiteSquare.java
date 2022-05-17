@@ -20,5 +20,4 @@ public class WhiteSquare extends Square {
         if (!this.isLeftEdge()) escorts.add(getLeftSquare());
         return escorts;
     }
-
 }
