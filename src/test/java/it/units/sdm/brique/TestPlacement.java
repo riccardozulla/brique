@@ -62,7 +62,7 @@ public class TestPlacement {
 
     @ParameterizedTest
     @CsvSource({"4,5", "6,10", "8,9", "13,2", "1,1", "3,3", "5,10", "11,5"})
-    void escortRuleNotAppliedWithEnemyStones(int i, int j) {
+    void escortRuleNotAppliedIfEscortSquaresAreOccupiedByDifferentColorStones(int i, int j) {
         Square square = board.getSquare(i, j);
         List<Square> escorts = square.getEscorts();
         makePlacement(escorts.get(0), player1);
