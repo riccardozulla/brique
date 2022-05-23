@@ -29,7 +29,7 @@ public class TestGame {
     void afterPlayingTurnTheChosenSquareIsOccupied(int row, int col) {
         Square chosenSquare = board.getSquare(row, col);
         game.playTurn(chosenSquare);
-        assert (chosenSquare.isOccupied());
+        assertTrue(chosenSquare.isOccupied());
     }
 
     @Test

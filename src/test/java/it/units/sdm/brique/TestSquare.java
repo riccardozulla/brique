@@ -34,7 +34,7 @@ public class TestSquare {
     @Test
     void isOccupiedAfterStonePlacement() {
         defaultSquare.setStone(new Stone(Color.BLACK));
-        assert (defaultSquare.isOccupied());
+        assertTrue(defaultSquare.isOccupied());
     }
 
     @Test
