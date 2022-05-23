@@ -12,7 +12,6 @@ public class GraphicStone extends Ellipse {
     public GraphicStone(Stone stone) {
         super(GraphicSquare.SQUARE_SIZE / 2.0, GraphicSquare.SQUARE_SIZE / 2.0, STONE_RADIUS_X, STONE_RADIUS_Y);
         this.stone = stone;
-        this.setFill(stone.getColor() == Color.WHITE ? GraphicColor.WHITE_STONE.getColor() : GraphicColor.BLACK_STONE.getColor());
         this.setFill(stone.getColor().equals(Color.WHITE) ? GraphicColor.WHITE_STONE.getColor() : GraphicColor.BLACK_STONE.getColor());
     }
 }
